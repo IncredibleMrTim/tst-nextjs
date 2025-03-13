@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { MenuItems } from '@store/useNavigationStore';
 
-import Navigation from './navigation/Navigation';
+import Navigation from './Navigation';
 
 describe('Navigation', () => {
   it('renders navigation items', () => {

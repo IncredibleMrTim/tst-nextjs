@@ -14,16 +14,19 @@ export type MenuItem = {
 
 export interface NavigationStore {
   menuItems: MenuItem[];
+  isDrawerOpen: boolean;
+
   setActiveMenuItem: (menuItem: MenuItem) => void;
+  setIsDrawerOpen: (isOpen: boolean) => void;
 }
 
 export const useNavigationStore = create<NavigationStore>(set => ({
-  activeMenuItem: MenuItems.HOME,
   menuItems: [
     { name: MenuItems.HOME, path: '/', isActive: true },
     { name: MenuItems.EXPERIENCE, path: '/experience' },
     { name: MenuItems.TECHNOLOGY, path: '/technology' }
   ],
+  isDrawerOpen: false,
 
   setActiveMenuItem: menuItem => {
     set(state => ({
@@ -32,5 +35,6 @@ export const useNavigationStore = create<NavigationStore>(set => ({
         isActive: item.name === menuItem.name
       }))
     }));
-  }
+  },
+  setIsDrawerOpen: isOpen => set({ isDrawerOpen: isOpen }),
 }));

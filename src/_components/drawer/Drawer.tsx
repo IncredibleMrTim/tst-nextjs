@@ -1,28 +1,27 @@
+// MOVE TO COMPONENT LIBRARY
 'use client';
 
-import { Drawer as GeistDrawer } from '@geist-ui/core';
+import { Drawer as GeistDrawer, DrawerProps } from '@geist-ui/core';
+import { MouseEventHandler, useState } from 'react';
 import { ListBulletIcon } from '@radix-ui/react-icons';
 import { IconButton } from '@radix-ui/themes';
-import { useState } from 'react';
 
-const Drawer = () => {
-  const [state, setState] = useState(false);
+interface IDrawerProps extends DrawerProps {
+  children: React.ReactNode;
+  onTrigger?: MouseEventHandler<HTMLButtonElement> | undefined;
+}
+
+const Drawer = ({ children, onTrigger, ...props }: IDrawerProps) => {
   return (
     <div>
-      <IconButton variant="ghost" onClick={() => setState(true)} size="4">
+      <IconButton variant="ghost" onClick={onTrigger} size="4">
         <ListBulletIcon width={24} height={24} />
       </IconButton>
 
-      <GeistDrawer
-        visible={state}
-        onClose={() => setState(false)}
-        placement="right"
-      >
+      <GeistDrawer width="80%" placement="right" {...props}>
         <GeistDrawer.Title>Drawer</GeistDrawer.Title>
         <GeistDrawer.Subtitle>This is a drawer</GeistDrawer.Subtitle>
-        <GeistDrawer.Content>
-          <p>Some content contained within the drawer.</p>
-        </GeistDrawer.Content>
+        <GeistDrawer.Content>{children}</GeistDrawer.Content>
       </GeistDrawer>
     </div>
   );
