@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 // eslint-disable-next-line camelcase
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import LogoBanner from '@/_components/logoBanner/LogoBanner';
+import BrandBanner from '@components/brandBanner/BrandBanner';
 
 import AppHeader from '../_components/header/Header';
 
@@ -41,7 +41,7 @@ const RootLayout = ({
         <Theme>
           <AppHeader />
           <div className="flex flex-col w-2/3 justify-center mx-auto">
-            <LogoBanner />
+            <BrandBanner />
             <div className="flex">{children}</div>
           </div>
         </Theme>

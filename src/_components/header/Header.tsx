@@ -4,6 +4,7 @@ import Drawer from '@components/drawer/Drawer';
 import { TstLogo } from '@components/logos/TstLogo';
 import { useNavigationStore } from '@store/useNavigationStore';
 import Navigation, { NavDirection } from './navigation/Navigation';
+import DrawerTemplate from './drawerTemplate/DrawerTemplate';
 
 const Header = () => {
   const setIsDrawerOpen = useNavigationStore(state => state.setIsDrawerOpen);
@@ -16,13 +17,13 @@ const Header = () => {
           <TstLogo />
         </div>
 
-        <div className="absolute bottom-4 left-4 visible md:invisible">
+        <div className="absolute bottom-2 left-4 visible md:invisible">
           <Drawer
             onClose={() => setIsDrawerOpen(false)}
             onTrigger={() => setIsDrawerOpen(!isDrawerOpen)}
             visible={isDrawerOpen}
           >
-            <Navigation orientation={NavDirection.VERTICAL} />
+            <DrawerTemplate />
           </Drawer>
         </div>
 
