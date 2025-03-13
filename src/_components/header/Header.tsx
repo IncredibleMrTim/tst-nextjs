@@ -22,12 +22,12 @@ const Header = () => {
             onTrigger={() => setIsDrawerOpen(!isDrawerOpen)}
             visible={isDrawerOpen}
           >
-            <Navigation direction={NavDirection.VERTICAL} />
+            <Navigation orientation={NavDirection.VERTICAL} />
           </Drawer>
         </div>
 
         <div className="invisible md:visible">
-          <Navigation />
+          <Navigation orientation={NavDirection.HORIZONTAL} />
         </div>
       </div>
     </header>
