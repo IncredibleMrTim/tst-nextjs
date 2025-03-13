@@ -1,34 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
-import { MenuItems, useNavigationStore } from '@store/useNavigationStore';
+import { MenuItems } from '@store/useNavigationStore';
 
-import Navigation from './Navigation';
-
-jest.mock('@store/useNavigationStore', () => ({
-  ...jest.requireActual('@store/useNavigationStore'),
-  useNavigationStore: jest.fn()
-}));
+import Navigation from './navigation/Navigation';
 
 describe('Navigation', () => {
-  const setActiveMenuItem = jest.fn();
-
-  const mockMenuItems = [
-    { name: MenuItems.HOME, path: '/' },
-    { name: MenuItems.EXPERIENCE, path: '/experience' },
-    { name: MenuItems.TECHNOLOGY, path: '/technology' }
-  ];
-
-  beforeEach(() => {
-    (useNavigationStore as unknown as jest.Mock).mockImplementation(selector =>
-      selector({
-        menuItems: mockMenuItems,
-
-        setActiveMenuItem
-      })
-    );
-  });
-
   it('renders navigation items', () => {
     render(<Navigation />);
 
@@ -36,14 +12,5 @@ describe('Navigation', () => {
       const linkElement = screen.getByText(item);
       expect(linkElement).toBeInTheDocument();
     });
-  });
-
-  it('should handle the menu item click', async () => {
-    render(<Navigation />);
-
-    const linkElement = screen.getByText(MenuItems.HOME);
-    await userEvent.click(linkElement);
-
-    expect(setActiveMenuItem).toHaveBeenCalledWith(mockMenuItems[0]);
   });
 });

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'eslint-define-config';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import prettier from 'eslint-plugin-prettier';
+import prettier from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import globals from 'globals';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -78,11 +78,11 @@ export default defineConfig([
           ],
           pathGroups: [
             {
-              pattern: '**/**.{ts|tsx}',
+              pattern: './**/*.*',
               group: 'internal'
             },
             {
-              pattern: '**/**.test.*',
+              pattern: './**/*test.*',
               group: 'internal'
             }
           ],

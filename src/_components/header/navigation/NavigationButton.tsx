@@ -7,6 +7,7 @@ interface NavigationButtonProps {
   isActive?: boolean;
   onClick: (menuItem: MenuItem) => void;
   menuItem: MenuItem;
+  isMobile?: boolean;
 }
 
 const NavButton = ({ children, onClick, menuItem }: NavigationButtonProps) => {
