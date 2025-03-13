@@ -1,6 +1,8 @@
-import { MenuItems, useNavigationStore } from '@store/useNavigationStore';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { MenuItems, useNavigationStore } from '@store/useNavigationStore';
+
 import Navigation from './Navigation';
 
 jest.mock('@store/useNavigationStore', () => ({
@@ -9,7 +11,7 @@ jest.mock('@store/useNavigationStore', () => ({
 }));
 
 describe('Navigation', () => {
-  let setActiveMenuItem = jest.fn();
+  const setActiveMenuItem = jest.fn();
 
   const mockMenuItems = [
     { name: MenuItems.HOME, path: '/' },

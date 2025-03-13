@@ -1,7 +1,9 @@
 'use client';
-import Navigation from './Navigation';
+
 import Drawer from '@components/drawer/Drawer';
 import { TstLogo } from '@components/logos/TstLogo';
+
+import Navigation from './Navigation';
 
 const Header = () => {
   return (

@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import NavButton from './NavigationButton';
+
 import { MenuItem, MenuItems } from '@/_store/useNavigationStore';
+
+import NavButton from './NavigationButton';
 
 describe('NavigationButton', () => {
   const mockMenuItem: MenuItem = {

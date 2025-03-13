@@ -1,6 +1,6 @@
 // __mocks__/zustand.ts
-import type * as zustand from 'zustand';
 import { act } from '@testing-library/react';
+import type * as zustand from 'zustand';
 
 const { create: actualCreate, createStore: actualCreateStore } =
   jest.requireActual<typeof zustand>('zustand');
