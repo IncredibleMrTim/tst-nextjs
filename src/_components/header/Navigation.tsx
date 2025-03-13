@@ -1,8 +1,9 @@
 'use client';
 
-import { useNavigationStore, type MenuItem } from '@store/useNavigationStore';
-import Link from 'next/link';
 import { NavigationMenu } from 'radix-ui';
+
+import { type MenuItem, useNavigationStore } from '@store/useNavigationStore';
+
 import NavButton from './navigation/NavigationButton';
 
 const Navigation = () => {

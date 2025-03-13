@@ -1,12 +1,13 @@
 'use client';
+
 import {
-  CoyoteLogo,
-  MdrxTechLogo,
-  LexisNexisLogo,
-  OnsLogo,
-  SantanderLogo,
   AstraZenecaLogo,
-  ProagricaLogo
+  CoyoteLogo,
+  LexisNexisLogo,
+  MdrxTechLogo,
+  OnsLogo,
+  ProagricaLogo,
+  SantanderLogo
 } from '../logos';
 import LogoWrapper from './LogoWrapper';
 

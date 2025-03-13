@@ -1,9 +1,9 @@
 'use client';
 
-import { Button, Drawer as GeistDrawer, Text } from '@geist-ui/core';
-import { useState } from 'react';
-import { IconButton } from '@radix-ui/themes';
+import { Drawer as GeistDrawer } from '@geist-ui/core';
 import { ListBulletIcon } from '@radix-ui/react-icons';
+import { IconButton } from '@radix-ui/themes';
+import { useState } from 'react';
 
 const Drawer = () => {
   const [state, setState] = useState(false);

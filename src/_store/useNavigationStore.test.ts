@@ -1,5 +1,6 @@
-import { renderHook, act } from '@testing-library/react';
-import { useNavigationStore, MenuItems } from './useNavigationStore';
+import { act, renderHook } from '@testing-library/react';
+
+import { MenuItems, useNavigationStore } from './useNavigationStore';
 
 describe('useNavigationStore', () => {
   it('should set the active menu item', () => {
@@ -12,7 +13,7 @@ describe('useNavigationStore', () => {
       });
     });
 
-    const menuItems = result.current.menuItems;
+    const { menuItems } = result.current;
     expect(
       menuItems.find(item => item.name === MenuItems.EXPERIENCE)?.isActive
     ).toBe(true);

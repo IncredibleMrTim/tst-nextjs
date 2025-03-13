@@ -2,7 +2,7 @@ export const AstraZenecaLogo = () => (
   <svg
     height="100%"
     width="180"
-    enable-background="new 0 0 555.1 138.6"
+    enableBackground="new 0 0 555.1 138.6"
     viewBox="0 0 555.1 138.6"
     xmlns="http://www.w3.org/2000/svg"
   >
