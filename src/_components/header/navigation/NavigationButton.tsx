@@ -19,6 +19,7 @@ const NavButton = ({ children, onClick, menuItem }: NavigationButtonProps) => {
         onClick={handleNavigationClick}
         variant="ghost"
         radius="none"
+        size="3"
         className={`!text-black !border-b-2 ${menuItem.isActive ? '!bg-slate-100 !border-slate-400' : '!border-transparent'} hover:!bg-slate-100`}
       >
         {children}

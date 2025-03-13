@@ -20,7 +20,7 @@ export interface NavigationStore {
 export const useNavigationStore = create<NavigationStore>(set => ({
   activeMenuItem: MenuItems.HOME,
   menuItems: [
-    { name: MenuItems.HOME, path: '/' },
+    { name: MenuItems.HOME, path: '/', isActive: true },
     { name: MenuItems.EXPERIENCE, path: '/experience' },
     { name: MenuItems.TECHNOLOGY, path: '/technology' }
   ],
