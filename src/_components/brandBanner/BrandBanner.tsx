@@ -9,34 +9,34 @@ import {
   ProagricaLogo,
   SantanderLogo
 } from '../logos';
-import LogoWrapper from './LogoWrapper';
+import BrandWrapper from './BrandWrapper';
 
-const LogoBanner = () => {
+const BrandBanner = () => {
   return (
     <div className="flex justify-between h-full border-b-1 border-gray-200 xs:invisible invisible md:visible">
-      <LogoWrapper>
+      <BrandWrapper>
         <AstraZenecaLogo />
-      </LogoWrapper>
-      <LogoWrapper>
+      </BrandWrapper>
+      <BrandWrapper>
         <SantanderLogo />
-      </LogoWrapper>
-      <LogoWrapper>
+      </BrandWrapper>
+      <BrandWrapper>
         <CoyoteLogo />
-      </LogoWrapper>
-      <LogoWrapper>
+      </BrandWrapper>
+      <BrandWrapper>
         <OnsLogo />
-      </LogoWrapper>
-      <LogoWrapper>
+      </BrandWrapper>
+      <BrandWrapper>
         <LexisNexisLogo />
-      </LogoWrapper>
-      <LogoWrapper>
+      </BrandWrapper>
+      <BrandWrapper>
         <ProagricaLogo />
-      </LogoWrapper>
-      <LogoWrapper>
+      </BrandWrapper>
+      <BrandWrapper>
         <MdrxTechLogo />
-      </LogoWrapper>
+      </BrandWrapper>
     </div>
   );
 };
 
-export default LogoBanner;
+export default BrandBanner;
