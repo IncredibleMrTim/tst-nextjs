@@ -2,12 +2,12 @@
 
 import {
   AstraZenecaLogo,
-  CoyoteLogo,
   LexisNexisLogo,
   MdrxTechLogo,
   OnsLogo,
   ProagricaLogo,
-  SantanderLogo
+  SantanderLogo,
+  CoyoteLogo
 } from '../logos';
 import BrandWrapper from './BrandWrapper';
 
