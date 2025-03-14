@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Home = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-12">
       <div className="hidden sm:flex">
         <Image
           src="/images/tstBanner.png"
@@ -13,7 +13,7 @@ const Home = () => {
           height={1080}
         />
       </div>
-      <div className="p-8">
+      <div>
         <h1>Frontend Software Engineer Consultant</h1>
         <p>
           Experienced Front End web application developer with over 10 years
@@ -27,7 +27,7 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="flex gap-8 px-8 flex-col sm:flex-row">
+      <div className="flex gap-8 flex-col sm:flex-row">
         <Card imageSrc="/images/experience.svg" imageAlt="Experience">
           Over 15 years continuous employment in various Software Engineering
           disciplines specialising in frontend development over the past 4

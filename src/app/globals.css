@@ -35,7 +35,7 @@ a {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2rem !important;
   font-weight: 700;
   margin: 0;
 }
