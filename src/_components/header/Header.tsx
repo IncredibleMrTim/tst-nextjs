@@ -5,6 +5,7 @@ import { TstLogo } from '@components/logos/TstLogo';
 import { useNavigationStore } from '@store/useNavigationStore';
 import Navigation, { NavDirection } from './navigation/Navigation';
 import DrawerTemplate from './drawerTemplate/DrawerTemplate';
+import { Box, Container } from '@radix-ui/themes';
 
 const Header = () => {
   const setIsDrawerOpen = useNavigationStore(state => state.setIsDrawerOpen);
@@ -12,25 +13,26 @@ const Header = () => {
 
   return (
     <header className="w-full relative flex justify-center bg-gradient-to-b from-blue-200 via--blue-100 via-70% via-zinc-50 to-80% to-transparent gap-4 shadow-md">
-      <div className="flex flex-col justify-center w-2/3">
-        <div className="w-full self-center mx-0 sm:w-1/6 sm:mx-4 my-4  ">
-          <TstLogo />
-        </div>
+      <Container>
+        <div className="flex flex-col justify-center">
+          <div className="w-full self-center mx-0 p-8 sm:w-1/6 sm:mx-4 my-4 sm:p-0 ">
+            <TstLogo />
+          </div>
 
-        <div className="absolute bottom-2 left-4 visible md:invisible">
-          <Drawer
-            onClose={() => setIsDrawerOpen(false)}
-            onTrigger={() => setIsDrawerOpen(!isDrawerOpen)}
-            visible={isDrawerOpen}
-          >
-            <DrawerTemplate />
-          </Drawer>
+          <div className="absolute bottom-2 left-4 visible md:invisible">
+            <Drawer
+              onClose={() => setIsDrawerOpen(false)}
+              onTrigger={() => setIsDrawerOpen(!isDrawerOpen)}
+              visible={isDrawerOpen}
+            >
+              <DrawerTemplate />
+            </Drawer>
+          </div>
+          <div className="invisible md:visible">
+            <Navigation orientation={NavDirection.HORIZONTAL} />
+          </div>
         </div>
-
-        <div className="invisible md:visible">
-          <Navigation orientation={NavDirection.HORIZONTAL} />
-        </div>
-      </div>
+      </Container>
     </header>
   );
 };

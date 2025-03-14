@@ -1,7 +1,7 @@
 import './globals.css';
 import '@radix-ui/themes/styles.css';
 
-import { Theme } from '@radix-ui/themes';
+import { Theme, Container } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 // eslint-disable-next-line camelcase
 import { Geist, Geist_Mono } from 'next/font/google';
@@ -40,10 +40,12 @@ const RootLayout = ({
       >
         <Theme>
           <AppHeader />
-          <div className="flex flex-col w-2/3 justify-center mx-auto">
-            <BrandBanner />
-            <div className="flex">{children}</div>
-          </div>
+          <Container>
+            <div className="flex flex-col justify-center mx-auto">
+              <BrandBanner />
+              <div className="flex">{children}</div>
+            </div>
+          </Container>
         </Theme>
       </body>
     </html>
