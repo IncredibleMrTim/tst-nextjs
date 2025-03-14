@@ -15,9 +15,9 @@ const Header = () => {
     <header className="w-full relative flex justify-center bg-gradient-to-b from-blue-200 via--blue-100 via-70% via-zinc-50 to-80% to-transparent gap-4 shadow-md">
       <Container>
         <div className="flex flex-col justify-center">
-          <div className="w-full self-center mx-0 p-8 sm:w-1/6 sm:mx-4 my-4 sm:p-0 ">
+          <Box className="w-full self-center mx-0 p-8 sm:w-1/6 sm:mx-4 my-4 sm:p-0 ">
             <TstLogo />
-          </div>
+          </Box>
 
           <div className="absolute bottom-2 left-4 visible md:invisible">
             <Drawer
