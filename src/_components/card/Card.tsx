@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Inset, Card as RCard } from '@radix-ui/themes';
 import Link from 'next/link';
 
