@@ -1,6 +1,6 @@
 import './globals.css';
 import '@radix-ui/themes/styles.css';
-
+import env from 'dotenv';
 import { Theme, Container } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 // eslint-disable-next-line camelcase
@@ -9,6 +9,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import BrandBanner from '@components/brandBanner/BrandBanner';
 
 import AppHeader from '../_components/header/Header';
+
+env.config({ path: ['.env.local', '.env'] });
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

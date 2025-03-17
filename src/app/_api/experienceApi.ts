@@ -17,7 +17,7 @@ export type ExperienceModal = {
 
 export const getExperience = async () => {
   try {
-    const response = await fetch('http://localhost:8080/experience', {
+    const response = await fetch(`${process.env.REACT_API}/experience`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
