@@ -1,42 +1,40 @@
+import { ExperienceModal } from '@/_model/experienceModal';
 import { Card } from '@radix-ui/themes';
 import moment from 'moment';
 
 interface ExperienceCardProps {
-  company: string;
-  jobType: string;
-  title: string;
-  fromDate: Date | string | undefined;
-  toDate: Date | string | undefined;
-  description: string;
-  techStack?: string[];
+  experience: ExperienceModal;
 }
 
-const ExperienceCard = ({
-  title,
-  description,
-  fromDate,
-  toDate,
-  techStack,
-  company,
-  jobType
-}: ExperienceCardProps) => {
+const ExperienceCard = ({ experience }: ExperienceCardProps) => {
   return (
-    <Card>
-      <h2 className="text-left pb-0">
-        {title} - {company}
+    <Card className="mb-8" variant="classic">
+      <h2 className="text-left">
+        {experience.role} - {experience.company}
       </h2>
 
       <p className="italic mb-8 !text-sm">
-        {`from: ${moment(fromDate).format('MMM YY')}`}
-        {`to: ${moment(toDate).format('MMM YY')}`}
+        {`${moment(experience.startDate).format('MMM YY')} - `}
+        {moment(experience.endDate).format('MMM YY')}
+      </p>
 
-        {jobType && <span> ({jobType})</span>}
-      </p>
-      <p className="mb-8">{description}</p>
-      <h3 className="text-left pb-0">{techStack}</h3>
-      <p className="!text-sm">
-        {Array.isArray(techStack) && techStack.toString().replace(/,/g, ', ')}
-      </p>
+      <p className="whitespace-pre-line mb-8">{experience.description}</p>
+
+      <div className="">
+        <h4>Tech Stack</h4>
+        <p className="!text-sm divide-gray-300 divide-x divider-w-8 whitespace-nowrap ">
+          {experience.skills
+            .sort((a, b) => a.order - b.order)
+            .map((skill, i) => (
+              <span
+                key={skill.order}
+                className={`text-gray-500 pr-1 ${i !== 0 ? 'pl-1' : ''}`}
+              >
+                {skill.name}
+              </span>
+            ))}
+        </p>
+      </div>
     </Card>
   );
 };
