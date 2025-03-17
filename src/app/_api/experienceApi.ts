@@ -7,6 +7,12 @@ export type ExperienceModal = {
   startDate: Date;
   endDate: Date;
   description: string;
+  skills: [
+    {
+      order: number;
+      name: string;
+    }
+  ];
 };
 
 export const getExperience = async () => {
