@@ -1,6 +1,7 @@
 'use client';
 
 import { NavigationMenu } from 'radix-ui';
+import { useRouter } from 'next/navigation';
 
 import { type MenuItem, useNavigationStore } from '@store/useNavigationStore';
 
@@ -18,6 +19,8 @@ export interface NavigationProps {
 const Navigation = ({
   orientation = NavDirection.HORIZONTAL
 }: NavigationProps) => {
+  const router = useRouter();
+
   const menuItems = useNavigationStore(state => state.menuItems);
 
   const setActiveMenuItem = useNavigationStore(
@@ -28,6 +31,7 @@ const Navigation = ({
   const handleNavigationClick = (menuItem: MenuItem) => {
     setActiveMenuItem(menuItem);
     setIsDrawerOpen(false);
+    router.push(menuItem.path);
   };
 
   const navVertical = 'flex flex-col';
