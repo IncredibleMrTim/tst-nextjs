@@ -1,7 +1,28 @@
-import ExperienceCard from '@/_components/experienceCard/ExperienceCard';
+'use client';
+import { useState, useEffect } from 'react';
 import { Box, Container, Section } from '@radix-ui/themes';
+import { getExperience } from '../../_api/experienceApi';
+import { ExperienceModal } from '@/_model/experienceModal';
+import ExperienceCard from '@/_components/experienceCard/ExperienceCard';
 
 const Experience = () => {
+  const [message, setMessage] = useState('Loading...');
+  const [experiences, setExperiences] = useState<ExperienceModal[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getExperience();
+        setExperiences(data);
+        setMessage('');
+      } catch (error) {
+        setMessage('Error fetching experiences');
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <Box className="flex relative bg-red-700 w-full p-4 rounded-md text-white">
@@ -23,7 +44,11 @@ const Experience = () => {
         </div>
       </Box>
 
-      <Section>Add Experience here</Section>
+      <Section className="mt-8">
+        {experiences.map(experience => (
+          <ExperienceCard experience={experience} />
+        ))}
+      </Section>
     </div>
   );
 };

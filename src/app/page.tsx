@@ -1,5 +1,5 @@
 import Card from '@/_components/card/Card';
-import { Container, Grid, Inset, Section } from '@radix-ui/themes';
+
 import Image from 'next/image';
 
 const Home = () => {

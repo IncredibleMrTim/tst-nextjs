@@ -22,7 +22,6 @@ const Navigation = ({
   const router = useRouter();
 
   const menuItems = useNavigationStore(state => state.menuItems);
-
   const setActiveMenuItem = useNavigationStore(
     state => state.setActiveMenuItem
   );
