@@ -22,7 +22,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@components/*": ["./src/_components/*"],
-      "@store/*": ["./src/_store/*"]
+      "@store/*": ["./src/_store/*"],
+      "@api/*": ["./src/_api/*"]
     }
   },
   "include": [
