@@ -26,7 +26,6 @@ const Home = () => {
           Southampton Solent University.
         </p>
       </div>
-
       <div className="flex gap-8 flex-col sm:flex-row">
         <Card imageSrc="/images/experience.svg" imageAlt="Experience">
           Over 15 years continuous employment in various Software Engineering
