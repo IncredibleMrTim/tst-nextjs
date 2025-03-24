@@ -7,8 +7,9 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
   env: {
-    REACT_API: 'https://tst-server.vercel.app/'
+    NODE_API: 'https://tst-server.vercel.app/'
   }
+  
 };
 
 export default nextConfig;
