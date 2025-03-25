@@ -28,7 +28,6 @@ export default defineConfig([
     plugins: {
       react,
       '@typescript-eslint': typescriptEslint,
-      prettier
     },
 
     files: ['**/*.ts', '**/*.tsx', '!**/node_modules/'],
