@@ -17,7 +17,7 @@ export type ExperienceModal = {
 
 export const getExperience = async () => {
   try {
-    const response = await fetch(`${process.env.NODE_API}/experience`, {
+    const response = await fetch(`${process.env.TST_API}/experience`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
