@@ -7,7 +7,7 @@ const ExperienceLayout = ({ children }: { children: ReactNode }) => {
     <div>
       <Box className="flex relative bg-red-700 w-full p-4 rounded-md text-white">
         <img
-          src="/images/profile.svg"
+          src="/images/profile-sm.jpg"
           alt="Profile Picture"
           className="absolute left-4 w-36 rounded-md shadow-md"
         />
