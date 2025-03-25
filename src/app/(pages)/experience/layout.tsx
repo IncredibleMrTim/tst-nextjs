@@ -7,17 +7,17 @@ import Image from 'next/image';
 const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
   return (
     <div>
-      <Box className="flex relative bg-red-700 w-full p-4 rounded-md text-white">
+      <Box className="flex relative bg-red-700 w-fill p-4 rounded-md text-white">
         <Image
           src="/images/profile-sm.jpg"
           width="144"
           height="166"
           alt="Profile Picture"
           priority={true}
-          className="absolute left-4 w-36 rounded-md shadow-md"
+          className="!hidden md:absolute md:left-4 md:rounded-md md:shadow-md md:flex"
         />
 
-        <div className="flex flex-col ml-40">
+        <div className="flex flex-col md:ml-40">
           <h1>Experience</h1>
           <p>
             Experienced Lead/Senior Software Engineer with a demonstrated
