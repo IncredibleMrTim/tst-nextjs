@@ -26,12 +26,12 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           {experience.skills
             .sort((a, b) => a.order - b.order)
             .map((skill, i) => (
-              <span
+              <div
                 key={skill.order}
                 className={`text-gray-500 pr-1 ${i !== 0 ? 'pl-1' : ''}`}
               >
                 {skill.name}
-              </span>
+              </div>
             ))}
         </p>
       </div>
