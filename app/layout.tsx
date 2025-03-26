@@ -1,3 +1,4 @@
+'use client';
 import './globals.css';
 import '@radix-ui/themes/styles.css';
 
@@ -9,6 +10,9 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import BrandBanner from '@components/brandBanner/BrandBanner';
 
 import AppHeader from './_components/header/Header';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
+import { useNavigationStore } from '@store/useNavigationStore';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -20,7 +24,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Tim Smart Technology Ltd.',
   description: 'Frontend Software Engineer Consultant and Contractor',
   icons: [
@@ -37,6 +41,19 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const pathName = usePathname();
+
+  const setActiveMenuItem = useNavigationStore(
+    state => state.setActiveMenuItem
+  );
+  const menuItems = useNavigationStore(state => state.menuItems);
+
+  useEffect(() => {
+    setActiveMenuItem(
+      menuItems.find(item => item.path === pathName) || menuItems[0]
+    );
+  }, [pathName]);
+
   return (
     <html lang="en">
       <head>

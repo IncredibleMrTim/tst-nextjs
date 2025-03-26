@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { getCurrentUrlPath } from '@utils/browserUtils';
 
 export enum MenuItems {
   HOME = 'Home',
@@ -23,17 +22,9 @@ export interface NavigationStore {
 
 export const useNavigationStore = create<NavigationStore>(set => ({
   menuItems: [
-    { name: MenuItems.HOME, path: '/', isActive: getCurrentUrlPath('/') },
-    {
-      name: MenuItems.EXPERIENCE,
-      path: '/experience',
-      isActive: getCurrentUrlPath('/experience')
-    },
-    {
-      name: MenuItems.TECHNOLOGY,
-      path: '/technology',
-      isActive: getCurrentUrlPath('/technology')
-    }
+    { name: MenuItems.HOME, path: '/' },
+    { name: MenuItems.EXPERIENCE, path: '/experience' },
+    { name: MenuItems.TECHNOLOGY, path: '/technology' }
   ],
   isDrawerOpen: false,
 
