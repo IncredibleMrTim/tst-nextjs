@@ -3,7 +3,7 @@ import { create } from 'zustand';
 export enum MenuItems {
   HOME = 'Home',
   EXPERIENCE = 'Experience',
-  TECHNOLOGY = 'Technology'
+  SKILLS = 'Skills'
 }
 
 export type MenuItem = {
@@ -24,7 +24,7 @@ export const useNavigationStore = create<NavigationStore>(set => ({
   menuItems: [
     { name: MenuItems.HOME, path: '/' },
     { name: MenuItems.EXPERIENCE, path: '/experience' },
-    { name: MenuItems.TECHNOLOGY, path: '/technology' }
+    { name: MenuItems.SKILLS, path: '/skills' }
   ],
   isDrawerOpen: false,
 

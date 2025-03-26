@@ -1,9 +1,9 @@
-import { type ExperienceModal } from '@api/experienceApi';
+import { type Experience } from '@api/experienceApi';
 import { Card } from '@radix-ui/themes';
 import { formatDate } from '@utils/dateUtils';
 
 interface ExperienceCardProps {
-  experience: ExperienceModal;
+  experience: Experience;
 }
 
 const ExperienceCard = ({ experience }: ExperienceCardProps) => {

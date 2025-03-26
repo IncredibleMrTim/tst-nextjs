@@ -67,7 +67,7 @@ const RootLayout = ({
           <Container>
             <div className="flex flex-col justify-center mx-auto">
               <BrandBanner />
-              <div className="flex px-8 py-8">{children}</div>
+              <div className="flex px-8">{children}</div>
             </div>
           </Container>
         </Theme>

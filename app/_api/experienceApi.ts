@@ -1,6 +1,4 @@
-'use server';
-
-export type ExperienceModal = {
+export type Experience = {
   role: string;
   company: string;
   order: number;
@@ -24,7 +22,7 @@ export const getExperience = async () => {
         'Content-Type': 'application/json'
       }
     });
-    const data = (await response.json()) as ExperienceModal[];
+    const data = (await response.json()) as Experience[];
 
     console.log(data);
     return data;
