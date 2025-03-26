@@ -17,14 +17,14 @@ const Experience = async () => {
   const data = await fetchData();
 
   return (
-    <Section size="1">
+    <div className="!pt-4 md:!pt-8">
       {data &&
         data
           .sort((a, b) => b.order - a.order)
           .map(experience => (
             <ExperienceCard key={experience.company} experience={experience} />
           ))}
-    </Section>
+    </div>
   );
 };
 

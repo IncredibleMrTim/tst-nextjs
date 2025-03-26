@@ -21,7 +21,7 @@ describe('useNavigationStore', () => {
       false
     );
     expect(
-      menuItems.find(item => item.name === MenuItems.TECHNOLOGY)?.isActive
+      menuItems.find(item => item.name === MenuItems.SKILLS)?.isActive
     ).toBe(false);
   });
 
