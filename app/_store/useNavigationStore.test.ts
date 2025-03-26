@@ -2,6 +2,10 @@ import { act, renderHook } from '@testing-library/react';
 
 import { MenuItems, useNavigationStore } from './useNavigationStore';
 
+jest.mock('@utils/browserUtils', () => ({
+  getCurrentUrlPath: jest.fn()
+}));
+
 describe('useNavigationStore', () => {
   it('should set the active menu item', () => {
     const { result } = renderHook(() => useNavigationStore());

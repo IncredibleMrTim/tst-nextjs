@@ -3,9 +3,10 @@
 export type ExperienceModal = {
   role: string;
   company: string;
+  order: number;
   location: string;
-  startDate: Date;
-  endDate: Date;
+  fromDate: Date;
+  toDate: Date;
   description: string;
   skills: [
     {

@@ -1,6 +1,6 @@
-import { ExperienceModal } from '@/_model/experienceModal';
+import { type ExperienceModal } from '@api/experienceApi';
 import { Card } from '@radix-ui/themes';
-import moment from 'moment';
+import { formatDate } from '@utils/dateUtils';
 
 interface ExperienceCardProps {
   experience: ExperienceModal;
@@ -14,26 +14,28 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
       </h2>
 
       <p className="italic mb-8 !text-sm">
-        {`${moment(experience.startDate).format('MMM YY')} - `}
-        {moment(experience.endDate).format('MMM YY')}
+        {`${formatDate(experience.fromDate)} - `}
+        {new Date(experience.toDate) < new Date()
+          ? formatDate(experience.toDate)
+          : 'present'}
       </p>
 
       <p className="whitespace-pre-line mb-8">{experience.description}</p>
 
       <div className="">
         <h4>Tech Stack</h4>
-        <p className="!text-sm divide-gray-300 divide-x divider-w-8 whitespace-nowrap ">
+        <ul className="md:flex text-sm divide-gray-300 md:divide-x divider-w-8 whitespace-nowrap">
           {experience.skills
             .sort((a, b) => a.order - b.order)
             .map((skill, i) => (
-              <div
+              <li
                 key={skill.order}
-                className={`text-gray-500 pr-1 ${i !== 0 ? 'pl-1' : ''}`}
+                className={`text-gray-500 pr-1 ${i !== 0 ? 'md:pl-1' : ''}`}
               >
                 {skill.name}
-              </div>
+              </li>
             ))}
-        </p>
+        </ul>
       </div>
     </Card>
   );

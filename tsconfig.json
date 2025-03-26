@@ -1,17 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["dom", "es2020"],
+    "jsx": "react-jsx",
     "strict": true,
-    "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+
+    "allowJs": true,
+
+    
+    "noEmit": true,
+    
+    
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    
     "incremental": true,
     "types": ["node", "react", "react-dom", "@types/jest"],
     "plugins": [
@@ -19,11 +26,13 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/_components/*"],
-      "@store/*": ["./src/_store/*"],
-      "@api/*": ["./src/_api/*"]
+      "@/*": ["app/*"],
+      "@components/*": ["app/_components/*"],
+      "@store/*": ["app/_store/*"],
+      "@api/*": ["app/_api/*"],
+      "@utils/*": ["app/_utils/*"],
     }
   },
   "include": [
@@ -32,7 +41,8 @@
     "**/*.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "jest.config.ts"
   ],
   "exclude": ["node_modules"]
 }

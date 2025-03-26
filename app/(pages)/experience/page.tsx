@@ -1,9 +1,9 @@
 'use server';
 
 import { Section } from '@radix-ui/themes';
-import { getExperience } from '../../_api/experienceApi';
+import { getExperience } from 'app/_api/experienceApi';
 
-import ExperienceCard from '@/_components/experienceCard/ExperienceCard';
+import ExperienceCard from 'app/_components/experienceCard/ExperienceCard';
 
 const Experience = async () => {
   const fetchData = async () => {
@@ -17,14 +17,14 @@ const Experience = async () => {
   const data = await fetchData();
 
   return (
-    <div>
-      <Section className="!mt-0 md:mt-8" size="2">
-        {data &&
-          data.map(experience => (
+    <Section size="1">
+      {data &&
+        data
+          .sort((a, b) => b.order - a.order)
+          .map(experience => (
             <ExperienceCard key={experience.company} experience={experience} />
           ))}
-      </Section>
-    </div>
+    </Section>
   );
 };
 

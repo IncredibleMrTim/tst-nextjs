@@ -1,7 +1,7 @@
 'use server';
 import { Suspense, type ReactNode } from 'react';
 import Loading from './loading';
-import { Box } from '@radix-ui/themes';
+import { Box, Section } from '@radix-ui/themes';
 import Image from 'next/image';
 
 const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
@@ -14,7 +14,7 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
           height="166"
           alt="Profile Picture"
           priority={true}
-          className="!hidden md:absolute md:left-4 md:rounded-md md:shadow-md md:flex"
+          className="!hidden absolute left-4 rounded-md shadow-md md:!flex"
         />
 
         <div className="flex flex-col md:ml-40">
@@ -28,7 +28,9 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
           </p>
         </div>
       </Box>
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+      <Section size="1">
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+      </Section>
     </div>
   );
 };
