@@ -1,9 +1,9 @@
 'use server';
 
 import { Section } from '@radix-ui/themes';
-import { getExperience } from 'app/_api/experienceApi';
+import { getExperience } from '@api/experienceApi';
 
-import ExperienceCard from 'app/_components/experienceCard/ExperienceCard';
+import ExperienceCard from '@components/experienceCard/ExperienceCard';
 
 const Experience = async () => {
   const fetchData = async () => {

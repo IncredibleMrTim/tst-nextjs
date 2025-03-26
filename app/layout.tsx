@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 // eslint-disable-next-line camelcase
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import BrandBanner from 'app/_components/brandBanner/BrandBanner';
+import BrandBanner from '@components/brandBanner/BrandBanner';
 
 import AppHeader from './_components/header/Header';
 

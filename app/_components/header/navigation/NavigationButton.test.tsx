@@ -1,4 +1,3 @@
-// filepath: /Users/timsmart/Documents/GitHub/Personal/tst/client/app/_components/header/navigation/Navigation.test.tsx
 import { render, screen } from '@testing-library/react';
 import { useRouter } from 'next/navigation';
 import { MenuItems } from '@store/useNavigationStore';

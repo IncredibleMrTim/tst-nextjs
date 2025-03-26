@@ -1,5 +1,5 @@
 import Navigation, { NavDirection } from '../navigation/Navigation';
-import { TstLogo } from 'app/_components/logos/TstLogo';
+import { TstLogo } from '@components/logos/TstLogo';
 
 const DrawerTemplate = () => {
   return (

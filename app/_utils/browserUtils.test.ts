@@ -1,4 +1,3 @@
-// filepath: /Users/timsmart/Documents/GitHub/Personal/tst/client/app/_utils/browserUtils.test.ts
 import { getCurrentUrlPath } from './browserUtils';
 
 describe('getCurrentUrlPath', () => {
