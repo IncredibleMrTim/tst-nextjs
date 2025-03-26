@@ -22,7 +22,7 @@ export interface NavigationStore {
 
 export const useNavigationStore = create<NavigationStore>(set => ({
   menuItems: [
-    { name: MenuItems.HOME, path: '/', isActive: true },
+    { name: MenuItems.HOME, path: '/' },
     { name: MenuItems.EXPERIENCE, path: '/experience' },
     { name: MenuItems.TECHNOLOGY, path: '/technology' }
   ],
@@ -36,5 +36,5 @@ export const useNavigationStore = create<NavigationStore>(set => ({
       }))
     }));
   },
-  setIsDrawerOpen: isOpen => set({ isDrawerOpen: isOpen }),
+  setIsDrawerOpen: isOpen => set({ isDrawerOpen: isOpen })
 }));

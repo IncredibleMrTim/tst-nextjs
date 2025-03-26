@@ -1,5 +1,5 @@
 'use client';
-import LoadingSpinner from '@/_components/loadingSpinner/LoadingSpinner';
+import LoadingSpinner from '@components/loadingSpinner/LoadingSpinner';
 
 const ExperienceLoading = () => <LoadingSpinner />;
 

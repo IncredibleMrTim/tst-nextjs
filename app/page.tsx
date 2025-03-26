@@ -1,7 +1,6 @@
-import Card from '@/_components/card/Card';
+import Card from '@components/card/Card';
 
 import Image from 'next/image';
-
 const Home = () => {
   return (
     <div className="flex flex-col gap-12">
