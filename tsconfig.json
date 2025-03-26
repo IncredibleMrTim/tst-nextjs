@@ -2,25 +2,26 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "lib": ["dom", "es2020"],
-    "jsx": "react-jsx",
+    "lib": [
+      "dom",
+      "es2020"
+    ],
+    "jsx": "preserve",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-
-
     "allowJs": true,
-
-    
     "noEmit": true,
-    
-    
     "resolveJsonModule": true,
     "isolatedModules": true,
-    
     "incremental": true,
-    "types": ["node", "react", "react-dom", "@types/jest"],
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "@types/jest"
+    ],
     "plugins": [
       {
         "name": "next"
@@ -28,12 +29,23 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["app/*"],
-      "@components/*": ["app/_components/*"],
-      "@store/*": ["app/_store/*"],
-      "@api/*": ["app/_api/*"],
-      "@utils/*": ["app/_utils/*"],
-    }
+      "@/*": [
+        "app/*"
+      ],
+      "@components/*": [
+        "app/_components/*"
+      ],
+      "@store/*": [
+        "app/_store/*"
+      ],
+      "@api/*": [
+        "app/_api/*"
+      ],
+      "@utils/*": [
+        "app/_utils/*"
+      ]
+    },
+    "moduleResolution": "node"
   },
   "include": [
     "next-env.d.ts",
@@ -44,5 +56,7 @@
     ".next/types/**/*.ts",
     "jest.config.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
