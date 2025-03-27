@@ -1,7 +1,7 @@
 'use client';
 import './globals.css';
 import '@radix-ui/themes/styles.css';
-
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { Theme, Container } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 // eslint-disable-next-line camelcase
@@ -56,6 +56,7 @@ const RootLayout = ({
 
   return (
     <html lang="en">
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
