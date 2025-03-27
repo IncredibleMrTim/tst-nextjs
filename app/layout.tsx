@@ -47,7 +47,11 @@ const RootLayout = ({
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
       <Head>
         {/* Primary Meta Tags */}
-        <title>Tim Smart Technology Ltd. | Frontend Software Engineer</title>
+
+        <meta
+          name="title"
+          content="Tim Smart Technology Ltd. | Frontend Software Engineer"
+        />
         <meta
           name="description"
           content="Tim Smart Technology Ltd. specializes in frontend software engineering, consulting, and contracting services."
@@ -56,7 +60,7 @@ const RootLayout = ({
         <meta name="author" content="Tim Smart Technology Ltd." />
         <meta
           name="keywords"
-          content="Frontend, Software Engineer, Consultant, Contractor, Web Development, React, Next.js"
+          content="Tim Smart, Frontend, Software Engineer, Consultant, Contractor, Web Development, React, Next.js, Node.js"
         />
 
         {/* Links */}
