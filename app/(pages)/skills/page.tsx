@@ -11,7 +11,7 @@ const Skills = async () => {
         <Section size="1" className="!p-0 mt-4">
           {data &&
             data.map((category, i) => (
-              <div>
+              <div key={category.title}>
                 <Accordion
                   title={category.title}
                   open={i === 0}

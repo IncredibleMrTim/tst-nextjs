@@ -12,7 +12,7 @@ import BrandBanner from '@components/brandBanner/BrandBanner';
 import AppHeader from './_components/header/Header';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { useNavigationStore } from '@store/useNavigationStore';
+import { useNavigationStore } from '@/_store/navigation/useNavigationStore';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

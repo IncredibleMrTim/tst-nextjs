@@ -1,6 +1,6 @@
 import { Button } from '@radix-ui/themes';
 
-import { type MenuItem } from '@store/useNavigationStore';
+import { type MenuItem } from '@/_store/navigation/useNavigationStore';
 
 interface NavigationButtonProps {
   children: React.ReactNode;
