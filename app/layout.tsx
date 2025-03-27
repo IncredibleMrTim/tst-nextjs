@@ -1,9 +1,9 @@
 'use client';
 import './globals.css';
+import Head from 'next/head';
 import '@radix-ui/themes/styles.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Theme, Container } from '@radix-ui/themes';
-import type { Metadata } from 'next';
 // eslint-disable-next-line camelcase
 import { Geist, Geist_Mono } from 'next/font/google';
 
@@ -23,18 +23,6 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin']
 });
-
-const metadata: Metadata = {
-  title: 'Tim Smart Technology Ltd.',
-  description: 'Frontend Software Engineer Consultant and Contractor',
-  icons: [
-    {
-      rel: 'icon',
-      href: '/favicon.ico',
-      url: '/favicon.ico'
-    }
-  ]
-};
 
 const RootLayout = ({
   children
@@ -57,9 +45,23 @@ const RootLayout = ({
   return (
     <html lang="en">
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
-      <head>
+      <Head>
+        {/* Primary Meta Tags */}
+        <title>Tim Smart Technology Ltd. | Frontend Software Engineer</title>
+        <meta
+          name="description"
+          content="Tim Smart Technology Ltd. specializes in frontend software engineering, consulting, and contracting services."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
+        <meta name="author" content="Tim Smart Technology Ltd." />
+        <meta
+          name="keywords"
+          content="Frontend, Software Engineer, Consultant, Contractor, Web Development, React, Next.js"
+        />
+
+        {/* Links */}
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
