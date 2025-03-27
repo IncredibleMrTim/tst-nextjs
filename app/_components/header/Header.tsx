@@ -2,7 +2,7 @@
 
 import Drawer from '@components/drawer/Drawer';
 import { TstLogo } from '@components/logos/TstLogo';
-import { useNavigationStore } from '@/_store/navigation/useNavigationStore';
+import { useNavigationStore } from '@store/navigation/useNavigationStore';
 import Navigation, { NavDirection } from './navigation/Navigation';
 import DrawerTemplate from './drawerTemplate/DrawerTemplate';
 import { Box, Container } from '@radix-ui/themes';
