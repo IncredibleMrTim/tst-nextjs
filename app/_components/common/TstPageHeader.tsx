@@ -11,7 +11,7 @@ const TstPageHeader = ({ children, ...props }: TstPageHeaderProps) => {
       {...props}
     >
       {typeof children === 'string' ? (
-        <h2 className="flex justify-left justify-start">{children}</h2>
+        <h2 className="flex justify-start">{children}</h2>
       ) : (
         children
       )}

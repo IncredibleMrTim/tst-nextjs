@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/dom';
 import { setupMockRouter, renderWithRouter } from '@utils/testUtils';
 import TstCard from './TstCard';
-import { before } from 'node:test';
 
 describe('TstCard', () => {
   beforeEach(() => {
