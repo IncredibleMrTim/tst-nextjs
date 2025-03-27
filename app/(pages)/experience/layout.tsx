@@ -3,12 +3,12 @@ import { Suspense, type ReactNode } from 'react';
 import Loading from './loading';
 import { Flex, Section } from '@radix-ui/themes';
 import Image from 'next/image';
-import TstPageHeader from '@components/common/TstPageHeader';
+import PageHeader from '@components/common/PageHeader';
 
 const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
   return (
     <Flex direction="column">
-      <TstPageHeader>
+      <PageHeader>
         <Image
           src="/images/profile-sm.jpg"
           width="144"
@@ -28,7 +28,7 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
             system.
           </p>
         </div>
-      </TstPageHeader>
+      </PageHeader>
       <Section size="1">
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </Section>

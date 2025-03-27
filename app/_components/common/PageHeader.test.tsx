@@ -1,23 +1,23 @@
 import { screen } from '@testing-library/dom';
-import TstPageHeader from './TstPageHeader';
+import PageHeader from './PageHeader';
 import { setupMockRouter, renderWithRouter } from '@utils/testUtils';
 
-describe('TstPageHeader', () => {
+describe('PageHeader', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     setupMockRouter();
   });
 
   it('should render with children as a string', () => {
-    renderWithRouter(<TstPageHeader>Test</TstPageHeader>);
+    renderWithRouter(<PageHeader>Test</PageHeader>);
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
   it('should render with children as a component', () => {
     renderWithRouter(
-      <TstPageHeader>
+      <PageHeader>
         <h1>Test</h1>
-      </TstPageHeader>
+      </PageHeader>
     );
     expect(screen.getByText('Test')).toBeInTheDocument();
   });

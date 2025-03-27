@@ -3,7 +3,8 @@
 import { NavigationMenu } from 'radix-ui';
 import { useRouter } from 'next/navigation';
 
-import { type MenuItem, useNavigationStore } from '@store/useNavigationStore';
+import { useNavigationStore } from '@store/navigation/useNavigationStore';
+import { MenuItem } from '@store/navigation/types';
 
 import NavButton from './NavigationButton';
 
@@ -20,8 +21,8 @@ const Navigation = ({
   orientation = NavDirection.HORIZONTAL
 }: NavigationProps) => {
   const router = useRouter();
-
   const menuItems = useNavigationStore(state => state.menuItems);
+
   const setActiveMenuItem = useNavigationStore(
     state => state.setActiveMenuItem
   );

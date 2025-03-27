@@ -1,28 +1,50 @@
 import { render, screen } from '@testing-library/react';
-import { useRouter } from 'next/navigation';
-import { MenuItems } from '@store/useNavigationStore';
-import Navigation from './Navigation';
-import { renderWithRouter } from '@utils/testUtils';
+import userEvent from '@testing-library/user-event';
+import NavButton from './NavigationButton';
 
-jest.mock('next/navigation', () => ({
-  useRouter: jest.fn()
-}));
+describe('NavigationButton', () => {
+  const mockOnClick = jest.fn();
+  const mockMenuItem = {
+    name: 'Home',
+    path: '/',
+    isActive: false
+  };
 
-const mockUseRouter = useRouter as jest.Mock;
+  it('renders the button with inactive state', () => {
+    render(
+      <NavButton onClick={mockOnClick} menuItem={mockMenuItem}>
+        Home
+      </NavButton>
+    );
 
-describe('Navigation', () => {
-  beforeEach(() => {
-    mockUseRouter.mockReturnValue({
-      push: jest.fn()
-    });
+    const button = screen.getByRole('button', { name: /home/i });
+    expect(button).toHaveClass('!border-transparent');
+    expect(button).not.toHaveClass('!bg-slate-100 !border-slate-400');
   });
 
-  it('renders navigation items', () => {
-    renderWithRouter(<Navigation />);
+  it('renders the button with active state', () => {
+    const activeMenuItem = { ...mockMenuItem, isActive: true };
 
-    Object.values(MenuItems).forEach(item => {
-      const linkElement = screen.getByText(item);
-      expect(linkElement).toBeInTheDocument();
-    });
+    render(
+      <NavButton onClick={mockOnClick} menuItem={activeMenuItem}>
+        Home
+      </NavButton>
+    );
+
+    const button = screen.getByRole('button', { name: /home/i });
+    expect(button).toHaveClass('!bg-slate-100 !border-slate-400');
+  });
+
+  it('calls onClick when the button is clicked', async () => {
+    render(
+      <NavButton onClick={mockOnClick} menuItem={mockMenuItem}>
+        Home
+      </NavButton>
+    );
+
+    const button = screen.getByRole('button', { name: /home/i });
+    await userEvent.click(button);
+
+    expect(mockOnClick).toHaveBeenCalledWith(mockMenuItem);
   });
 });
