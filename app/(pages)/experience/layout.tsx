@@ -1,9 +1,9 @@
 'use server';
 import { Suspense, type ReactNode } from 'react';
 import Loading from './loading';
-import { Box, Flex, Section } from '@radix-ui/themes';
+import { Flex, Section } from '@radix-ui/themes';
 import Image from 'next/image';
-import TstPageHeader from '@/_components/common/TstPageHeader';
+import TstPageHeader from '@components/common/TstPageHeader';
 
 const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
   return (
