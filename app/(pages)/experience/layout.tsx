@@ -1,13 +1,14 @@
 'use server';
 import { Suspense, type ReactNode } from 'react';
 import Loading from './loading';
-import { Box, Section } from '@radix-ui/themes';
+import { Flex, Section } from '@radix-ui/themes';
 import Image from 'next/image';
+import TstPageHeader from '@components/common/TstPageHeader';
 
 const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
   return (
-    <div>
-      <Box className="flex relative bg-red-700 w-fill p-4 rounded-md text-white shadow-md mt-4 md:mt-8">
+    <Flex direction="column">
+      <TstPageHeader>
         <Image
           src="/images/profile-sm.jpg"
           width="144"
@@ -27,11 +28,11 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
             system.
           </p>
         </div>
-      </Box>
+      </TstPageHeader>
       <Section size="1">
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </Section>
-    </div>
+    </Flex>
   );
 };
 

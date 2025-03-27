@@ -1,13 +1,15 @@
-// filepath: /Users/timsmart/Documents/GitHub/Personal/tst/client/jest.config.ts
-import type { Config } from '@jest/types';
+import type { Config } from 'jest';
+import nextJest from 'next/jest.js';
 
-const config: Config.InitialOptions = {
+const createJestConfig = nextJest({
+  dir: './'
+});
+
+const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest'
-  },
+  transform: {},
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
 
   moduleNameMapper: {
@@ -15,7 +17,8 @@ const config: Config.InitialOptions = {
     '^@store/(.*)$': '<rootDir>/app/_store/$1',
     '^@components/(.*)$': '<rootDir>/app/_components/$1'
   },
-  setupFilesAfterEnv: ['<rootDir>/app/setupTests.ts']
+  setupFilesAfterEnv: ['<rootDir>/app/setupTests.ts'],
+  transformIgnorePatterns: ['/node_modules/(?!(\\.pnpm|chalk))']
 };
 
-export default config;
+export default createJestConfig(config);
