@@ -1,8 +1,8 @@
-
 export enum MenuItems {
   HOME = 'Home',
   EXPERIENCE = 'Experience',
-  SKILLS = 'Skills'
+  SKILLS = 'Skills',
+  RESUME = 'Resume / CV'
 }
 
 export type MenuItem = {

@@ -1,14 +1,13 @@
 'use client';
+
 import './globals.css';
 import Head from 'next/head';
 import '@radix-ui/themes/styles.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Theme, Container } from '@radix-ui/themes';
-// eslint-disable-next-line camelcase
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import BrandBanner from '@components/brandBanner/BrandBanner';
-
 import AppHeader from './_components/header/Header';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
@@ -44,14 +43,9 @@ const RootLayout = ({
 
   return (
     <html lang="en">
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
       <Head>
         {/* Primary Meta Tags */}
-
-        <meta
-          name="title"
-          content="Tim Smart Technology Ltd. | Frontend Software Engineer"
-        />
+        <title>Tim Smart Technology Ltd. | Frontend Software Engineer</title>
         <meta
           name="description"
           content="Tim Smart Technology Ltd. specializes in frontend software engineering, consulting, and contracting services."
@@ -69,6 +63,7 @@ const RootLayout = ({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
         <Theme>
           <AppHeader />
           <Container>

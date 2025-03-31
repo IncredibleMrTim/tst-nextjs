@@ -13,7 +13,8 @@ export const useNavigationStore = create<NavigationStore>(set => ({
   menuItems: [
     { name: MenuItems.HOME, path: '/' },
     { name: MenuItems.EXPERIENCE, path: '/experience' },
-    { name: MenuItems.SKILLS, path: '/skills' }
+    { name: MenuItems.SKILLS, path: '/skills' },
+    { name: MenuItems.RESUME, path: '/resume' }
   ],
   isDrawerOpen: false,
 
