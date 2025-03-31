@@ -1,6 +1,5 @@
 'use server';
 
-import { Section } from '@radix-ui/themes';
 import { getExperience } from '@api/experienceApi';
 
 import ExperienceCard from '@components/experienceCard/ExperienceCard';
