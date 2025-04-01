@@ -2,7 +2,7 @@ import PdfViewer from '@components/pdfViewer/PdfViewer';
 
 const Resume = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center">
       <PdfViewer />
     </div>
   );

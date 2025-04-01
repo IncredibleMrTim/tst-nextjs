@@ -24,7 +24,6 @@ export const getExperience = async () => {
     });
     const data = (await response.json()) as Experience[];
 
-    console.log(data);
     return data;
   } catch (error) {
     console.error('Error fetching experiences:', error);

@@ -26,7 +26,6 @@ export const getSkills = async () => {
     });
     const data = (await response.json()) as SkillCategories;
 
-    console.log(data);
     return data;
   } catch (error) {
     console.error('Error fetching skills:', error);
