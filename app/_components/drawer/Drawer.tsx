@@ -21,9 +21,9 @@ const Drawer = ({
   ...props
 }: IDrawerProps & DrawerProps) => {
   return (
-    <div>
+    <>
       <IconButton variant="ghost" onClick={onTrigger}>
-        <ListBulletIcon width={32} height={32} className="text-gray-700" />
+        <ListBulletIcon width={48} height={48} className="text-gray-700" />
       </IconButton>
 
       <GeistDrawer width="80%" placement="right" {...props}>
@@ -33,7 +33,7 @@ const Drawer = ({
           {children}
         </GeistDrawer.Content>
       </GeistDrawer>
-    </div>
+    </>
   );
 };
 

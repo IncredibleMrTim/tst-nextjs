@@ -21,6 +21,8 @@ const Header = () => {
 
           <div className="absolute bottom-2 left-4 visible md:invisible">
             <Drawer
+              aria-label="Open navigation"
+              aria-controls="NavigationMenu"
               onClose={() => setIsDrawerOpen(false)}
               onTrigger={() => setIsDrawerOpen(!isDrawerOpen)}
               visible={isDrawerOpen}
