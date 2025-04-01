@@ -48,6 +48,11 @@ const Navigation = ({
         >
           {menuItems.map(menuItem => (
             <NavButton
+              aria-label={`Navigate to ${menuItem.name}`}
+              aria-controls="NavigationButton"
+              aria-current={
+                menuItem.isActive ? `${menuItem.name} page` : undefined
+              }
               key={menuItem.name}
               menuItem={menuItem}
               onClick={handleNavigationClick}
