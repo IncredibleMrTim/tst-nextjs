@@ -1,28 +1,28 @@
 'use client';
 
 import PdfViewer from '@components/pdfViewer/PdfViewer';
-import { useLottie } from 'lottie-react';
-import * as animation from './rotating-phone.json';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@radix-ui/themes';
 
 const Resume = () => {
-  const { View } = useLottie({
-    animationData: animation,
-    loop: true,
-    autoplay: true
-  });
-
   return (
     <div className="flex justify-center items-center">
       <div className="hidden md:flex">
         <PdfViewer />
       </div>
-      <div className="flex flex-col md:hidden items-center gap-4">
+      <div className="flex flex-col items-center gap-20 md:hidden">
         <p className="text-center">
           The PDF viewer is not supported in this view. Please rotate your
           device, download the the file or use a desktop to view.
         </p>
+        <Image
+          src="/rotate-phone.png"
+          alt="Rotating phone animation"
+          width={150}
+          height={150}
+          quality={10}
+        />
         <Link
           href="/TimSmartCV_31-03-25.pdf"
           target="_blank"
@@ -33,7 +33,6 @@ const Resume = () => {
             Download Resume/CV
           </Button>
         </Link>
-        <div>{View}</div>
       </div>
     </div>
   );

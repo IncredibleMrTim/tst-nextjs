@@ -10,6 +10,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --animate-phone: phone 10s ease-in-out infinite;
+  @keyframes phone {
+        0%,
+        50% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(90deg);
+    }
+  }
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +29,8 @@
     --foreground: #ededed;
   }
 }
+
+
 
 html {
   width: 100%;

@@ -1,33 +1,21 @@
 export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./client/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
-    fontFamily: {
-      sans: ['"Inter"', 'sans-serif']
-    },
     extend: {
       keyframes: {
-        slideDown: {
-          from: { height: "0px" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        slideUp: {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0px" },
+        phone: {
+          '0%': { transform: 'rotate(0deg)' },
+          '10%': { transform: 'rotate(10deg)' },
+          '20%': { transform: 'rotate(20deg)' },
+          '30%': { transform: 'rotate(30deg)' },
+          '40%': { transform: 'rotate(40deg)' },
+          '50%': { transform: 'rotate(50deg)' },
         },
       },
       animation: {
-        slideDown: "slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)",
-        slideUp: "slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)",
+        phoneRotate: 'phone 8s ease-in-out infinite',
       },
-    }
+    },
   },
-  variants: {
-    extend: {}
-  },
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {}
-  }
+  plugins: [],
 };
