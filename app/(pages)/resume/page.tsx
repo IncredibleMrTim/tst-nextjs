@@ -14,7 +14,7 @@ const Resume = () => {
       <div className="flex flex-col items-center gap-20 md:hidden">
         <p className="text-center">
           The PDF viewer is not supported in this view. Please rotate your
-          device, download the the file or use a desktop to view.
+          device, download the file or use a desktop browser to view.
         </p>
         <Image
           src="/rotate-phone.png"
