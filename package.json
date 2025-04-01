@@ -18,6 +18,7 @@
     "@radix-ui/react-icons": "^1.3.2",
     "@radix-ui/themes": "^3.2.1",
     "@react-pdf/renderer": "^4.3.0",
+    "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.4.21",
     "canvas": "^3.1.0",
     "classnames": "^2.5.1",
