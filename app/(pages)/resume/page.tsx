@@ -29,7 +29,7 @@ const Resume = () => {
           aria-label="Download resume"
           aria-controls="Download resume button"
         >
-          <Button variant="outline" size="3" aria-ignore>
+          <Button variant="outline" size="3" aria-hidden>
             Download Resume/CV
           </Button>
         </Link>
