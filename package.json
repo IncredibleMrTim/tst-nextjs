@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "3",
     "@geist-ui/core": "^2.3.8",
     "@heroicons/react": "^2.2.0",
     "@material-tailwind/react": "^2.1.10",
@@ -18,6 +19,8 @@
     "@radix-ui/react-icons": "^1.3.2",
     "@radix-ui/themes": "^3.2.1",
     "@react-pdf/renderer": "^4.3.0",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.49.4",
     "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.4.21",
     "canvas": "^3.1.0",
