@@ -12,6 +12,7 @@ import AppHeader from './_components/header/Header';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useNavigationStore } from '@store/navigation/useNavigationStore';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -69,7 +70,10 @@ const RootLayout = ({
           <Container>
             <div className="flex flex-col justify-center mx-auto w-full">
               <BrandBanner />
-              <div className="px-8 mb-8">{children}</div>
+              <div className="px-8 mb-8">
+                {children}
+                <SpeedInsights />
+              </div>
             </div>
           </Container>
         </Theme>
