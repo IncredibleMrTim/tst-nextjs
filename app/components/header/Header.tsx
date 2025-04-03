@@ -6,7 +6,7 @@ import { TstLogo } from '@components/logos/TstLogo';
 import Navigation, { NavDirection } from './navigation/Navigation';
 import DrawerTemplate from './drawerTemplate/DrawerTemplate';
 import { Box, Container } from '@radix-ui/themes';
-import { useAppDispatch, useAppSelector } from '@/store/redux/store';
+import { StoreKeys, useAppDispatch, useAppSelector } from '@/store/redux/store';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -25,11 +25,14 @@ const Header = () => {
               aria-label="Open navigation"
               aria-controls="NavigationMenu"
               onClose={() =>
-                dispatch({ type: 'navigation/setIsDrawerOpen', payload: false })
+                dispatch({
+                  type: StoreKeys.NAV_SET_IS_DRAWER_OPEN,
+                  payload: false
+                })
               }
               onTrigger={() =>
                 dispatch({
-                  type: 'navigation/setIsDrawerOpen',
+                  type: StoreKeys.NAV_SET_IS_DRAWER_OPEN,
                   payload: !isDrawerOpen
                 })
               }

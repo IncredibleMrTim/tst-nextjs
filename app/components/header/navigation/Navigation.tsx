@@ -6,7 +6,12 @@ import { useRouter } from 'next/navigation';
 import { MenuItem } from '@store/navigation/types';
 
 import NavButton from './NavigationButton';
-import { useAppSelector, useAppDispatch } from '@/store/redux/store';
+import {
+  useAppSelector,
+  useAppDispatch,
+  StoreKeys,
+  createStatePath
+} from '@/store/redux/store';
 
 export enum NavDirection {
   VERTICAL = 'vertical',
@@ -28,11 +33,11 @@ const Navigation = ({
 
   const handleNavigationClick = (menuItem: MenuItem) => {
     dispatch({
-      type: 'navigation/setActiveMenuItem',
+      type: StoreKeys.NAV_SET_ACTIVE_MENU_ITEM,
       payload: menuItem
     });
     dispatch({
-      type: 'navigation/setIsDrawerOpen',
+      type: StoreKeys.NAV_SET_IS_DRAWER_OPEN,
       payload: false
     });
 

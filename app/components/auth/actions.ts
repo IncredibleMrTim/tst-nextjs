@@ -2,9 +2,11 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { useAuthenticationStore } from '@/store/authentication/useAuthentication';
 
 import { createClient } from '@utils/supabase/server';
+import { StoreKeys, useAppDispatch } from '@/store/redux/store';
+
+const dispatch = useAppDispatch();
 
 export async function login(email: string, password: string) {
   const supabase = await createClient();
@@ -21,7 +23,12 @@ export async function login(email: string, password: string) {
   if (error) {
     redirect('/error');
   }
-  useAuthenticationStore.setState({ isLoggedIn: true });
+  dispatch({
+    type: StoreKeys.AUTH_SET_IS_LOGGED_IN,
+    payload: true
+  });
+
+  // useAuthenticationStore.setState({ isLoggedIn: true });
   revalidatePath('/', 'layout');
 }
 
@@ -58,11 +65,10 @@ export const getUser = async () => {
     error
   } = await supabase.auth.getUser();
 
-  if (user) {
-    useAuthenticationStore.setState({ isLoggedIn: true });
-  } else {
-    useAuthenticationStore.setState({ isLoggedIn: false });
-  }
+  dispatch({
+    type: StoreKeys.AUTH_SET_IS_LOGGED_IN,
+    payload: !!user
+  });
 
   return user;
 };

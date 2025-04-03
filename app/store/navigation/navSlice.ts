@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { MenuItem, MenuItems } from './types';
+import { StoreKeys } from '../redux/store';
 
 export interface NavState {
   menuItems: MenuItem[];
@@ -24,7 +25,6 @@ export const navSlice = createSlice({
   initialState: initialSate,
   reducers: {
     setActiveMenuItem: (state, action: PayloadAction<MenuItem>) => {
-      console.log('setActiveMenuItem', action.payload);
       state.menuItems = state.menuItems.map(item => ({
         ...item,
         isActive: item.name === action.payload.name

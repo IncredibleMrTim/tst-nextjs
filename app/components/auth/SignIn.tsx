@@ -1,26 +1,31 @@
 'use client';
 import { Button, TextField } from '@radix-ui/themes';
-import { signOut, login, getUser } from './actions';
-import { Form, Label } from 'radix-ui';
-import { useState, useEffect } from 'react';
-import { useAuthenticationStore } from '@/store/authentication/useAuthentication';
-import { log } from 'console';
+import { login } from './actions';
+import { Label } from 'radix-ui';
+import { useState } from 'react';
+
+import { StoreKeys, useAppDispatch, useAppSelector } from '@/store/redux/store';
 
 const SignIn = () => {
-  const isLoggedIn = useAuthenticationStore(state => state.isLoggedIn);
-  const setIsLoggedIn = useAuthenticationStore(state => state.setIsLoggedIn);
-
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const setLoggedState = (isLoggedIn: boolean) => {
+    dispatch({
+      type: StoreKeys.AUTH_SET_IS_LOGGED_IN,
+      payload: false
+    });
+  };
+
   const handleSignoutClick = () => {
-    console.log(signOut());
-    setIsLoggedIn(false);
+    setLoggedState(false);
   };
 
   const handleLoginClick = async () => {
     login(email, password);
-    setIsLoggedIn(false);
+    setLoggedState(true);
   };
 
   return (
