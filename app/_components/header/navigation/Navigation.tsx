@@ -3,10 +3,10 @@
 import { NavigationMenu } from 'radix-ui';
 import { useRouter } from 'next/navigation';
 
-import { useNavigationStore } from '@store/navigation/useNavigationStore';
 import { MenuItem } from '@store/navigation/types';
 
 import NavButton from './NavigationButton';
+import { useAppSelector, useAppDispatch } from '@/_store/redux/store';
 
 export enum NavDirection {
   VERTICAL = 'vertical',
@@ -20,17 +20,22 @@ export interface NavigationProps {
 const Navigation = ({
   orientation = NavDirection.HORIZONTAL
 }: NavigationProps) => {
-  const router = useRouter();
-  const menuItems = useNavigationStore(state => state.menuItems);
+  const dispatch = useAppDispatch();
 
-  const setActiveMenuItem = useNavigationStore(
-    state => state.setActiveMenuItem
-  );
-  const setIsDrawerOpen = useNavigationStore(state => state.setIsDrawerOpen);
+  const router = useRouter();
+
+  const menuItems = useAppSelector(state => state.nav.menuItems);
 
   const handleNavigationClick = (menuItem: MenuItem) => {
-    setActiveMenuItem(menuItem);
-    setIsDrawerOpen(false);
+    dispatch({
+      type: 'navigation/setActiveMenuItem',
+      payload: menuItem
+    });
+    dispatch({
+      type: 'navigation/setIsDrawerOpen',
+      payload: false
+    });
+
     router.push(menuItem.path);
   };
 
