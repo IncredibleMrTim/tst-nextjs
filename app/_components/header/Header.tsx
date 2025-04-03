@@ -2,7 +2,7 @@
 
 import Drawer from '@components/drawer/Drawer';
 import { TstLogo } from '@components/logos/TstLogo';
-import { useNavigationStore } from '@store/navigation/useNavigationStore';
+
 import Navigation, { NavDirection } from './navigation/Navigation';
 import DrawerTemplate from './drawerTemplate/DrawerTemplate';
 import { Box, Container } from '@radix-ui/themes';
@@ -11,9 +11,6 @@ import { useAppDispatch, useAppSelector } from '@/_store/redux/store';
 const Header = () => {
   const dispatch = useAppDispatch();
   const isDrawerOpen = useAppSelector(state => state.nav.isDrawerOpen);
-
-  // const setIsDrawerOpen = useNavigationStore(state => state.setIsDrawerOpen);
-  // const isDrawerOpen = useNavigationStore(state => state.isDrawerOpen);
 
   return (
     <header className="w-full relative flex justify-center bg-gradient-to-b from-blue-200 via--blue-100 via-70% via-zinc-50 to-80% to-transparent gap-4 shadow-md">

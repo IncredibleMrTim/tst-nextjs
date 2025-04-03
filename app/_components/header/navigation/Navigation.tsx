@@ -3,7 +3,6 @@
 import { NavigationMenu } from 'radix-ui';
 import { useRouter } from 'next/navigation';
 
-import { useNavigationStore } from '@store/navigation/useNavigationStore';
 import { MenuItem } from '@store/navigation/types';
 
 import NavButton from './NavigationButton';
@@ -24,13 +23,8 @@ const Navigation = ({
   const dispatch = useAppDispatch();
 
   const router = useRouter();
-  // const menuItems_OLD = useNavigationStore(state => state.menuItems);
-  const menuItems = useAppSelector(state => state.nav.menuItems);
 
-  // const setActiveMenuItem = useNavigationStore(
-  //   state => state.setActiveMenuItem
-  // );
-  // const setIsDrawerOpen = useNavigationStore(state => state.setIsDrawerOpen);
+  const menuItems = useAppSelector(state => state.nav.menuItems);
 
   const handleNavigationClick = (menuItem: MenuItem) => {
     dispatch({
@@ -41,8 +35,7 @@ const Navigation = ({
       type: 'navigation/setIsDrawerOpen',
       payload: false
     });
-    // setActiveMenuItem(menuItem);
-    // setIsDrawerOpen(false);
+
     router.push(menuItem.path);
   };
 

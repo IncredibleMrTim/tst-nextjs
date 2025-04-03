@@ -1,18 +1,13 @@
 'use client';
 import Card from '@components/card/Card';
-
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './_store/redux/store';
+
 const Home = () => {
   const pathName = usePathname();
   const dispatch = useAppDispatch();
-
-  // const setActiveMenuItem = useNavigationStore(
-  //   state => state.setActiveMenuItem
-  // );
-  // const menuItems_OLD = useNavigationStore(state => state.menuItems);
 
   const menuItems = useAppSelector(state => state.nav.menuItems);
 
@@ -21,9 +16,6 @@ const Home = () => {
       type: 'navigation/setMenuItems',
       payload: menuItems.find(item => item.path === pathName) || menuItems[0]
     });
-    // setActiveMenuItem(
-    //   menuItems.find(item => item.path === pathName) || menuItems[0]
-    // );
   }, [pathName]);
 
   return (

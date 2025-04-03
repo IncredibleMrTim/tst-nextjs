@@ -9,11 +9,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 
 import BrandBanner from '@components/brandBanner/BrandBanner';
 import AppHeader from './_components/header/Header';
-import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
-import { useNavigationStore } from '@store/navigation/useNavigationStore';
+
 import ReduxProvider from '@/_store/redux/provider';
-import { useAppDispatch, useAppSelector } from '@/_store/redux/store';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
