@@ -13,6 +13,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useNavigationStore } from '@store/navigation/useNavigationStore';
 import ReduxProvider from '@/_store/redux/provider';
+import { useAppDispatch, useAppSelector } from '@/_store/redux/store';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,19 +30,6 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const pathName = usePathname();
-
-  const setActiveMenuItem = useNavigationStore(
-    state => state.setActiveMenuItem
-  );
-  const menuItems = useNavigationStore(state => state.menuItems);
-
-  useEffect(() => {
-    setActiveMenuItem(
-      menuItems.find(item => item.path === pathName) || menuItems[0]
-    );
-  }, [pathName]);
-
   return (
     <html lang="en">
       <Head>

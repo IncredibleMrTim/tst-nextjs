@@ -7,7 +7,7 @@ import { useNavigationStore } from '@store/navigation/useNavigationStore';
 import { MenuItem } from '@store/navigation/types';
 
 import NavButton from './NavigationButton';
-import { useAppSelector } from '@/_store/redux/store';
+import { useAppSelector, useAppDispatch } from '@/_store/redux/store';
 
 export enum NavDirection {
   VERTICAL = 'vertical',
@@ -21,18 +21,28 @@ export interface NavigationProps {
 const Navigation = ({
   orientation = NavDirection.HORIZONTAL
 }: NavigationProps) => {
+  const dispatch = useAppDispatch();
+
   const router = useRouter();
-  const menuItems_OLD = useNavigationStore(state => state.menuItems);
+  // const menuItems_OLD = useNavigationStore(state => state.menuItems);
   const menuItems = useAppSelector(state => state.nav.menuItems);
 
-  const setActiveMenuItem = useNavigationStore(
-    state => state.setActiveMenuItem
-  );
-  const setIsDrawerOpen = useNavigationStore(state => state.setIsDrawerOpen);
+  // const setActiveMenuItem = useNavigationStore(
+  //   state => state.setActiveMenuItem
+  // );
+  // const setIsDrawerOpen = useNavigationStore(state => state.setIsDrawerOpen);
 
   const handleNavigationClick = (menuItem: MenuItem) => {
-    setActiveMenuItem(menuItem);
-    setIsDrawerOpen(false);
+    dispatch({
+      type: 'navigation/setActiveMenuItem',
+      payload: menuItem
+    });
+    dispatch({
+      type: 'navigation/setIsDrawerOpen',
+      payload: false
+    });
+    // setActiveMenuItem(menuItem);
+    // setIsDrawerOpen(false);
     router.push(menuItem.path);
   };
 

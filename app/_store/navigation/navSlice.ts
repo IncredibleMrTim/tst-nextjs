@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { MenuItem, MenuItems } from '../navigation/types';
+import { MenuItem, MenuItems } from './types';
 
 export interface NavState {
   menuItems: MenuItem[];
@@ -11,19 +11,20 @@ export interface NavState {
 
 const initialSate = {
   menuItems: [
-    { name: MenuItems.HOME, path: '/' },
-    { name: MenuItems.EXPERIENCE, path: '/experience' },
-    { name: MenuItems.SKILLS, path: '/skills' },
-    { name: MenuItems.RESUME, path: '/resume' }
+    { name: MenuItems.HOME, path: '/', isActive: true },
+    { name: MenuItems.EXPERIENCE, path: '/experience', isActive: false },
+    { name: MenuItems.SKILLS, path: '/skills', isActive: false },
+    { name: MenuItems.RESUME, path: '/resume', isActive: false }
   ],
   isDrawerOpen: false
 };
 
 export const navSlice = createSlice({
-  name: 'nav',
+  name: 'navigation',
   initialState: initialSate,
   reducers: {
     setActiveMenuItem: (state, action: PayloadAction<MenuItem>) => {
+      console.log('setActiveMenuItem', action.payload);
       state.menuItems = state.menuItems.map(item => ({
         ...item,
         isActive: item.name === action.payload.name
