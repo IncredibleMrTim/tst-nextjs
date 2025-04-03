@@ -1,6 +1,6 @@
 import { getSkills, Skill } from '@api/skillsApi';
 import { Box, Section } from '@radix-ui/themes';
-import { Accordion } from '@components/accordion/Accordion';
+import { Accordion } from '@/components/accordion/Accordion';
 
 const Skills = async () => {
   try {

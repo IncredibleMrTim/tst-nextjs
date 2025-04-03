@@ -2,8 +2,8 @@
 import { Suspense, type ReactNode } from 'react';
 import Loading from './loading';
 
-import PageHeader from '@components/common/PageHeader';
-import PageContainer from '@components/common/PageContainer';
+import PageHeader from '@/components/common/PageHeader';
+import PageContainer from '@/components/common/PageContainer';
 import Head from 'next/head';
 
 const ExperienceLayout = async ({ children }: { children: ReactNode }) => {

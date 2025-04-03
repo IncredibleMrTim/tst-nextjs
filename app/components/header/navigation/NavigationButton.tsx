@@ -1,6 +1,6 @@
 import { Button } from '@radix-ui/themes';
 
-import { MenuItem } from '@store/navigation/types';
+import { MenuItem } from '@/store/navigation/types';
 
 interface NavigationButtonProps {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const NavButton = ({ children, onClick, menuItem }: NavigationButtonProps) => {
         variant="ghost"
         radius="none"
         size="3"
-        className={`!text-black !border-b-2 ${menuItem.isActive ? '!bg-slate-100 !border-slate-400' : '!border-transparent'} hover:!bg-slate-100`}
+        className={`!text-black !border-b-2 !cursor-pointer ${menuItem.isActive ? '!bg-slate-100 !border-slate-400' : '!border-transparent'} hover:!bg-slate-100`}
       >
         {children}
       </Button>

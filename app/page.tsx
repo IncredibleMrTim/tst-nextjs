@@ -1,4 +1,4 @@
-import Card from '@components/card/Card';
+import Card from '@/components/card/Card';
 
 import Image from 'next/image';
 const Home = () => {

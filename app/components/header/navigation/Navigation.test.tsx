@@ -1,8 +1,8 @@
-import { renderWithRouter, setupMockRouter } from '@utils/testUtils';
+import { renderWithRouter, setupMockRouter } from '@/utils/testUtils';
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 
-import { MenuItems } from '@store/navigation/types';
+import { MenuItems } from '@/store/navigation/types';
 import Navigation, { NavDirection } from './Navigation';
 
 jest.mock('@store/navigation/useNavigationStore', () => ({

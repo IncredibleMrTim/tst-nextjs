@@ -21,7 +21,7 @@ const Drawer = ({
   ...props
 }: IDrawerProps & DrawerProps) => {
   return (
-    <div>
+    <div className="h-full">
       <IconButton variant="ghost" onClick={onTrigger}>
         <ListBulletIcon width={32} height={32} className="text-gray-700" />
       </IconButton>

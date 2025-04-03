@@ -2,7 +2,7 @@
 
 import { getExperience } from '@api/experienceApi';
 
-import ExperienceCard from '@components/experienceCard/ExperienceCard';
+import ExperienceCard from '@/components/experienceCard/ExperienceCard';
 
 const Experience = async () => {
   const fetchData = async () => {

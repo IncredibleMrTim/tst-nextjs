@@ -1,6 +1,6 @@
 'use client';
 
-import PdfViewer from '@components/pdfViewer/PdfViewer';
+import PdfViewer from '@/components/pdfViewer/PdfViewer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@radix-ui/themes';

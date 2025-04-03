@@ -7,12 +7,13 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Theme, Container, Link } from '@radix-ui/themes';
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import BrandBanner from '@components/brandBanner/BrandBanner';
-import AppHeader from './_components/header/Header';
+import BrandBanner from '@/components/brandBanner/BrandBanner';
+import AppHeader from './components/header/Header';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { useNavigationStore } from '@store/navigation/useNavigationStore';
-import { UserProvider } from '@auth0/nextjs-auth0/client';
+import { useNavigationStore } from '@/store/navigation/useNavigationStore';
+
+import SignIn from './components/auth/SignIn';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -61,26 +62,21 @@ const RootLayout = ({
         {/* Links */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <UserProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
-          <Theme>
-            <AppHeader />
-            <Container>
-              <div className="flex flex-col justify-center mx-auto w-full">
-                <BrandBanner />
-                <div className="px-8 mb-8">
-                  <Link href="/api/auth/login">Login</Link>
-                  <Link href="/api/auth/logout?federated">Logout</Link>
-                  {children}
-                </div>
-              </div>
-            </Container>
-          </Theme>
-        </body>
-      </UserProvider>
+
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
+        <Theme>
+          <AppHeader />
+          <Container>
+            <div className="flex flex-col justify-center mx-auto w-full">
+              <BrandBanner />
+              <div className="px-8 mb-8">{children}</div>
+            </div>
+          </Container>
+        </Theme>
+      </body>
     </html>
   );
 };

@@ -1,6 +1,6 @@
 import { type Experience } from '@api/experienceApi';
 import { Card } from '@radix-ui/themes';
-import { formatDate } from '@utils/dateUtils';
+import { formatDate } from '@/utils/dateUtils';
 
 interface ExperienceCardProps {
   experience: Experience;

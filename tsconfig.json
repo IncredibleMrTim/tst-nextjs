@@ -33,16 +33,16 @@
         "app/*"
       ],
       "@components/*": [
-        "app/_components/*"
+        "app/components/*"
       ],
       "@store/*": [
-        "app/_store/*"
+        "app/store/*"
       ],
       "@api/*": [
-        "app/_api/*"
+        "app/api/*"
       ],
       "@utils/*": [
-        "app/_utils/*"
+        "app/utils/*"
       ]
     },
     "moduleResolution": "node"
