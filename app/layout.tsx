@@ -8,12 +8,9 @@ import { Theme, Container, Link } from '@radix-ui/themes';
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import BrandBanner from '@/components/brandBanner/BrandBanner';
-import AppHeader from './components/header/Header';
-import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
-import { useNavigationStore } from '@/store/navigation/useNavigationStore';
+import AppHeader from '@/components/header/Header';
 
-import SignIn from './components/auth/SignIn';
+import ReduxProvider from '@/store/redux/provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,19 +27,6 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const pathName = usePathname();
-
-  const setActiveMenuItem = useNavigationStore(
-    state => state.setActiveMenuItem
-  );
-  const menuItems = useNavigationStore(state => state.menuItems);
-
-  useEffect(() => {
-    setActiveMenuItem(
-      menuItems.find(item => item.path === pathName) || menuItems[0]
-    );
-  }, [pathName]);
-
   return (
     <html lang="en">
       <Head>
@@ -67,15 +51,17 @@ const RootLayout = ({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
-        <Theme>
-          <AppHeader />
-          <Container>
-            <div className="flex flex-col justify-center mx-auto w-full">
-              <BrandBanner />
-              <div className="px-8 mb-8">{children}</div>
-            </div>
-          </Container>
-        </Theme>
+        <ReduxProvider>
+          <Theme>
+            <AppHeader />
+            <Container>
+              <div className="flex flex-col justify-center mx-auto w-full">
+                <BrandBanner />
+                <div className="px-8 mb-8">{children}</div>
+              </div>
+            </Container>
+          </Theme>
+        </ReduxProvider>
       </body>
     </html>
   );

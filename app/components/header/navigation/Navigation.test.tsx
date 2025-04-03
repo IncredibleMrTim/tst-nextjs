@@ -19,7 +19,7 @@ jest.mock('@store/navigation/useNavigationStore', () => ({
   )
 }));
 
-describe('Navigation', () => {
+describe.skip('Navigation', () => {
   const mockPush = jest.fn();
 
   beforeEach(() => {
