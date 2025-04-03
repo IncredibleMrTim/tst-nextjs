@@ -6,12 +6,10 @@ import { useRouter } from 'next/navigation';
 import { MenuItem } from '@store/navigation/types';
 
 import NavButton from './NavigationButton';
-import {
-  useAppSelector,
-  useAppDispatch,
-  StoreKeys,
-  createStatePath
-} from '@/store/redux/store';
+import { useAppSelector, useAppDispatch, StoreKeys } from '@/store/redux/store';
+import SignIn from '@/components/auth/SignIn';
+import { Button } from '@radix-ui/themes';
+import LoginPopover from '@/components/popover/Popover';
 
 export enum NavDirection {
   VERTICAL = 'vertical',
@@ -48,31 +46,51 @@ const Navigation = ({
   const navHorizontal = 'flex flex-row justify-center divide-slate-200 pb-1';
 
   return (
-    <NavigationMenu.Root
-      orientation={orientation}
-      className="flex justify-start text-xl"
-    >
-      <NavigationMenu.List className="flex">
-        <NavigationMenu.Item
-          className={`${orientation === NavDirection.HORIZONTAL ? navHorizontal : navVertical}`}
-        >
-          {menuItems.map(menuItem => (
-            <NavButton
-              aria-label={`Navigate to ${menuItem.name}`}
-              aria-controls="NavigationButton"
-              aria-current={
-                menuItem.isActive ? `${menuItem.name} page` : undefined
-              }
-              key={menuItem.name}
-              menuItem={menuItem}
-              onClick={handleNavigationClick}
+    <div className="flex justify-between">
+      <NavigationMenu.Root
+        orientation={orientation}
+        className="flex justify-start text-xl"
+      >
+        <NavigationMenu.List className="flex">
+          <NavigationMenu.Item
+            className={`${orientation === NavDirection.HORIZONTAL ? navHorizontal : navVertical}`}
+          >
+            {menuItems.map(menuItem => (
+              <NavButton
+                aria-label={`Navigate to ${menuItem.name}`}
+                aria-controls="NavigationButton"
+                aria-current={
+                  menuItem.isActive ? `${menuItem.name} page` : undefined
+                }
+                key={menuItem.name}
+                menuItem={menuItem}
+                onClick={handleNavigationClick}
+              >
+                {menuItem.name}
+              </NavButton>
+            ))}
+          </NavigationMenu.Item>
+        </NavigationMenu.List>
+      </NavigationMenu.Root>
+      <div className="mr-4 hidden md:flex">
+        <LoginPopover
+          targetElement={
+            <Button
+              variant="ghost"
+              radius="none"
+              size="3"
+              className={`!text-black !border-b-2 !cursor-pointer !border-transparent hover:!bg-slate-100`}
             >
-              {menuItem.name}
-            </NavButton>
-          ))}
-        </NavigationMenu.Item>
-      </NavigationMenu.List>
-    </NavigationMenu.Root>
+              Login
+            </Button>
+          }
+        >
+          <div className="w-[300px]">
+            <SignIn />
+          </div>
+        </LoginPopover>
+      </div>
+    </div>
   );
 };
 

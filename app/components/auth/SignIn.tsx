@@ -15,7 +15,7 @@ const SignIn = () => {
   const setLoggedState = (isLoggedIn: boolean) => {
     dispatch({
       type: StoreKeys.AUTH_SET_IS_LOGGED_IN,
-      payload: false
+      payload: isLoggedIn
     });
   };
 
