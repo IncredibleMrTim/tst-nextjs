@@ -18,6 +18,7 @@
     "@radix-ui/react-icons": "^1.3.2",
     "@radix-ui/themes": "^3.2.1",
     "@react-pdf/renderer": "^4.3.0",
+    "@reduxjs/toolkit": "^2.6.1",
     "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.4.21",
     "canvas": "^3.1.0",
@@ -32,6 +33,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-pdf": "^9.2.1",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
     "server-only": "^0.0.1",
     "yarm": "^0.4.0",
     "zustand": "^5.0.3"

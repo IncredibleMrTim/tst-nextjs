@@ -7,6 +7,7 @@ import { useNavigationStore } from '@store/navigation/useNavigationStore';
 import { MenuItem } from '@store/navigation/types';
 
 import NavButton from './NavigationButton';
+import { useAppSelector } from '@/_store/redux/store';
 
 export enum NavDirection {
   VERTICAL = 'vertical',
@@ -21,7 +22,8 @@ const Navigation = ({
   orientation = NavDirection.HORIZONTAL
 }: NavigationProps) => {
   const router = useRouter();
-  const menuItems = useNavigationStore(state => state.menuItems);
+  const menuItems_OLD = useNavigationStore(state => state.menuItems);
+  const menuItems = useAppSelector(state => state.nav.menuItems);
 
   const setActiveMenuItem = useNavigationStore(
     state => state.setActiveMenuItem
