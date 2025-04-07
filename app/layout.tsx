@@ -7,10 +7,15 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Theme, Container } from '@radix-ui/themes';
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import BrandBanner from '@components/brandBanner/BrandBanner';
-import AppHeader from './_components/header/Header';
 
-import ReduxProvider from '@/_store/redux/provider';
+
+
+import ReduxProvider from '@/store/redux/provider';
+import BrandBanner from '@/components/brandBanner/BrandBanner';
+import AppHeader from '@/components/header/Header';
+
+
+import { Worker } from '@react-pdf-viewer/core';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,6 +33,7 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
+
     <html lang="en">
       <Head>
         {/* Primary Meta Tags */}
@@ -50,7 +56,9 @@ const RootLayout = ({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
+        
         <ReduxProvider>
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
           <Theme>
             <AppHeader />
             <Container>
@@ -60,6 +68,7 @@ const RootLayout = ({
               </div>
             </Container>
           </Theme>
+        </Worker>
         </ReduxProvider>
       </body>
     </html>

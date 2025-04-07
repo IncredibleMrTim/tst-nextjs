@@ -3,10 +3,10 @@
 import { NavigationMenu } from 'radix-ui';
 import { useRouter } from 'next/navigation';
 
-import { MenuItem } from '@store/navigation/types';
+import { MenuItem } from '@/store/navigation/types';
 
 import NavButton from './NavigationButton';
-import { useAppSelector, useAppDispatch } from '@/_store/redux/store';
+import { useAppSelector, useAppDispatch } from '@/store/redux/store';
 
 export enum NavDirection {
   VERTICAL = 'vertical',

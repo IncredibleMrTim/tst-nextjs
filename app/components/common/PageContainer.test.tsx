@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom';
 import PageContainer from './PageContainer';
-import { setupMockRouter, renderWithRouter } from '@utils/testUtils';
+import { setupMockRouter, renderWithRouter } from '@/utils/testUtils';
 
 describe('PageContainer', () => {
   beforeEach(() => {
