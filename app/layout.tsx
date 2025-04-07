@@ -6,9 +6,14 @@ import '@radix-ui/themes/styles.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Theme, Container, Link } from '@radix-ui/themes';
 import { Geist, Geist_Mono } from 'next/font/google';
+<<<<<<< Updated upstream
 
 import BrandBanner from '@/components/brandBanner/BrandBanner';
 import AppHeader from '@/components/header/Header';
+=======
+import BrandBanner from '@components/brandBanner/BrandBanner';
+import AppHeader from './_components/header/Header';
+>>>>>>> Stashed changes
 
 import ReduxProvider from '@/store/redux/provider';
 
