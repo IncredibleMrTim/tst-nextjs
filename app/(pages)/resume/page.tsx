@@ -24,7 +24,7 @@ const Resume = () => {
           quality={10}
         />
         <Link
-          href="/TimSmartCV_31-03-25.pdf"
+          href="/TimSmartCV_07-04-25.pdf"
           target="_blank"
           aria-label="Download resume"
           aria-controls="Download resume button"

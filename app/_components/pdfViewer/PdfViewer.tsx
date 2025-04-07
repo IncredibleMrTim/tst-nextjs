@@ -91,7 +91,7 @@ const PdfViewer = () => {
             <div className="flex gap-2 pr-2">
               <Toolbar.Button>
                 <Link
-                  href="/TimSmartCV_31-03-25.pdf"
+                  href="/TimSmartCV_07-04-25.pdf"
                   target="_blank"
                   title="Open resume in new tab"
                   aria-label="Open resume in new tab"
@@ -143,7 +143,7 @@ const PdfViewer = () => {
         </div>*/}
       <div className="!h-[60vh] overflow-y-scroll">
         <Document
-          file="/TimSmartCV_31-03-25.pdf"
+          file="/TimSmartCV_07-04-25.pdf"
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page pageNumber={pageNumber} />
