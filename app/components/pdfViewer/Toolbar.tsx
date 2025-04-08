@@ -3,9 +3,12 @@ import {
   MagnifyingGlassMinusIcon,
   MagnifyingGlassPlusIcon,
   ArrowsPointingOutIcon,
-  PrinterIcon
+  PrinterIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowDownTrayIcon
 } from '@heroicons/react/20/solid';
-import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+
 import { Flex, Button } from '@radix-ui/themes';
 import {
   RenderZoomInProps,
@@ -24,6 +27,7 @@ import {
 } from '@react-pdf-viewer/full-screen';
 import { printPlugin, RenderPrintProps } from '@react-pdf-viewer/print';
 import React from 'react';
+import { RenderDownloadProps, getFilePlugin } from '@react-pdf-viewer/get-file';
 
 const PDFToolbar = () => {
   const toolbarPluginInstance = toolbarPlugin();
@@ -31,15 +35,20 @@ const PDFToolbar = () => {
   const zoomPluginInstance = zoomPlugin();
   const fullScreenPluginInstance = fullScreenPlugin();
   const printPluginInstance = printPlugin();
+  const getFilePluginInstance = getFilePlugin();
 
   const { jumpToNextPage, jumpToPreviousPage, jumpToPage, CurrentPageLabel } =
     pageNavigationPluginInstance;
   const { ZoomIn, ZoomOut } = zoomPluginInstance;
   const { EnterFullScreen } = fullScreenPluginInstance;
   const { Print } = printPluginInstance;
+  const { Download } = getFilePluginInstance;
 
   const ToolbarContent = () => (
-    <Flex className="gap-2 items-center py-4 " justify="between">
+    <Flex
+      className="gap-2 items-center py-2 px-2 border-b-1 border-b-gray-300"
+      justify="between"
+    >
       <Flex className="w-1/3 gap-4">
         <>
           <Button
@@ -102,6 +111,18 @@ const PDFToolbar = () => {
             </Button>
           )}
         </Print>
+        <Download>
+          {(props: RenderDownloadProps) => (
+            <Button
+              variant="ghost"
+              onClick={() => props.onClick()}
+              aria-label="Download resume"
+              aria-controls="Download resume button"
+            >
+              <ArrowDownTrayIcon className="h-5 w-5 text-black" />
+            </Button>
+          )}
+        </Download>
       </Flex>
     </Flex>
   );
@@ -111,7 +132,8 @@ const PDFToolbar = () => {
     pageNavigationPluginInstance,
     zoomPluginInstance,
     fullScreenPluginInstance,
-    printPluginInstance
+    printPluginInstance,
+    getFilePluginInstance
   ];
 
   return {

@@ -52,11 +52,10 @@ const PdfViewer = () => {
 
   return (
     <div className="flex w-full flex-col h-full">
-      <div className="flex flex-col">
-        <div className="mt-8">
-          <Toolbar />
-        </div>
-        <div className="flex flex-row h-[55rem] gap-2 ">
+      <div className="flex flex-col border-1 border-gray-200 shadow-sm">
+        <Toolbar />
+
+        <div className="flex flex-row h-[55rem] gap-2 my-2 ">
           <Viewer
             plugins={[...toolbarInstances]}
             fileUrl="/TimSmartCV_07-04-25_v2.pdf"
