@@ -1,9 +1,9 @@
 'use client';
-import Card from '@components/card/Card';
+import Card from '@/components/card/Card';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from './_store/redux/store';
+import { useAppDispatch, useAppSelector } from './store/redux/store';
 
 const Home = () => {
   const pathName = usePathname();

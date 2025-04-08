@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/dom';
-import { setupMockRouter, renderWithRouter } from '@utils/testUtils';
+import { setupMockRouter, renderWithRouter } from '@/utils/testUtils';
 import Card from './Card';
 
 describe('Card', () => {

@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
     NEXTAUTH_SECRET: '6mPJL/4p7t1H0raJlRN3JOdjearnnncLiGRwoJZJF9s=',
     NEXTAUTH_URL: 'https://timsmarttechnology.co.uk'
   },
+
   experimental: {
     turbo: {
       resolveAlias: {

@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom';
 import PageHeader from './PageHeader';
-import { setupMockRouter, renderWithRouter } from '@utils/testUtils';
+import { setupMockRouter, renderWithRouter } from '@/utils/testUtils';
 
 describe('PageHeader', () => {
   beforeEach(() => {

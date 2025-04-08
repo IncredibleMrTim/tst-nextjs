@@ -1,12 +1,12 @@
 'use client';
 
-import Drawer from '@components/drawer/Drawer';
-import { TstLogo } from '@components/logos/TstLogo';
+import Drawer from '@/components/drawer/Drawer';
+import { TstLogo } from '@/components/logos/TstLogo';
 
 import Navigation, { NavDirection } from './navigation/Navigation';
 import DrawerTemplate from './drawerTemplate/DrawerTemplate';
 import { Box, Container } from '@radix-ui/themes';
-import { useAppDispatch, useAppSelector } from '@/_store/redux/store';
+import { useAppDispatch, useAppSelector } from '@/store/redux/store';
 
 const Header = () => {
   const dispatch = useAppDispatch();

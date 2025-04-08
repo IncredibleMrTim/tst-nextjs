@@ -1,14 +1,14 @@
 'use client';
 
-import PdfViewer from '@components/pdfViewer/PdfViewer';
+import PdfViewer from '@/components/pdfViewer/PdfViewer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@radix-ui/themes';
+import { Button, Flex } from '@radix-ui/themes';
 
 const Resume = () => {
   return (
-    <div className="flex justify-center items-center">
-      <div className="hidden md:flex">
+    <div className="flex justify-center">
+      <div className="hidden md:flex w-full">
         <PdfViewer />
       </div>
       <div className="flex flex-col items-center gap-20 md:hidden">
@@ -24,7 +24,7 @@ const Resume = () => {
           quality={10}
         />
         <Link
-          href="/TimSmartCV_07-04-25.pdf"
+          href="/TimSmartCV_31-03-25.pdf"
           target="_blank"
           aria-label="Download resume"
           aria-controls="Download resume button"
