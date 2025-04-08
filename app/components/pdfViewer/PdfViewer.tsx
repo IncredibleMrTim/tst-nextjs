@@ -10,24 +10,45 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 
 const PdfViewer = () => {
   const [numPages, setNumPages] = useState<number>(0);
-  const { Toolbar, toolbarInstances } = PDFToolbar();
+  const {
+    Toolbar,
+    toolbarInstances,
+    jumpToNextPage,
+    jumpToPreviousPage,
+    jumpToPage
+  } = PDFToolbar();
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
 
-  // useEffect(() => {
-  //   const handleKeyDown = (event: KeyboardEvent) => {
-  //     if (event.key === 'ArrowRight') {
-  //       jumpToNextPage();
-  //     } else if (event.key === 'ArrowLeft') {
-  //       jumpToPreviousPage();
-  //     }
-  //   };
-  //   window.addEventListener('keydown', handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener('keydown', handleKeyDown);
-  //   };
-  // }, [numPages]);
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'ArrowRight':
+          jumpToNextPage();
+          break;
+        case 'ArrowLeft':
+          jumpToPreviousPage();
+          break;
+        case 'ArrowUp':
+          jumpToPage(0);
+          break;
+        case 'ArrowDown':
+          jumpToPage(numPages - 1);
+          break;
+      }
+
+      if (event.key === 'ArrowRight') {
+        jumpToNextPage();
+      } else if (event.key === 'ArrowLeft') {
+        jumpToPreviousPage();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [numPages]);
 
   return (
     <div className="flex w-full flex-col h-full">

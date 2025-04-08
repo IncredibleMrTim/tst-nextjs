@@ -23,7 +23,7 @@ import {
   RenderEnterFullScreenProps
 } from '@react-pdf-viewer/full-screen';
 import { printPlugin, RenderPrintProps } from '@react-pdf-viewer/print';
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 const PDFToolbar = () => {
   const toolbarPluginInstance = toolbarPlugin();
@@ -32,7 +32,7 @@ const PDFToolbar = () => {
   const fullScreenPluginInstance = fullScreenPlugin();
   const printPluginInstance = printPlugin();
 
-  const { jumpToNextPage, jumpToPreviousPage, CurrentPageLabel } =
+  const { jumpToNextPage, jumpToPreviousPage, jumpToPage, CurrentPageLabel } =
     pageNavigationPluginInstance;
   const { ZoomIn, ZoomOut } = zoomPluginInstance;
   const { EnterFullScreen } = fullScreenPluginInstance;
@@ -116,7 +116,10 @@ const PDFToolbar = () => {
 
   return {
     Toolbar: ToolbarContent,
-    toolbarInstances
+    toolbarInstances,
+    jumpToNextPage,
+    jumpToPreviousPage,
+    jumpToPage
   };
 };
 

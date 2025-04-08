@@ -16,7 +16,7 @@ const ResumeLayout = ({ children }: { children: React.ReactNode }) => {
           content="Resume, CV, Tim Smart, Frontend, Software Engineer, Consultant, Contractor, Web Development, React, Next.js, Node.js"
         />
       </Head>
-      <PageContainer className="!pt-4 md:!pt-8">{children}</PageContainer>
+      <PageContainer>{children}</PageContainer>
     </>
   );
 };
