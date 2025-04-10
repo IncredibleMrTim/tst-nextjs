@@ -33,7 +33,7 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
 
           <div className="flex flex-col md:ml-40">
             <h2 className="flex justify-left">Experience</h2>
-            <p className="hidden md:flex">
+            <p className="xs:hidden sm:flex md:flex md:visible">
               Experienced Lead/Senior Software Engineer with a demonstrated
               history of working in the information technology and services
               industry. Skilled in ReactJS, JavaScript, Redux and supporting
