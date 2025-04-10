@@ -20,7 +20,7 @@ const Header = () => {
             <TstLogo className="w-1/2 md:w-1/4 landscape:w-1/3" />
           </Box>
 
-          <div className="absolute bottom-2 left-4 visible md:hidden">
+          <div className="absolute bottom-2 left-4 flex md:hidden landscape:hidden">
             <Drawer
               aria-label="Open navigation"
               aria-controls="NavigationMenu"
@@ -38,7 +38,7 @@ const Header = () => {
               <DrawerTemplate />
             </Drawer>
           </div>
-          <div className="hidden md:flex">
+          <div className="hidden md:flex landscape:flex">
             <Navigation orientation={NavDirection.HORIZONTAL} />
           </div>
         </div>
