@@ -5,6 +5,7 @@ import { Flex, Section } from '@radix-ui/themes';
 import Image from 'next/image';
 import PageHeader from '@/components/common/PageHeader';
 import Head from 'next/head';
+import PageContainer from '@/components/common/PageContainer';
 
 const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
   return (
@@ -33,7 +34,7 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
 
           <div className="flex flex-col md:ml-40">
             <h2 className="flex justify-left">Experience</h2>
-            <p className="xs:hidden sm:flex md:flex md:visible">
+            <p className="hidden sm:flex md:flex md:flex">
               Experienced Lead/Senior Software Engineer with a demonstrated
               history of working in the information technology and services
               industry. Skilled in ReactJS, JavaScript, Redux and supporting
@@ -42,9 +43,9 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
             </p>
           </div>
         </PageHeader>
-        <Section size="1">
+        <PageContainer>
           <Suspense fallback={<Loading />}>{children}</Suspense>
-        </Section>
+        </PageContainer>
       </Flex>
     </>
   );

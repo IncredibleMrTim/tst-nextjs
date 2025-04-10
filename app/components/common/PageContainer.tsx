@@ -10,7 +10,7 @@ const PageContainer = ({
   ...props
 }: PageContainerProps & BoxProps) => {
   return (
-    <Box className="!pt-4 md:!pt-8" {...props}>
+    <Box className="!pt-2 md:!pt-8 px-4" {...props}>
       {children}
     </Box>
   );
