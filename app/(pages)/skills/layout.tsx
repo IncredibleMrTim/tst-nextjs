@@ -21,7 +21,7 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
         />
       </Head>
       <PageHeader>Skills and Technologies</PageHeader>
-      <PageContainer className="!pt-4 md:!pt-8">
+      <PageContainer>
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </PageContainer>
     </div>

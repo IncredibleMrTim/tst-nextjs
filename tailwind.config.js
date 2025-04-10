@@ -1,6 +1,7 @@
 export default {
   content: ['./client/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
+
     extend: {
       keyframes: {
         phone: {
