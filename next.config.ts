@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
   env: {
+    NEXT_PUBLIC_SUPABASE_URL: 'https://psnfenhweseqzehunnls.supabase.co',
+    NEXT_PUBLIC_SUPABASE_ANON_KEY:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzbmZlbmh3ZXNlcXplaHVubmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM1ODg3NzksImV4cCI6MjA1OTE2NDc3OX0.zFsHmvCRUHGA4kY71TXila9SjIkzHiJZW3BMyB2jQVE',
     TST_API: 'https://tst-server.vercel.app/',
     NEXT_PUBLIC_GA_ID: 'G-Q2N4DP8TH6',
     GOOGLE_CLIENT_ID:
