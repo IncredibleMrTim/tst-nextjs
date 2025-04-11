@@ -4,32 +4,24 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { createClient } from '@utils/supabase/server';
-import { StoreKeys, useAppDispatch } from '@/store/redux/store';
-
-const dispatch = useAppDispatch();
+import { StoreKeys } from '@/store/redux/store';
 
 export async function login(email: string, password: string) {
   const supabase = await createClient();
-
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const data = {
     email,
     password
   };
-
-  const { error } = await supabase.auth.signInWithPassword(data);
+  const {
+    error,
+    data: { user }
+  } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
     redirect('/error');
   }
-  dispatch({
-    type: StoreKeys.AUTH_SET_IS_LOGGED_IN,
-    payload: true
-  });
-
-  // useAuthenticationStore.setState({ isLoggedIn: true });
   revalidatePath('/', 'layout');
+  return user;
 }
 
 export async function signup(formData: FormData) {
@@ -64,11 +56,6 @@ export const getUser = async () => {
     data: { user },
     error
   } = await supabase.auth.getUser();
-
-  dispatch({
-    type: StoreKeys.AUTH_SET_IS_LOGGED_IN,
-    payload: !!user
-  });
 
   return user;
 };

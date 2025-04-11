@@ -1,6 +1,6 @@
 'use server';
 
-import { getExperience } from '@api/experienceApi';
+import { getExperience } from '@/api/experienceApi';
 
 import ExperienceCard from '@/components/experienceCard/ExperienceCard';
 

@@ -3,13 +3,13 @@
 import { NavigationMenu } from 'radix-ui';
 import { useRouter } from 'next/navigation';
 
-import { MenuItem } from '@store/navigation/types';
-
-import NavButton from './NavigationButton';
 import { useAppSelector, useAppDispatch, StoreKeys } from '@/store/redux/store';
 import SignIn from '@/components/auth/SignIn';
 import { Button } from '@radix-ui/themes';
 import LoginPopover from '@/components/popover/Popover';
+import { MenuItem } from '@/store/navigation/types';
+import useAuthentication from '@/components/auth/useAuthentication';
+import NavButton from './NavigationButton';
 
 export enum NavDirection {
   VERTICAL = 'vertical',
@@ -24,6 +24,7 @@ const Navigation = ({
   orientation = NavDirection.HORIZONTAL
 }: NavigationProps) => {
   const dispatch = useAppDispatch();
+  const { handleLogin, auth } = useAuthentication();
 
   const router = useRouter();
 
@@ -46,7 +47,7 @@ const Navigation = ({
   const navHorizontal = 'flex flex-row justify-center divide-slate-200 pb-1';
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between w-full">
       <NavigationMenu.Root
         orientation={orientation}
         className="flex justify-start text-xl"
@@ -71,6 +72,9 @@ const Navigation = ({
             ))}
           </NavigationMenu.Item>
         </NavigationMenu.List>
+        <Button onClick={() => handleLogin()}>
+          {auth.isAuthenticated ? 'Logout' : 'login'}
+        </Button>
       </NavigationMenu.Root>
       <div className="mr-4 hidden md:flex">
         <LoginPopover

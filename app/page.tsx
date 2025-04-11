@@ -1,5 +1,5 @@
 'use client';
-import Card from '@components/card/Card';
+import Card from '@/components/card/Card';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';

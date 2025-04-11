@@ -1,37 +1,47 @@
 'use client';
 
-import { Button, Link } from '@radix-ui/themes';
 import { useState, useEffect } from 'react';
-import { pdfjs } from 'react-pdf';
-import { Document, Page } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
-import {
-  ArrowsPointingOutIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon
-} from '@heroicons/react/20/solid';
-
-import { Toolbar } from 'radix-ui';
-// Set the workerSrc to the locally served worker file
-pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+import { Viewer, DocumentLoadEvent } from '@react-pdf-viewer/core';
+import PDFToolbar from './Toolbar';
+import '@react-pdf-viewer/toolbar/lib/styles/index.css';
+import '@react-pdf-viewer/core/lib/styles/index.css';
 
 const PdfViewer = () => {
-  const [pageNumber, setPageNumber] = useState(1);
   const [numPages, setNumPages] = useState<number>(0);
-  const [prevDisabled, setPrevDisabled] = useState(false);
-  const [nextDisabled, setNextDisabled] = useState(true);
-
+  const {
+    Toolbar,
+    toolbarInstances,
+    jumpToNextPage,
+    jumpToPreviousPage,
+    jumpToPage
+  } = PDFToolbar();
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'ArrowRight':
+          jumpToNextPage();
+          break;
+        case 'ArrowLeft':
+          jumpToPreviousPage();
+          break;
+        case 'ArrowUp':
+          jumpToPage(0);
+          break;
+        case 'ArrowDown':
+          jumpToPage(numPages - 1);
+          break;
+      }
+
       if (event.key === 'ArrowRight') {
-        setPageNumber(prev => Math.min(prev + 1, numPages));
+        jumpToNextPage();
       } else if (event.key === 'ArrowLeft') {
-        setPageNumber(prev => Math.max(prev - 1, 1));
+        jumpToPreviousPage();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -40,114 +50,20 @@ const PdfViewer = () => {
     };
   }, [numPages]);
 
-  useEffect(() => {
-    setPrevDisabled(pageNumber === 1);
-    setNextDisabled(pageNumber >= numPages);
-  }, [pageNumber, numPages]);
-
   return (
-    <div className="mt-8 border-gray-200 rounded-sm border-1">
-      <Toolbar.Root className="flex w-full p-2 rounded-sm bg-gradient-to-b from-gray-100 to-80% to-white ">
-        <div className="flex items-center w-full justify-between">
-          <Toolbar.ToggleGroup type="multiple" area-label="PDF Viewer">
-            <div className="flex gap-2 pr-2 items-center">
-              <Toolbar.Button
-                value="Previous Page"
-                disabled={prevDisabled}
-                className={prevDisabled ? 'opacity-50 cursor-not-allowed' : ''}
-                title="Previous Page"
-              >
-                <ArrowLeftIcon
-                  className="h-5 w-5"
-                  onClick={() => setPageNumber(prev => Math.max(prev - 1, 1))}
-                />
-              </Toolbar.Button>
-              <Toolbar.ToggleItem
-                value="Page number"
-                title={`Showing page ${pageNumber} of ${numPages}`}
-              >
-                <div className="flex text-sm min-w-35 justify-center">
-                  Showing page {pageNumber} of {numPages}
-                </div>
-              </Toolbar.ToggleItem>
+    <div className="flex w-full flex-col h-full">
+      <div className="flex flex-col border-1 border-gray-200 shadow-sm">
+        <Toolbar />
 
-              <Toolbar.Button
-                title="Next Page"
-                disabled={nextDisabled}
-                value="Next Page"
-                className={nextDisabled ? 'opacity-50 cursor-not-allowed' : ''}
-              >
-                <ArrowRightIcon
-                  className="h-5 w-5"
-                  onClick={() =>
-                    setPageNumber(prev => Math.min(prev + 1, numPages))
-                  }
-                />
-              </Toolbar.Button>
-            </div>
-          </Toolbar.ToggleGroup>
-
-          <Toolbar.ToggleGroup type="multiple" area-label="PDF Viewer">
-            <div className="flex gap-2 pr-2">
-              <Toolbar.Button>
-                <Link
-                  href="/TimSmartCV_31-03-25.pdf"
-                  target="_blank"
-                  title="Open resume in new tab"
-                  aria-label="Open resume in new tab"
-                >
-                  <ArrowsPointingOutIcon className="h-5 w-5 text-gray-500" />
-                </Link>
-              </Toolbar.Button>
-            </div>
-          </Toolbar.ToggleGroup>
+        <div className="flex flex-row h-[55rem] gap-2 my-2 ">
+          <Viewer
+            plugins={[...toolbarInstances]}
+            fileUrl="/TimSmartCV_07-04-25_v2.pdf"
+            onDocumentLoad={(e: DocumentLoadEvent) =>
+              onDocumentLoadSuccess({ numPages: e.doc.numPages })
+            }
+          />
         </div>
-      </Toolbar.Root>
-      {/* <div className="flex gap-2 pl-2">
-          <Button
-            variant="outline"
-            size="1"
-            disabled={prevDisabled}
-            value="previous"
-            onClick={() => setPageNumber(prev => Math.max(prev - 1, 1))}
-          >
-            Prev
-          </Button>
-          <Button
-            disabled={nextDisabled}
-            size="1"
-            value="next"
-            onClick={() => setPageNumber(prev => Math.min(prev + 1, numPages))}
-          >
-            Next
-          </Button>
-          <div className="flex pr-2 text-sm items-center">
-            Showing page {pageNumber}/{numPages}
-          </div>
-        </div>
-        <div className="flex gap-10 pr-2">
-          <Link
-            href="/TimSmartCV_31-03-25.pdf"
-            target="_blank"
-            className="border-r-1 border-gray-300 pr-2"
-          >
-            <Button variant="ghost" size="2" title="Open in new tab">
-              <ArrowsPointingOutIcon className="h-5 w-5" />
-            </Button>
-          </Link>
-          <Link href="/TimSmartCV_31-03-25.pdf" target="_blank">
-            <Button variant="ghost" size="2" title="Open in new tab">
-              <ArrowsPointingOutIcon className="h-5 w-5" />
-            </Button>
-          </Link>
-        </div>*/}
-      <div className="!h-[60vh] overflow-y-scroll">
-        <Document
-          file="/TimSmartCV_31-03-25.pdf"
-          onLoadSuccess={onDocumentLoadSuccess}
-        >
-          <Page pageNumber={pageNumber} />
-        </Document>
       </div>
     </div>
   );

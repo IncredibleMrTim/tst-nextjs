@@ -1,3 +1,4 @@
+import PageContainer from '@/components/common/PageContainer';
 import { Box } from '@radix-ui/themes';
 import Head from 'next/head';
 
@@ -15,8 +16,7 @@ const ResumeLayout = ({ children }: { children: React.ReactNode }) => {
           content="Resume, CV, Tim Smart, Frontend, Software Engineer, Consultant, Contractor, Web Development, React, Next.js, Node.js"
         />
       </Head>
-
-      <Box>{children}</Box>
+      <PageContainer>{children}</PageContainer>
     </>
   );
 };

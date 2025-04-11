@@ -24,7 +24,8 @@ const SignIn = () => {
   };
 
   const handleLoginClick = async () => {
-    login(email, password);
+    const user = await login(email, password);
+    console.log('T1', user);
     setLoggedState(true);
   };
 

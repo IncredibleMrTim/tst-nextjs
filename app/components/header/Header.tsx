@@ -1,7 +1,7 @@
 'use client';
 
-import Drawer from '@components/drawer/Drawer';
-import { TstLogo } from '@components/logos/TstLogo';
+import Drawer from '@/components/drawer/Drawer';
+import { TstLogo } from '@/components/logos/TstLogo';
 
 import Navigation, { NavDirection } from './navigation/Navigation';
 import DrawerTemplate from './drawerTemplate/DrawerTemplate';
@@ -16,11 +16,11 @@ const Header = () => {
     <header className="w-full relative flex justify-center bg-gradient-to-b from-blue-200 via--blue-100 via-70% via-zinc-50 to-80% to-transparent gap-4 shadow-md">
       <Container>
         <div className="flex-col justify-center">
-          <Box className="!flex w-full justify-center p-4">
-            <TstLogo className="w-3/5 md:w-1/4" />
+          <Box className="!flex w-full justify-end p-4 md:justify-center">
+            <TstLogo className="w-1/2 md:w-1/4 landscape:w-1/3" />
           </Box>
 
-          <div className="absolute bottom-2 left-4 md:hidden ">
+          <div className="absolute bottom-2 left-4 flex md:hidden landscape:hidden">
             <Drawer
               aria-label="Open navigation"
               aria-controls="NavigationMenu"
@@ -41,7 +41,7 @@ const Header = () => {
               <DrawerTemplate />
             </Drawer>
           </div>
-          <div className="invisible md:visible">
+          <div className="hidden md:flex landscape:flex">
             <Navigation orientation={NavDirection.HORIZONTAL} />
           </div>
         </div>

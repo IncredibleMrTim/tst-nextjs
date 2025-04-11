@@ -1,5 +1,6 @@
 'use client';
 
+import { Flex } from '@radix-ui/themes';
 import {
   AstraZenecaLogo,
   LexisNexisLogo,
@@ -13,7 +14,10 @@ import BrandWrapper from './BrandWrapper';
 
 const BrandBanner = () => {
   return (
-    <div className="flex justify-between h-full border-b-1 border-gray-200 xs:invisible invisible md:visible">
+    <Flex
+      className="w-full  border-gray-200 py-2 !hidden md:border-b-1 landscape:border-b-1 md:!flex landscape:!flex "
+      justify="between"
+    >
       <BrandWrapper>
         <AstraZenecaLogo />
       </BrandWrapper>
@@ -35,7 +39,7 @@ const BrandBanner = () => {
       <BrandWrapper>
         <MdrxTechLogo />
       </BrandWrapper>
-    </div>
+    </Flex>
   );
 };
 

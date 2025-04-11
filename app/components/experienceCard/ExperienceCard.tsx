@@ -1,4 +1,4 @@
-import { type Experience } from '@api/experienceApi';
+import { type Experience } from '@/api/experienceApi';
 import { Card } from '@radix-ui/themes';
 import { formatDate } from '@/utils/dateUtils';
 

@@ -6,17 +6,16 @@ import '@radix-ui/themes/styles.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Theme, Container, Link } from '@radix-ui/themes';
 import { Geist, Geist_Mono } from 'next/font/google';
-<<<<<<< Updated upstream
 
 import BrandBanner from '@/components/brandBanner/BrandBanner';
 import AppHeader from '@/components/header/Header';
-=======
-import BrandBanner from '@components/brandBanner/BrandBanner';
-import AppHeader from './_components/header/Header';
->>>>>>> Stashed changes
 
 import ReduxProvider from '@/store/redux/provider';
 
+import { Worker } from '@react-pdf-viewer/core';
+import PageContainer from './components/common/PageContainer';
+import { AuthProvider } from 'react-oidc-context';
+import { cognitoAuthConfig } from '@/components/auth/useAuthentication';
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin']
@@ -56,17 +55,22 @@ const RootLayout = ({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
-        <ReduxProvider>
-          <Theme>
-            <AppHeader />
-            <Container>
-              <div className="flex flex-col justify-center mx-auto w-full">
-                <BrandBanner />
-                <div className="px-8 mb-8">{children}</div>
-              </div>
-            </Container>
-          </Theme>
-        </ReduxProvider>
+        <AuthProvider {...cognitoAuthConfig}>
+          <ReduxProvider>
+            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+              <Theme>
+                <AppHeader />
+                <Container>
+                  <div className="flex flex-col justify-center mx-auto w-full">
+                    <BrandBanner />
+
+                    <PageContainer>{children}</PageContainer>
+                  </div>
+                </Container>
+              </Theme>
+            </Worker>
+          </ReduxProvider>
+        </AuthProvider>
       </body>
     </html>
   );

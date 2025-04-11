@@ -1,7 +1,7 @@
+"use client";
 import {
   configureStore,
   combineReducers,
-  PayloadAction
 } from '@reduxjs/toolkit';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 import { navReducer } from '../navigation/navSlice';
