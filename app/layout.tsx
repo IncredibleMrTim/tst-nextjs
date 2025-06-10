@@ -44,7 +44,7 @@ const RootLayout = ({
           name="keywords"
           content="Tim Smart, Frontend, Software Engineer, Consultant, Contractor, Web Development, React, Next.js, Node.js"
         />
-        <meta name="og:image" content={`/images/tst-og-image.webp`} />
+        <meta name="og:image" content={`/images/tst-social-og.webp`} />
 
         {/* Links */}
         <link rel="icon" href="/favicon.ico" />
