@@ -59,8 +59,8 @@ export const Accordion = ({
         className="overflow-y-hidden accordion"
         open={accordionOpen}
         placeholder={undefined}
-        onPointerEnterCapture={() => {}}
-        onPointerLeaveCapture={() => {}}
+        onPointerEnterCapture={null}
+        onPointerLeaveCapture={null}
       >
         <AccordionHeader
           className={`p-2 ${!lastItem && `border-b-1 border-gray-200`} transition: ${
@@ -70,8 +70,8 @@ export const Accordion = ({
           }`}
           onClick={() => setAccordionOpen(!accordionOpen)}
           placeholder={undefined}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={null}
+          onPointerLeaveCapture={null}
         >
           <div className="w-full flex justify-between mx-auto heading accordion-heading">
             {renderHeading()}

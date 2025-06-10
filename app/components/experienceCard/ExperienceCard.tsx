@@ -4,21 +4,26 @@ import { formatDate } from '@/utils/dateUtils';
 
 interface ExperienceCardProps {
   experience: Experience;
+  children?: React.ReactNode;
 }
 
-const ExperienceCard = ({ experience }: ExperienceCardProps) => {
+const ExperienceCard = ({ experience, children }: ExperienceCardProps) => {
   return (
     <Card className="mb-8" variant="classic">
-      <h2 className="text-left">
-        {experience.role} - {experience.company}
-      </h2>
-
-      <p className="italic mb-8 !text-sm">
-        {`${formatDate(experience.fromDate)} - `}
-        {new Date(experience.toDate) < new Date()
-          ? formatDate(experience.toDate)
-          : 'present'}
-      </p>
+      <div className="flex justify-between items-top w-full">
+        <div>
+          <h2 className="text-left">
+            {experience.role} - {experience.company}
+          </h2>
+          <p className="italic mb-8 !text-sm">
+            {`${formatDate(experience.fromDate)} - `}
+            {new Date(experience.toDate) < new Date()
+              ? formatDate(experience.toDate)
+              : 'present'}
+          </p>
+        </div>
+        <div className="flex self-start w-36">{children}</div>
+      </div>
 
       <p className="whitespace-pre-line mb-8">{experience.description}</p>
 

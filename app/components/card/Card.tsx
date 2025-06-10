@@ -11,7 +11,13 @@ interface CardProps {
 }
 
 const LinkWrapper = (children: React.ReactNode, href?: string) => {
-  return href ? <Link href={href}>{children}</Link> : <div>{children}</div>;
+  return href ? (
+    <Link href={href} prefetch>
+      {children}
+    </Link>
+  ) : (
+    <div>{children}</div>
+  );
 };
 
 const Card = ({ imageAlt, children, imageSrc, href }: CardProps) => (
