@@ -13,6 +13,7 @@ import AppHeader from '@/components/header/Header';
 
 import { Worker } from '@react-pdf-viewer/core';
 import PageContainer from './components/common/PageContainer';
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -53,7 +54,7 @@ const RootLayout = ({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
-
+        <Analytics />"
         <ReduxProvider>
           <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
             <Theme>
