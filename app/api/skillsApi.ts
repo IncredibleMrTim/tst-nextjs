@@ -1,29 +1,35 @@
-export enum SkillType {
-  'DEVELOPMENT' = 'Development',
-  'DESIGN' = 'Design',
-  'PLANNING' = 'Planning',
-  'MANAGEMENT' = 'Management'
-}
+import { $Enums } from '@prisma/client';
+
+export type SkillType = $Enums.SkillType;
 export type Skill = {
   name: string;
   description: string;
 };
 
-export type SkillCategories = [
-  {
-    title: string;
-    skills: Skill[];
-  }
-];
+export type SkillCategories = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  type: SkillType;
+  title: string;
+  order: number;
+  skills: Skill[];
+};
 
 export const getSkills = async () => {
   try {
-    const response = await fetch(`${process.env.TST_API}/skills`, {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/skills`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     });
+
+    if (!response.ok) {
+      throw new Error(`Skills API returned ${response.status}: ${response.statusText}`);
+    }
+
     const data = (await response.json()) as SkillCategories;
 
     return data;

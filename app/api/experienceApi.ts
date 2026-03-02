@@ -16,12 +16,18 @@ export type Experience = {
 
 export const getExperience = async () => {
   try {
-    const response = await fetch(`${process.env.TST_API}/experience`, {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/experience`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     });
+
+    if (!response.ok) {
+      throw new Error(`Experience API returned ${response.status}: ${response.statusText}`);
+    }
+
     const data = (await response.json()) as Experience[];
 
     return data;

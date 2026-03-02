@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// User model for NextAuth authentication
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Skill type enum
+enum SkillType {
+  TECHNOLOGIES
+  FRONTEND
+  STYLING
+  BACKEND
+  TESTING
+  DEVOPS
+  METHODOLOGIES
+  AI
+}
+
+// Skill model for individual skills
+model Skill {
+  id            String        @id @default(cuid())
+  name          String
+  description   String
+  type          SkillType
+  order         Int
+  experiences   ExperienceSkill[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([type, name])
+}
+
+// Experience model for work experience
+model Experience {
+  id            String   @id @default(cuid())
+  role          String
+  company       String
+  location      String
+  description   String   @db.Text
+  fromDate      DateTime
+  toDate        DateTime?
+  order         Int
+  skills        ExperienceSkill[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Junction table for Experience and Skill many-to-many relationship
+model ExperienceSkill {
+  id            String   @id @default(cuid())
+  experienceId  String
+  skillId       String
+  order         Int
+  experience    Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  skill         Skill      @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  createdAt     DateTime   @default(now())
+
+  @@unique([experienceId, skillId])
+}
