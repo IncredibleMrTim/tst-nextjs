@@ -24,7 +24,8 @@ const nextConfig: NextConfig = {
       '340474634050-j7nslhps191cm5dnbj7s5816645d9nks.apps.googleusercontent.com',
     GOOGLE_CLIENT_SECRET: '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',
     NEXTAUTH_SECRET: '6mPJL/4p7t1H0raJlRN3JOdjearnnncLiGRwoJZJF9s=',
-    NEXTAUTH_URL: 'https://timsmarttechnology.co.uk'
+    NEXTAUTH_URL: 'https://timsmarttechnology.co.uk',
+    NEXT_PUBLIC_APP_URL: 'https://timsmarttechnology.co.uk'
   },
 
   experimental: {

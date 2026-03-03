@@ -58,7 +58,7 @@ const PdfViewer = () => {
         <div className="flex flex-row h-[55rem] gap-2 my-2 ">
           <Viewer
             plugins={[...toolbarInstances]}
-            fileUrl="/TimSmartCV_10-06-25.pdf"
+            fileUrl="/TimSmart_CV_02_03_26.pdf"
             onDocumentLoad={(e: DocumentLoadEvent) =>
               onDocumentLoadSuccess({ numPages: e.doc.numPages })
             }

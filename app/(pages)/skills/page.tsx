@@ -1,10 +1,10 @@
-import { getSkills, Skill } from '@/api/skillsApi';
+import { getSkills, type SkillCategory } from '@actions/skills.actions';
 import { Box, Section } from '@radix-ui/themes';
-import { Accordion } from '@/components/accordion/Accordion';
+import { Accordion } from '@components/accordion/Accordion';
 
 const Skills = async () => {
   try {
-    const data = await getSkills();
+    const data: SkillCategory[] = await getSkills();
 
     return (
       <Box className="!p-0 mt-4">

@@ -1,6 +1,7 @@
-'use server';
-
-import { getExperience } from '@/api/experienceApi';
+import {
+  getExperiences,
+  type ExperienceWithSkills
+} from '@/actions/experience.actions';
 
 import ExperienceCard from '@/components/experienceCard/ExperienceCard';
 import {
@@ -10,20 +11,17 @@ import {
   MdrxTechLogo,
   OnsLogo,
   ProagricaLogo,
-  SantanderLogo,
-  WebreeLogo
+  SantanderLogo
 } from '@/components/logos';
 
 const Experience = async () => {
-  const fetchData = async () => {
-    try {
-      return await getExperience();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  let data: ExperienceWithSkills[] | undefined;
 
-  const data = await fetchData();
+  try {
+    data = await getExperiences();
+  } catch (error) {
+    console.error('Error loading experiences:', error);
+  }
 
   const imgMapping = [
     {
