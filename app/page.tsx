@@ -1,22 +1,9 @@
-'use client';
+export const dynamic = 'force-dynamic';
+
 import Card from '@/components/card/Card';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from './store/redux/store';
 
 const Home = () => {
-  const pathName = usePathname();
-  const dispatch = useAppDispatch();
-
-  const menuItems = useAppSelector(state => state.nav.menuItems);
-
-  useEffect(() => {
-    dispatch({
-      type: 'navigation/setMenuItems',
-      payload: menuItems.find(item => item.path === pathName) || menuItems[0]
-    });
-  }, [pathName]);
 
   return (
     <div className="flex flex-col gap-12">
