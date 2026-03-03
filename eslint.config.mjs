@@ -4,8 +4,10 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'eslint-define-config';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import prettier from 'eslint-plugin-prettier/recommended';
+import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
+import importPlugin from 'eslint-plugin-import';
+import nextPlugin from '@next/eslint-plugin-next';
 import globals from 'globals';
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
@@ -22,12 +24,15 @@ export default defineConfig([
   ...compat.extends(
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended'
+    'plugin:@next/next/recommended'
   ),
+  prettierRecommended,
   {
     plugins: {
       react,
       '@typescript-eslint': typescriptEslint,
+      import: importPlugin,
+      '@next/next': nextPlugin,
     },
 
     files: ['**/*.ts', '**/*.tsx', '!**/node_modules/'],
@@ -52,6 +57,9 @@ export default defineConfig([
     settings: {
       'import/resolver': {
         typescript: {}
+      },
+      react: {
+        version: 'detect'
       }
     },
     rules: {
@@ -62,6 +70,8 @@ export default defineConfig([
             '**/*.test.{ts,tsx}',
             '**/__mocks__/*.{ts,tsx}',
             '**/src/setupTests.{ts,tsx}',
+            'eslint.config.mjs',
+            '**/scripts/*.{ts,tsx}',
             'node_modules'
           ]
         }
@@ -92,7 +102,7 @@ export default defineConfig([
       'no-underscore-dangle': [
         'error',
         {
-          allow: ['_id']
+          allow: ['_id', '__filename', '__dirname']
         }
       ],
       'react/jsx-props-no-spreading': 'off',

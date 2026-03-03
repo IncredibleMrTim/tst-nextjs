@@ -1,5 +1,6 @@
 import { type ExperienceWithSkills } from '@/actions/experience.actions';
 import { Card } from '@radix-ui/themes';
+import ReactMarkdown from 'react-markdown';
 import { formatDate } from '@/utils/dateUtils';
 
 interface ExperienceCardProps {
@@ -25,7 +26,23 @@ const ExperienceCard = ({ experience, children }: ExperienceCardProps) => {
         <div className="flex self-start w-36">{children}</div>
       </div>
 
-      <p className="whitespace-pre-line mb-8">{experience.description}</p>
+      <div className="mb-8 prose prose-sm max-w-none">
+        <ReactMarkdown
+          components={{
+            ul: ({ node, ...props }) => (
+              <ul className="list-disc list-inside space-y-2 text-gray-700" {...props} />
+            ),
+            li: ({ node, ...props }) => (
+              <li className="ml-2" {...props} />
+            ),
+            p: ({ node, ...props }) => (
+              <p className="mb-2 text-gray-700" {...props} />
+            )
+          }}
+        >
+          {experience.description}
+        </ReactMarkdown>
+      </div>
 
       <div className="">
         <h4>Tech Stack</h4>
