@@ -2,6 +2,7 @@
 
 import { Box, Inset, Card as RCard } from '@radix-ui/themes';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface CardProps {
   imageSrc: string;
@@ -26,7 +27,9 @@ const Card = ({ imageAlt, children, imageSrc, href }: CardProps) => (
       <Inset>
         {LinkWrapper(
           <>
-            <img src={imageSrc} alt={imageAlt} className="w-full" />
+            <div className="relative w-full h-64">
+              <Image src={imageSrc} alt={imageAlt} fill className="object-cover" />
+            </div>
             <div className="p-4">{children}</div>
           </>,
           href

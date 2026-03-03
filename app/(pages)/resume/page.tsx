@@ -3,7 +3,7 @@ export const revalidate = 2592000; // 30 days
 import PdfViewer from '@/components/pdfViewer/PdfViewer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button, Flex } from '@radix-ui/themes';
+import { Button } from '@radix-ui/themes';
 
 const Resume = () => {
   return (

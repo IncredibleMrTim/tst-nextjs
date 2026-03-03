@@ -3,17 +3,12 @@ export const experienceData = [
     role: 'Senior Full Stack Engineer',
     company: 'World Veterinary Services',
     location: 'Remote',
-    description: `Brought in as a replacement engineer to complete a partially delivered internal portal and API.
-
-Redesigned and rebuilt an incomplete PostgreSQL database, producing a new ERD and restructuring the API accordingly.
-
-Delivered a production-ready API supporting a React Native application.
-
-Developed a secure Next.js admin portal using server actions for both internal and external API consumption.
-
-Collaborated with distributed mobile teams and stakeholders to ensure alignment and successful delivery.
-
-Delivered the full solution ahead of schedule within a two-month timeframe.`,
+    description: `- Brought in as a replacement engineer to complete a partially delivered internal portal and API.
+- Redesigned and rebuilt an incomplete PostgreSQL database, producing a new ERD and restructuring the API accordingly.
+- Delivered a production-ready API supporting a React Native application.
+- Developed a secure Next.js admin portal using server actions for both internal and external API consumption.
+- Collaborated with distributed mobile teams and stakeholders to ensure alignment and successful delivery.
+- Delivered the full solution ahead of schedule within a two-month timeframe.`,
     fromDate: new Date('2025-11-01'),
     toDate: new Date('2025-12-31'),
     order: 11,
@@ -33,15 +28,11 @@ Delivered the full solution ahead of schedule within a two-month timeframe.`,
     role: 'Senior Frontend Engineer',
     company: 'Premium Training Services',
     location: 'Remote',
-    description: `Played a key role in migrating a legacy platform to a modern, scalable architecture.
-
-Designed and implemented a four-layer frontend architecture using React Query, Axios, MSW, and REST APIs.
-
-Built a mock backend using MSW to decouple tightly coupled IndexedDB logic.
-
-Refactored legacy code and modernised testing infrastructure.
-
-Improved maintainability, performance, and developer experience across the application.`,
+    description: `- Played a key role in migrating a legacy platform to a modern, scalable architecture.
+- Designed and implemented a four-layer frontend architecture using React Query, Axios, MSW, and REST APIs.
+- Built a mock backend using MSW to decouple tightly coupled IndexedDB logic.
+- Refactored legacy code and modernised testing infrastructure.
+- Improved maintainability, performance, and developer experience across the application.`,
     fromDate: new Date('2025-09-01'),
     toDate: new Date('2025-11-30'),
     order: 10,
@@ -60,15 +51,11 @@ Improved maintainability, performance, and developer experience across the appli
     role: 'Senior Frontend Engineer',
     company: 'AstraZeneca',
     location: 'Remote',
-    description: `Developed an internal analytics tool supporting Monte Carlo modelling for asset combination decisions.
-
-Led migration from Webpack/Jest to Vite/Vitest.
-
-Replaced Styled-Components with Tailwind CSS to standardise frontend stack.
-
-Contributed to Frontend Working Group, defining best practices across the Connected Insights division.
-
-Integrated shared design systems and enhanced testing and development workflows.`,
+    description: `- Developed an internal analytics tool supporting Monte Carlo modelling for asset combination decisions.
+- Led migration from Webpack/Jest to Vite/Vitest.
+- Replaced Styled-Components with Tailwind CSS to standardise frontend stack.
+- Contributed to Frontend Working Group, defining best practices across the Connected Insights division.
+- Integrated shared design systems and enhanced testing and development workflows.`,
     fromDate: new Date('2024-02-01'),
     toDate: new Date('2025-03-31'),
     order: 9,
@@ -85,13 +72,10 @@ Integrated shared design systems and enhanced testing and development workflows.
     role: 'Senior Frontend UI Engineer',
     company: 'Santander Auto',
     location: 'Remote',
-    description: `Delivered customer-facing operational tools to resolve validation errors within internal systems.
-
-Gathered requirements and worked closely with stakeholders and product owners.
-
-Coordinated frontend and backend teams in Agile/Kanban ceremonies.
-
-Improved accessibility, SEO, and component structure within React applications.`,
+    description: `- Delivered customer-facing operational tools to resolve validation errors within internal systems.
+- Gathered requirements and worked closely with stakeholders and product owners.
+- Coordinated frontend and backend teams in Agile/Kanban ceremonies.
+- Improved accessibility, SEO, and component structure within React applications.`,
     fromDate: new Date('2023-07-01'),
     toDate: new Date('2023-11-30'),
     order: 8,
@@ -107,15 +91,11 @@ Improved accessibility, SEO, and component structure within React applications.`
     role: 'Lead Frontend UI Engineer',
     company: 'Coyote Software',
     location: 'Remote',
-    description: `Led migration of enterprise platform from AngularJS to React.
-
-Managed daily stand-ups and frontend delivery planning.
-
-Built a standalone component library using React and Storybook.
-
-Developed early-stage Next.js proof of concept prior to company acquisition.
-
-Mentored developers and established frontend standards.`,
+    description: `- Led migration of enterprise platform from AngularJS to React.
+- Managed daily stand-ups and frontend delivery planning.
+- Built a standalone component library using React and Storybook.
+- Developed early-stage Next.js proof of concept prior to company acquisition.
+- Mentored developers and established frontend standards.`,
     fromDate: new Date('2022-06-01'),
     toDate: new Date('2023-07-31'),
     order: 7,
@@ -132,11 +112,9 @@ Mentored developers and established frontend standards.`,
     role: 'Senior Frontend React Developer',
     company: 'MDRxTech',
     location: 'Remote',
-    description: `Delivered CSX Carbon Capture project using React, TypeScript, Redux, AWS, and PostgreSQL.
-
-Provided architectural consultation and Agile process improvements.
-
-Worked with AWS services including CloudFront, S3, RDS, API Gateway, and Amplify.`,
+    description: `- Delivered CSX Carbon Capture project using React, TypeScript, Redux, AWS, and PostgreSQL.
+- Provided architectural consultation and Agile process improvements.
+- Worked with AWS services including CloudFront, S3, RDS, API Gateway, and Amplify.`,
     fromDate: new Date('2022-01-01'),
     toDate: new Date('2022-06-30'),
     order: 6,
@@ -154,11 +132,9 @@ Worked with AWS services including CloudFront, S3, RDS, API Gateway, and Amplify
     role: 'Frontend React Developer',
     company: 'Office of National Statistics',
     location: 'Remote',
-    description: `Developed accessible search functionality using React and Go templates.
-
-Ensured WCAG compliance.
-
-Contributed within Scrum-based delivery cycles.`,
+    description: `- Developed accessible search functionality using React and Go templates.
+- Ensured WCAG compliance.
+- Contributed within Scrum-based delivery cycles.`,
     fromDate: new Date('2021-12-01'),
     toDate: new Date('2022-01-31'),
     order: 5,
@@ -175,17 +151,12 @@ Contributed within Scrum-based delivery cycles.`,
     role: 'Senior Frontend Software Engineer',
     company: 'LexisNexis Risk Solutions',
     location: 'Remote',
-    description: `Delivered multiple telematics and risk management platforms.
-
-Built web portals using React, TypeScript, and Material UI.
-
-Developed mobile applications using React Native.
-
-Created reusable component libraries with Storybook.
-
-Transitioned from C# backend development into senior frontend engineering role.
-
-Collaborated with international teams across the US, Brazil, Spain, and Vietnam.`,
+    description: `- Delivered multiple telematics and risk management platforms.
+- Built web portals using React, TypeScript, and Material UI.
+- Developed mobile applications using React Native.
+- Created reusable component libraries with Storybook.
+- Transitioned from C# backend development into senior frontend engineering role.
+- Collaborated with international teams across the US, Brazil, Spain, and Vietnam.`,
     fromDate: new Date('2014-08-01'),
     toDate: new Date('2021-11-30'),
     order: 4,
@@ -208,9 +179,8 @@ Collaborated with international teams across the US, Brazil, Spain, and Vietnam.
     role: 'Software Engineer',
     company: 'DBT Ltd',
     location: 'Remote',
-    description: `Led development of Windows Smart Clients, dashboards, CRM and asset management systems.
-
-Worked across C#, MVC, jQuery, SQL, and web technologies.`,
+    description: `- Led development of Windows Smart Clients, dashboards, CRM and asset management systems.
+- Worked across C#, MVC, jQuery, SQL, and web technologies.`,
     fromDate: new Date('2012-04-01'),
     toDate: new Date('2014-09-30'),
     order: 3,
@@ -228,9 +198,8 @@ Worked across C#, MVC, jQuery, SQL, and web technologies.`,
     role: 'Frontend Developer',
     company: 'MAD Productions Ltd',
     location: 'Remote',
-    description: `Built e-commerce platforms and CMS systems.
-
-Improved system performance and client delivery processes.`,
+    description: `- Built e-commerce platforms and CMS systems.
+- Improved system performance and client delivery processes.`,
     fromDate: new Date('2011-04-01'),
     toDate: new Date('2012-07-31'),
     order: 2,
@@ -248,9 +217,8 @@ Improved system performance and client delivery processes.`,
     role: 'Junior Developer',
     company: 'Webree Ltd',
     location: 'Remote',
-    description: `Developed CRM/CMS-integrated web applications.
-
-Integrated internal systems with third-party platforms.`,
+    description: `- Developed CRM/CMS-integrated web applications.
+- Integrated internal systems with third-party platforms.`,
     fromDate: new Date('2009-06-01'),
     toDate: new Date('2011-03-31'),
     order: 1,

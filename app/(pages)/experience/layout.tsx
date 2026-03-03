@@ -1,7 +1,7 @@
 'use server';
 import { Suspense, type ReactNode } from 'react';
 import Loading from './loading';
-import { Flex, Section } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 import Image from 'next/image';
 import PageHeader from '@/components/common/PageHeader';
 import Head from 'next/head';

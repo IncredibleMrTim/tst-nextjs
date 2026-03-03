@@ -25,10 +25,7 @@ export const Accordion = ({
   open,
   children,
   title,
-  lastItem,
-  icon,
-  iconOpen,
-  iconClosed
+  lastItem
 }: AccordionProps) => {
   const [accordionOpen, setAccordionOpen] = useState(open ?? false);
 
@@ -61,6 +58,8 @@ export const Accordion = ({
         placeholder={undefined}
         onPointerEnterCapture={null}
         onPointerLeaveCapture={null}
+        onResize={null}
+        onResizeCapture={null}
       >
         <AccordionHeader
           className={`p-2 ${!lastItem && `border-b-1 border-gray-200`} transition: ${
@@ -72,6 +71,8 @@ export const Accordion = ({
           placeholder={undefined}
           onPointerEnterCapture={null}
           onPointerLeaveCapture={null}
+          onResize={null}
+          onResizeCapture={null}
         >
           <div className="w-full flex justify-between mx-auto heading accordion-heading">
             {renderHeading()}

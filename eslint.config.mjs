@@ -1,133 +1,102 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-import { defineConfig } from 'eslint-define-config';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import prettier from 'eslint-plugin-prettier/recommended';
-import react from 'eslint-plugin-react';
-import globals from 'globals';
-import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import nextPlugin from '@next/eslint-plugin-next';
+import globals from 'globals';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
-});
-
-export default defineConfig([
-  ...compat.extends(
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended'
-  ),
+export default [
   {
+    ignores: [
+      '**/node_modules/**',
+      '**/.next/**',
+      '**/out/**',
+      '**/public/**',
+      '**/build/**',
+      '**/dist/**',
+      '**/.cache/**',
+      '**/*.min.js',
+      '**/pdf.worker*.js',
+    ],
+  },
+  js.configs.recommended,
+  {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     plugins: {
-      react,
-      '@typescript-eslint': typescriptEslint,
+      '@typescript-eslint': tsPlugin,
+      '@next/next': nextPlugin,
     },
-
-    files: ['**/*.ts', '**/*.tsx', '!**/node_modules/'],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.jest,
-        Atomics: 'readonly',
-        SharedArrayBuffer: 'readonly',
-        dfd: 'readonly'
-      },
       parser: tsParser,
       ecmaVersion: 'latest',
       sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2021,
+        React: 'readonly',
+      },
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
-      }
-    },
-
-    settings: {
-      'import/resolver': {
-        typescript: {}
-      }
+          jsx: true,
+        },
+      },
     },
     rules: {
-      'import/no-extraneous-dependencies': [
-        'error',
-        {
-          devDependencies: [
-            '**/*.test.{ts,tsx}',
-            '**/__mocks__/*.{ts,tsx}',
-            '**/src/setupTests.{ts,tsx}',
-            'node_modules'
-          ]
-        }
-      ],
-      'import/order': [
+      ...tsPlugin.configs.recommended.rules,
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+
+      // Disable no-undef for React and modern JSX
+      'no-undef': 'off',
+
+      // TypeScript handles this better
+      '@typescript-eslint/no-unused-vars': [
         'warn',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            ['parent', 'sibling', 'index']
-          ],
-          pathGroups: [
-            {
-              pattern: './**/*.*',
-              group: 'internal'
-            },
-            {
-              pattern: './**/*test.*',
-              group: 'internal'
-            }
-          ],
-          'newlines-between': 'always'
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
         }
       ],
+
+      // Relax strict rules
       '@typescript-eslint/no-inferrable-types': 'off',
-      'no-underscore-dangle': [
-        'error',
-        {
-          allow: ['_id']
-        }
-      ],
-      'react/jsx-props-no-spreading': 'off',
-      'no-shadow': 'off',
-      '@typescript-eslint/no-shadow': 'error',
-      'prettier/prettier': 'warn',
-      'react/jsx-filename-extension': [
-        1,
-        {
-          extensions: ['.tsx']
-        }
-      ],
-      'import/prefer-default-export': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
-      'react/function-component-definition': [
-        2,
-        {
-          namedComponents: 'arrow-function',
-          unnamedComponents: 'arrow-function'
-        }
-      ],
       '@typescript-eslint/no-empty-interface': [
         'error',
         {
           allowSingleExtends: true
         }
       ],
-      'react/prop-types': 'off',
-      'react/require-default-props': 'off',
-
-      'import/extensions': 'off',
-      'import/no-unresolved': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react/jsx-uses-react': 'off',
-      '@typescript-eslint/ban-ts-comment': 'off'
-    }
-  }
-]);
+      '@typescript-eslint/no-empty-object-type': [
+        'error',
+        {
+          allowObjectTypes: 'always'
+        }
+      ],
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-this-alias': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
+      'no-cond-assign': 'off',
+      'no-console': 'off',
+    },
+  },
+  // Test files configuration
+  {
+    files: ['**/*.test.{ts,tsx,js,jsx}', '**/__mocks__/**/*.{ts,tsx,js,jsx}', '**/setupTests.{ts,tsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+        jest: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+      },
+    },
+  },
+];
