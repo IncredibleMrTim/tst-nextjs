@@ -43,7 +43,7 @@
     "clsx": "^2.1.1",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.576.0",
-    "next": "15.2.8",
+    "next": "15.5.10",
     "next-auth": "^4.24.11",
     "node-loader": "^2.1.0",
     "npm": "^11.2.0",
