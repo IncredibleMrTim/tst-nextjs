@@ -1,5 +1,4 @@
 import PageContainer from '@/components/common/PageContainer';
-import { Box } from '@radix-ui/themes';
 import Head from 'next/head';
 
 const ResumeLayout = ({ children }: { children: React.ReactNode }) => {
