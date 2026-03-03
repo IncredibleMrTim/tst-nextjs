@@ -1,6 +1,7 @@
-'use server';
-
-import { getExperiences, type ExperienceWithSkills } from '@/actions/experience.actions';
+import {
+  getExperiences,
+  type ExperienceWithSkills
+} from '@/actions/experience.actions';
 
 import ExperienceCard from '@/components/experienceCard/ExperienceCard';
 import {
@@ -10,8 +11,7 @@ import {
   MdrxTechLogo,
   OnsLogo,
   ProagricaLogo,
-  SantanderLogo,
-  WebreeLogo
+  SantanderLogo
 } from '@/components/logos';
 
 const Experience = async () => {

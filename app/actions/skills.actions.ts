@@ -1,6 +1,7 @@
 'use server';
 
 import { $Enums, Prisma } from '@prisma/client';
+import { unstable_cache } from 'next/cache';
 import prisma from '@/lib/prisma';
 import { skillTypeMap } from '@/lib/skillTypeMap';
 
@@ -12,7 +13,7 @@ export interface SkillCategory {
   skills: Skill[];
 }
 
-export const getSkills = async (): Promise<SkillCategory[]> => {
+const _getSkills = async (): Promise<SkillCategory[]> => {
   const allSkills = await prisma.skill.findMany({
     orderBy: [{ type: 'asc' }, { order: 'asc' }]
   });
@@ -37,3 +38,9 @@ export const getSkills = async (): Promise<SkillCategory[]> => {
 
   return groupedByType;
 };
+
+export const getSkills = unstable_cache(
+  _getSkills,
+  ['skills'],
+  { revalidate: 86400, tags: ['skills'] }
+);

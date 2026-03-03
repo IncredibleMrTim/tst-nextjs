@@ -1,6 +1,7 @@
 'use server';
 
 import { Prisma } from '@prisma/client';
+import { unstable_cache } from 'next/cache';
 import prisma from '@/lib/prisma';
 
 type Skill = Prisma.SkillGetPayload<{}>;
@@ -19,7 +20,7 @@ export interface ExperienceWithSkills {
   updatedAt: Date;
 }
 
-export const getExperiences = async (): Promise<ExperienceWithSkills[]> => {
+const _getExperiences = async (): Promise<ExperienceWithSkills[]> => {
   const experiences = await prisma.experience.findMany({
     orderBy: { order: 'asc' },
     include: {
@@ -51,6 +52,12 @@ export const getExperiences = async (): Promise<ExperienceWithSkills[]> => {
 
   return transformedExperiences;
 };
+
+export const getExperiences = unstable_cache(
+  _getExperiences,
+  ['experiences'],
+  { revalidate: 604800, tags: ['experiences'] }
+);
 
 /**
  * Get a single experience by ID with all related skills

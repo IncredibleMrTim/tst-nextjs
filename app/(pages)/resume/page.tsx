@@ -1,4 +1,4 @@
-'use client';
+export const revalidate = 2592000; // 30 days
 
 import PdfViewer from '@/components/pdfViewer/PdfViewer';
 import Link from 'next/link';
