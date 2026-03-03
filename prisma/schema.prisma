@@ -75,42 +75,42 @@ enum SkillType {
 
 // Skill model for individual skills
 model Skill {
-  id            String        @id @default(cuid())
-  name          String
-  description   String
-  type          SkillType
-  order         Int
-  experiences   ExperienceSkill[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id                String              @id @default(cuid())
+  name              String
+  description       String
+  type              SkillType
+  order             Int
+  experienceSkills  ExperienceSkill[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
 
   @@unique([type, name])
 }
 
 // Experience model for work experience
 model Experience {
-  id            String   @id @default(cuid())
-  role          String
-  company       String
-  location      String
-  description   String   @db.Text
-  fromDate      DateTime
-  toDate        DateTime?
-  order         Int
-  skills        ExperienceSkill[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id        String             @id @default(cuid())
+  role      String
+  company   String
+  location  String
+  description String            @db.Text
+  fromDate  DateTime
+  toDate    DateTime?
+  order     Int
+  skills    ExperienceSkill[]
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
 }
 
 // Junction table for Experience and Skill many-to-many relationship
 model ExperienceSkill {
-  id            String   @id @default(cuid())
+  id            String      @id @default(cuid())
   experienceId  String
   skillId       String
   order         Int
-  experience    Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
-  skill         Skill      @relation(fields: [skillId], references: [id], onDelete: Cascade)
-  createdAt     DateTime   @default(now())
+  experience    Experience  @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  skill         Skill       @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
 
   @@unique([experienceId, skillId])
 }

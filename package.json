@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:seed": "tsx scripts/seed.dev.ts",
+    "db:seed": "tsx scripts/seed.ts",
     "db:seed:prod": "tsx scripts/seed.prod.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",

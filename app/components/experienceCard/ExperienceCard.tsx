@@ -1,9 +1,9 @@
-import { type Experience } from '@/api/experienceApi';
+import { type ExperienceWithSkills } from '@/actions/experience.actions';
 import { Card } from '@radix-ui/themes';
 import { formatDate } from '@/utils/dateUtils';
 
 interface ExperienceCardProps {
-  experience: Experience;
+  experience: ExperienceWithSkills;
   children?: React.ReactNode;
 }
 
@@ -17,7 +17,7 @@ const ExperienceCard = ({ experience, children }: ExperienceCardProps) => {
           </h2>
           <p className="italic mb-8 !text-sm">
             {`${formatDate(experience.fromDate)} - `}
-            {new Date(experience.toDate) < new Date()
+            {experience.toDate && new Date(experience.toDate) < new Date()
               ? formatDate(experience.toDate)
               : 'present'}
           </p>
