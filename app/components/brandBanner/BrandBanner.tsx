@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Flex } from '@radix-ui/themes';
 import {
   AstraZenecaLogo,
@@ -19,11 +20,14 @@ const BrandBanner = () => {
       justify="between"
     >
       <BrandWrapper>
-        <img
-          src="/images/wizz-logo-trans.webp"
-          alt="Wizzington Moos Boutique"
-          className="w-full pt-2 "
-        />
+        <div className="relative w-full h-16 pt-2">
+          <Image
+            src="/images/wizz-logo-trans.webp"
+            alt="Wizzington Moos Boutique"
+            fill
+            className="object-contain"
+          />
+        </div>
       </BrandWrapper>
       <BrandWrapper>
         <AstraZenecaLogo />

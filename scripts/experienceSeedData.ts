@@ -3,26 +3,12 @@ export const experienceData = [
     role: 'Senior Full Stack Engineer',
     company: 'World Veterinary Services',
     location: 'Remote',
-<<<<<<< HEAD
     description: `- Brought in as a replacement engineer to complete a partially delivered internal portal and API.
 - Redesigned and rebuilt an incomplete PostgreSQL database, producing a new ERD and restructuring the API accordingly.
 - Delivered a production-ready API supporting a React Native application.
 - Developed a secure Next.js admin portal using server actions for both internal and external API consumption.
 - Collaborated with distributed mobile teams and stakeholders to ensure alignment and successful delivery.
 - Delivered the full solution ahead of schedule within a two-month timeframe.`,
-=======
-    description: `Brought in as a replacement engineer to complete a partially delivered internal portal and API.
-
-Redesigned and rebuilt an incomplete PostgreSQL database, producing a new ERD and restructuring the API accordingly.
-
-Delivered a production-ready API supporting a React Native application.
-
-Developed a secure Next.js admin portal using server actions for both internal and external API consumption.
-
-Collaborated with distributed mobile teams and stakeholders to ensure alignment and successful delivery.
-
-Delivered the full solution ahead of schedule within a two-month timeframe.`,
->>>>>>> main
     fromDate: new Date('2025-11-01'),
     toDate: new Date('2025-12-31'),
     order: 11,
@@ -42,23 +28,11 @@ Delivered the full solution ahead of schedule within a two-month timeframe.`,
     role: 'Senior Frontend Engineer',
     company: 'Premium Training Services',
     location: 'Remote',
-<<<<<<< HEAD
     description: `- Played a key role in migrating a legacy platform to a modern, scalable architecture.
 - Designed and implemented a four-layer frontend architecture using React Query, Axios, MSW, and REST APIs.
 - Built a mock backend using MSW to decouple tightly coupled IndexedDB logic.
 - Refactored legacy code and modernised testing infrastructure.
 - Improved maintainability, performance, and developer experience across the application.`,
-=======
-    description: `Played a key role in migrating a legacy platform to a modern, scalable architecture.
-
-Designed and implemented a four-layer frontend architecture using React Query, Axios, MSW, and REST APIs.
-
-Built a mock backend using MSW to decouple tightly coupled IndexedDB logic.
-
-Refactored legacy code and modernised testing infrastructure.
-
-Improved maintainability, performance, and developer experience across the application.`,
->>>>>>> main
     fromDate: new Date('2025-09-01'),
     toDate: new Date('2025-11-30'),
     order: 10,
@@ -77,23 +51,11 @@ Improved maintainability, performance, and developer experience across the appli
     role: 'Senior Frontend Engineer',
     company: 'AstraZeneca',
     location: 'Remote',
-<<<<<<< HEAD
     description: `- Developed an internal analytics tool supporting Monte Carlo modelling for asset combination decisions.
 - Led migration from Webpack/Jest to Vite/Vitest.
 - Replaced Styled-Components with Tailwind CSS to standardise frontend stack.
 - Contributed to Frontend Working Group, defining best practices across the Connected Insights division.
 - Integrated shared design systems and enhanced testing and development workflows.`,
-=======
-    description: `Developed an internal analytics tool supporting Monte Carlo modelling for asset combination decisions.
-
-Led migration from Webpack/Jest to Vite/Vitest.
-
-Replaced Styled-Components with Tailwind CSS to standardise frontend stack.
-
-Contributed to Frontend Working Group, defining best practices across the Connected Insights division.
-
-Integrated shared design systems and enhanced testing and development workflows.`,
->>>>>>> main
     fromDate: new Date('2024-02-01'),
     toDate: new Date('2025-03-31'),
     order: 9,
