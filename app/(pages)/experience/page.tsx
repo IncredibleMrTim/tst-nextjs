@@ -3,7 +3,7 @@ import {
   type ExperienceWithSkills
 } from '@/actions/experience.actions';
 
-import ExperienceCard from '@/components/experienceCard/ExperienceCard';
+import ExperienceList from './ExperienceList';
 import {
   AstraZenecaLogo,
   CoyoteLogo,
@@ -43,18 +43,7 @@ const Experience = async () => {
     { index: 10, company: 'Webree Ltd.' }
   ];
 
-  return (
-    <div className="!pt-4 md:!pt-8">
-      {data &&
-        data
-          .sort((a, b) => b.order - a.order)
-          .map((experience, idx) => (
-            <ExperienceCard key={experience.company} experience={experience}>
-              {imgMapping.find(img => img.index === idx)?.image ?? null}
-            </ExperienceCard>
-          ))}
-    </div>
-  );
+  return data ? <ExperienceList data={data} imgMapping={imgMapping} /> : null;
 };
 
 export default Experience;

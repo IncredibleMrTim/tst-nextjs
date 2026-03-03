@@ -2,13 +2,23 @@ import { type ExperienceWithSkills } from '@/actions/experience.actions';
 import { Card } from '@radix-ui/themes';
 import ReactMarkdown from 'react-markdown';
 import { formatDate } from '@/utils/dateUtils';
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '../ui/accordion';
 interface ExperienceCardProps {
   experience: ExperienceWithSkills;
   children?: React.ReactNode;
+  showDetailed?: boolean;
 }
 
-const ExperienceCard = ({ experience, children }: ExperienceCardProps) => {
+const ExperienceCard = ({
+  experience,
+  showDetailed,
+  children
+}: ExperienceCardProps) => {
   return (
     <Card className="mb-8" variant="classic">
       <div className="flex justify-between items-top w-full">
@@ -27,24 +37,59 @@ const ExperienceCard = ({ experience, children }: ExperienceCardProps) => {
       </div>
 
       <div className="mb-8 prose prose-sm max-w-none">
+        <h4 className="pb-2">Summary</h4>
         <ReactMarkdown
           components={{
             ul: ({ node, ...props }) => (
-              <ul className="list-disc list-inside space-y-2 text-gray-700" {...props} />
+              <ul
+                className="list-disc list-inside space-y-2 text-gray-700"
+                {...props}
+              />
             ),
             li: ({ node, ...props }) => (
-              <li className="ml-2" {...props} />
+              <li className="text-sm ml-2" {...props} />
             ),
             p: ({ node, ...props }) => (
               <p className="mb-2 text-gray-700" {...props} />
             )
           }}
         >
-          {experience.description}
+          {experience.summary}
         </ReactMarkdown>
       </div>
 
-      <div className="">
+      {experience.description && (
+        <div className=" pb-4">
+          <Accordion
+            key={`${experience.id}-${showDetailed}`}
+            type="single"
+            collapsible
+            defaultValue={showDetailed ? 'Details' : ''}
+          >
+            <AccordionItem
+              value="Details"
+              className="border border-gray-200 rounded shadow"
+            >
+              <AccordionTrigger className="p-4">
+                <h4>Detailed Role Description</h4>
+              </AccordionTrigger>
+              <AccordionContent className="px-4">
+                <ReactMarkdown
+                  components={{
+                    p: ({ node, ...props }) => (
+                      <p className="mb-2 text-gray-700" {...props} />
+                    )
+                  }}
+                >
+                  {experience.description}
+                </ReactMarkdown>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      )}
+
+      <div className="p-4 border border-gray-200 rounded shadow">
         <h4>Tech Stack</h4>
         <ul className="md:flex text-sm divide-gray-300 md:divide-x divider-w-8 whitespace-nowrap">
           {experience.skills

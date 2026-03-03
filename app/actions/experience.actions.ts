@@ -11,7 +11,8 @@ export interface ExperienceWithSkills {
   role: string;
   company: string;
   location: string;
-  description: string;
+  description: string | null;
+  summary: string | null;
   fromDate: Date;
   toDate: Date | null;
   order: number;
@@ -35,29 +36,29 @@ const _getExperiences = async (): Promise<ExperienceWithSkills[]> => {
 
   // Transform the data to extract skills from the junction table
   const transformedExperiences: ExperienceWithSkills[] = experiences.map(
-    (exp) => ({
+    exp => ({
       id: exp.id,
       role: exp.role,
       company: exp.company,
       location: exp.location,
       description: exp.description,
+      summary: exp.summary,
       fromDate: exp.fromDate,
       toDate: exp.toDate,
       order: exp.order,
       createdAt: exp.createdAt,
       updatedAt: exp.updatedAt,
-      skills: exp.skills.map((es) => es.skill)
+      skills: exp.skills.map(es => es.skill)
     })
   );
 
   return transformedExperiences;
 };
 
-export const getExperiences = unstable_cache(
-  _getExperiences,
-  ['experiences'],
-  { revalidate: 604800, tags: ['experiences'] }
-);
+export const getExperiences = unstable_cache(_getExperiences, ['experiences'], {
+  revalidate: 604800,
+  tags: ['experiences']
+});
 
 /**
  * Get a single experience by ID with all related skills
@@ -85,11 +86,12 @@ export const getExperienceById = async (
     company: experience.company,
     location: experience.location,
     description: experience.description,
+    summary: experience.summary,
     fromDate: experience.fromDate,
     toDate: experience.toDate,
     order: experience.order,
     createdAt: experience.createdAt,
     updatedAt: experience.updatedAt,
-    skills: experience.skills.map((es) => es.skill)
+    skills: experience.skills.map(es => es.skill)
   };
 };

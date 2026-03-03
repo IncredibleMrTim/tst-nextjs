@@ -33,6 +33,7 @@ async function main() {
           company: expData.company,
           location: expData.location,
           description: expData.description,
+          summary: expData.summary,
           fromDate: expData.fromDate,
           toDate: expData.toDate,
           order: expData.order
@@ -75,7 +76,7 @@ async function main() {
 }
 
 main()
-  .catch((e) => {
+  .catch(e => {
     console.error('❌ Error seeding database:', e);
     process.exit(1);
   })
