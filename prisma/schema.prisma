@@ -93,7 +93,8 @@ model Experience {
   role      String
   company   String
   location  String
-  description String            @db.Text
+  summary   String?              @db.Text
+  description String?            @db.Text
   fromDate  DateTime
   toDate    DateTime?
   order     Int
