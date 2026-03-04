@@ -19,9 +19,12 @@ const ExperienceList = ({ data, imgMapping }: ExperienceListProps) => {
   const [showDetailed, setShowDetailed] = useState(false);
 
   return (
-    <div className="flex flex-col !pt-4 md:!pt-8">
-      <div className="flex w-full justify-end  mb-2">
-        <Button onClick={() => setShowDetailed(!showDetailed)} variant="ghost">
+    <div className="flex flex-col ">
+      <div className="flex w-full justify-start md:justify-end mb-2">
+        <Button
+          onClick={() => setShowDetailed(!showDetailed)}
+          variant="outline"
+        >
           {showDetailed ? 'Show Summary View' : 'Show Detailed View'}
           {showDetailed ? <LuFileOutput /> : <LuFileText />}
         </Button>
