@@ -22,26 +22,18 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
         />
       </Head>
       <Flex direction="column">
-        <PageHeader>
-          <Image
-            src="/images/profile-sm.jpg"
-            width="144"
-            height="166"
-            alt="Profile Picture"
-            priority={true}
-            className="!hidden absolute left-4 rounded-md shadow-md md:!flex"
-          />
-
-          <div className="flex flex-col md:ml-40">
-            <h2 className="flex justify-left">Experience</h2>
-            <p className="hidden sm:flex md:flex md:flex">
-              Experienced Lead/Senior Software Engineer with a demonstrated
-              history of working in the information technology and services
-              industry. Skilled in ReactJS, JavaScript, Redux and supporting
-              technologies within the Web, Front End and UI development echo
-              system.
-            </p>
-          </div>
+        <PageHeader
+          title="Experience"
+          className="border-b-0 md:border-b"
+          showBorder={false}
+        >
+          <p>
+            Experienced Lead/Senior Software Engineer with a demonstrated
+            history of working in the information technology and services
+            industry. Skilled in ReactJS, JavaScript, Redux and supporting
+            technologies within the Web, Front End and UI development echo
+            system.
+          </p>
         </PageHeader>
         <PageContainer>
           <Suspense fallback={<Loading />}>{children}</Suspense>

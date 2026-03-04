@@ -29,7 +29,7 @@ const Drawer = ({
       <GeistDrawer width="80%" placement="right" {...props}>
         {title && <GeistDrawer.Title>{title}</GeistDrawer.Title>}
         {subTitle && <GeistDrawer.Subtitle>{subTitle}</GeistDrawer.Subtitle>}
-        <GeistDrawer.Content className="!h-full">
+        <GeistDrawer.Content className="!h-full rounded-l-2xl">
           {children}
         </GeistDrawer.Content>
       </GeistDrawer>

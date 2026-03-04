@@ -1,33 +1,44 @@
 import { getSkills, type SkillCategory } from '@actions/skills.actions';
 import { Box, Section } from '@radix-ui/themes';
-import { Accordion } from '@components/accordion/Accordion';
+import {
+  Card,
+  CardHeader,
+  CardDescription,
+  CardContent
+} from '@/components/ui/card';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from '@/components/ui/tooltip';
+import { LuInfo } from 'react-icons/lu';
 
 const Skills = async () => {
   try {
     const data: SkillCategory[] = await getSkills();
 
     return (
-      <Box className="!p-0 mt-4">
+      <div className="flex flex-col md:flex-row flex-wrap w-full gap-4">
         {data &&
           data.map((category, i) => (
-            <div key={category.title}>
-              <Accordion
-                title={category.title}
-                open={i === 0}
-                lastItem={i === data.length - 1}
-              >
-                {category.skills.map(skill => (
-                  <Box className="pb-4" key={skill.name}>
-                    <h3 className="pb-2">{skill.name}</h3>
-                    <div className="pb-4 pl-0 whitespace-pre-line md:pl-4">
-                      {skill.description}
-                    </div>
-                  </Box>
-                ))}
-              </Accordion>
+            <div
+              key={category.title}
+              className="flex flex-col grow w-full md:w-1/3 border border-gray-200 rounded p-4 shadow "
+            >
+              <h2>{category.title}</h2>
+              <div className="py-4 px-8">
+                <ul>
+                  {category.skills.map(skill => (
+                    <li className="pb-2 list-disc" key={skill.id}>
+                      <h3>{skill.name}</h3>
+                      <p className="text-sm">{skill.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
-      </Box>
+      </div>
     );
   } catch (error) {
     console.error(error);

@@ -1,21 +1,42 @@
-import { Box } from '@radix-ui/themes';
+import Image from 'next/image';
 
 interface PageHeaderProps {
   children?: React.ReactNode | string;
+  className?: string;
+  title?: string;
+  showBorder?: boolean;
+  showImage?: boolean;
 }
 
-const PageHeader = ({ children, ...props }: PageHeaderProps) => {
+const PageHeader = ({
+  children,
+  title,
+  showBorder,
+  showImage = true,
+  className
+}: PageHeaderProps) => {
   return (
-    <Box
-      className="flex relative bg-red-700 w-full p-4 rounded-md text-white shadow-md mt-4 md:mt-8"
-      {...props}
+    <div
+      className={`flex w-full  border-b border-gray-200 md:border-b-0 md:bg-gradient-to-br from-base from-30%  to-gray-100 rounded  ${className}`}
     >
-      {typeof children === 'string' ? (
-        <h2 className="flex justify-start">{children}</h2>
-      ) : (
-        children
-      )}
-    </Box>
+      <div className="flex gap-4 p-4">
+        {showImage && (
+          <Image
+            src="/images/profile-sm.jpg"
+            width="144"
+            height="166"
+            alt="Profile Picture"
+            priority={true}
+            className="!hidden rounded-md shadow-md md:!flex"
+          />
+        )}
+
+        <div className="flex flex-col gap-2">
+          <h1 className="flex justify-left !text-3xl">{title}</h1>
+          {children}
+        </div>
+      </div>
+    </div>
   );
 };
 export default PageHeader;

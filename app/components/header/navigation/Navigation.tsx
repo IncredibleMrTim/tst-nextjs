@@ -1,12 +1,19 @@
 'use client';
 
-import { NavigationMenu } from 'radix-ui';
-import { useRouter } from 'next/navigation';
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle
+} from '@/components/ui/navigation-menu';
+import { DrawerClose } from '@/components/ui/drawer';
+import { useRouter, usePathname } from 'next/navigation';
 
 import { MenuItem } from '@/store/navigation/types';
 
-import NavButton from './NavigationButton';
 import { useAppSelector, useAppDispatch } from '@/store/redux/store';
+import Link from 'next/link';
 
 export enum NavDirection {
   VERTICAL = 'vertical',
@@ -21,16 +28,24 @@ const Navigation = ({
   orientation = NavDirection.HORIZONTAL
 }: NavigationProps) => {
   const dispatch = useAppDispatch();
-
   const router = useRouter();
+  const pathname = usePathname();
 
   const menuItems = useAppSelector(state => state.nav.menuItems);
 
+  // Check if a menu item is active based on current pathname
+  const isMenuItemActive = (menuItem: MenuItem) => {
+    // For homepage, only match if pathname is exactly '/'
+    if (menuItem.path === '/') {
+      return pathname === '/';
+    }
+
+    console.log(menuItem.path, pathname.startsWith(menuItem.path));
+    // For other pages, match if pathname starts with the menu item path
+    return pathname.startsWith(menuItem.path);
+  };
+
   const handleNavigationClick = (menuItem: MenuItem) => {
-    dispatch({
-      type: 'navigation/setActiveMenuItem',
-      payload: menuItem
-    });
     dispatch({
       type: 'navigation/setIsDrawerOpen',
       payload: false
@@ -39,35 +54,57 @@ const Navigation = ({
     router.push(menuItem.path);
   };
 
-  const navVertical = 'flex flex-col';
-  const navHorizontal = 'flex flex-row justify-center divide-slate-200 pb-1';
-
   return (
-    <NavigationMenu.Root
+    <NavigationMenu
       orientation={orientation}
-      className="flex justify-start text-xl"
+      className={`text-xl ${orientation === NavDirection.VERTICAL ? '!items-start !justify-start !w-full !max-w-full' : 'justify-start'}`}
     >
-      <NavigationMenu.List className="flex">
-        <NavigationMenu.Item
-          className={`${orientation === NavDirection.HORIZONTAL ? navHorizontal : navVertical}`}
-        >
-          {menuItems.map(menuItem => (
-            <NavButton
-              aria-label={`Navigate to ${menuItem.name}`}
-              aria-controls="NavigationButton"
-              aria-current={
-                menuItem.isActive ? `${menuItem.name} page` : undefined
-              }
+      <NavigationMenuList
+        className={`flex gap-0 m-0 p-0 ${orientation === NavDirection.VERTICAL ? 'flex-col !items-start !justify-start !w-full p-4' : 'flex-row justify-center'}`}
+      >
+        {menuItems.map(menuItem => {
+          const isActive = isMenuItemActive(menuItem);
+          return (
+            <NavigationMenuItem
               key={menuItem.name}
-              menuItem={menuItem}
-              onClick={handleNavigationClick}
+              className={orientation === NavDirection.VERTICAL ? '!w-full' : ''}
             >
-              {menuItem.name}
-            </NavButton>
-          ))}
-        </NavigationMenu.Item>
-      </NavigationMenu.List>
-    </NavigationMenu.Root>
+              <NavigationMenuLink
+                asChild
+                className={
+                  orientation === NavDirection.VERTICAL
+                    ? 'group flex w-full items-center justify-start rounded bg-background p-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none' +
+                      (isActive ? ' bg-slate-100' : '')
+                    : `${navigationMenuTriggerStyle()} rounded-none p-4 ${isActive ? 'bg-slate-100' : ''}`
+                }
+              >
+                {orientation === NavDirection.VERTICAL ? (
+                  <DrawerClose asChild>
+                    <Link
+                      href={menuItem.path}
+                      onClick={() => handleNavigationClick(menuItem)}
+                      aria-label={`Navigate to ${menuItem.name}`}
+                      className="!text-lg md:!text-base w-full"
+                    >
+                      {menuItem.name}
+                    </Link>
+                  </DrawerClose>
+                ) : (
+                  <Link
+                    href={menuItem.path}
+                    onClick={() => handleNavigationClick(menuItem)}
+                    aria-label={`Navigate to ${menuItem.name}`}
+                    className="!text-lg md:!text-base"
+                  >
+                    {menuItem.name}
+                  </Link>
+                )}
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          );
+        })}
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 };
 
