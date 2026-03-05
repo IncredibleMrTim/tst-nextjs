@@ -20,7 +20,7 @@ const ExperienceCard = ({
   children
 }: ExperienceCardProps) => {
   return (
-    <Card className="mb-8" variant="classic">
+    <div className="p-4 mb-8 border border-gray-200 rounded shadow">
       <div className="flex justify-between items-top w-full">
         <div>
           <h2 className="text-left">
@@ -68,7 +68,7 @@ const ExperienceCard = ({
           >
             <AccordionItem
               value="Details"
-              className="border border-gray-200 rounded shadow"
+              className="border border-gray-200 rounded"
             >
               <AccordionTrigger className="p-4">
                 <h4>Detailed Role Description</h4>
@@ -89,7 +89,7 @@ const ExperienceCard = ({
         </div>
       )}
 
-      <div className="p-4 border border-gray-200 rounded shadow">
+      <div className="p-4 border border-gray-200 rounded">
         <h4>Tech Stack</h4>
         <ul className="md:flex text-sm divide-gray-300 md:divide-x divider-w-8 whitespace-nowrap">
           {experience.skills
@@ -104,7 +104,7 @@ const ExperienceCard = ({
             ))}
         </ul>
       </div>
-    </Card>
+    </div>
   );
 };
 

@@ -8,7 +8,7 @@ import { Button } from '@radix-ui/themes';
 const Resume = () => {
   return (
     <div className="flex justify-center">
-      <div className="flex w-full hidden portrate:hidden landscape:flex">
+      <div className="flex w-full portrate:hidden landscape:flex">
         <PdfViewer />
       </div>
       <div className="flex flex-col items-center gap-20 portrate:flex landscape:hidden">

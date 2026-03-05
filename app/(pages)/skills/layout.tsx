@@ -20,7 +20,14 @@ const ExperienceLayout = async ({ children }: { children: ReactNode }) => {
           content="Skills, Technology, Tim Smart, Frontend, Software Engineer, Consultant, Contractor, Web Development, React, Next.js, Node.js"
         />
       </Head>
-      <PageHeader>Skills and Technologies</PageHeader>
+      <PageHeader
+        title="Skills and Technologies"
+        className="border-b-0 md:border-b"
+      >
+        <p className="">
+          {`Specializing in React, Next.js, and Node.js. Leading TypeScript architecture, database design, and scalable UI systems with a focus on clean code, API design, and comprehensive testing. Delivering high-performance applications and technical leadership through rigorous engineering standards in agile environments.`}
+        </p>
+      </PageHeader>
       <PageContainer>
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </PageContainer>
