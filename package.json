@@ -51,7 +51,7 @@
     "node-loader": "^2.1.0",
     "npm": "^11.2.0",
     "pdfjs-dist": "3.11.174",
-    "postcss": "^8.1.0",
+    "postcss": "^8.5.10",
     "postcss-import": "^16.1.0",
     "prettier": "^3.5.3",
     "radix-ui": "^1.1.3",
