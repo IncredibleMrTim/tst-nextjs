@@ -1,110 +1,43 @@
 'use client';
 
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  navigationMenuTriggerStyle
-} from '@/components/ui/navigation-menu';
-import { DrawerClose } from '@/components/ui/drawer';
-import { useRouter, usePathname } from 'next/navigation';
-
-import { MenuItem } from '@/store/navigation/types';
-
-import { useAppSelector, useAppDispatch } from '@/store/redux/store';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-export enum NavDirection {
-  VERTICAL = 'vertical',
-  HORIZONTAL = 'horizontal'
-}
+import { useActiveSection } from '@/hooks/useActiveSection';
+import { navigationItems, type NavigationItem } from '@/lib/navigation';
 
-export interface NavigationProps {
-  orientation?: NavDirection;
-}
+const sectionIds = navigationItems.map(item => item.sectionId);
 
-const Navigation = ({
-  orientation = NavDirection.HORIZONTAL
-}: NavigationProps) => {
-  const dispatch = useAppDispatch();
-  const router = useRouter();
+/**
+ * Links jump to a section on the home page. On a section's own route (for
+ * example /experience) they link to that route, or back to the home section.
+ */
+export const getNavigationHref = (item: NavigationItem, isHome: boolean) => {
+  if (isHome) return `#${item.sectionId}`;
+  return item.route ?? `/#${item.sectionId}`;
+};
+
+const Navigation = () => {
   const pathname = usePathname();
+  const isHome = pathname === '/';
+  const activeSectionId = useActiveSection(isHome ? sectionIds : []);
 
-  const menuItems = useAppSelector(state => state.nav.menuItems);
-
-  // Check if a menu item is active based on current pathname
-  const isMenuItemActive = (menuItem: MenuItem) => {
-    // For homepage, only match if pathname is exactly '/'
-    if (menuItem.path === '/') {
-      return pathname === '/';
-    }
-
-    console.log(menuItem.path, pathname.startsWith(menuItem.path));
-    // For other pages, match if pathname starts with the menu item path
-    return pathname.startsWith(menuItem.path);
-  };
-
-  const handleNavigationClick = (menuItem: MenuItem) => {
-    dispatch({
-      type: 'navigation/setIsDrawerOpen',
-      payload: false
-    });
-
-    router.push(menuItem.path);
-  };
+  const getIsActive = (item: NavigationItem) =>
+    isHome ? activeSectionId === item.sectionId : item.route === pathname;
 
   return (
-    <NavigationMenu
-      orientation={orientation}
-      className={`text-xl ${orientation === NavDirection.VERTICAL ? '!items-start !justify-start !w-full !max-w-full' : 'justify-start'}`}
-    >
-      <NavigationMenuList
-        className={`flex gap-0 m-0 p-0 ${orientation === NavDirection.VERTICAL ? 'flex-col !items-start !justify-start !w-full p-4' : 'flex-row justify-center'}`}
-      >
-        {menuItems.map(menuItem => {
-          const isActive = isMenuItemActive(menuItem);
-          return (
-            <NavigationMenuItem
-              key={menuItem.name}
-              className={orientation === NavDirection.VERTICAL ? '!w-full' : ''}
-            >
-              <NavigationMenuLink
-                asChild
-                className={
-                  orientation === NavDirection.VERTICAL
-                    ? 'group flex w-full items-center justify-start rounded bg-background p-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none' +
-                      (isActive ? ' bg-slate-100' : '')
-                    : `${navigationMenuTriggerStyle()} rounded-none p-4 ${isActive ? 'bg-slate-100' : ''}`
-                }
-              >
-                {orientation === NavDirection.VERTICAL ? (
-                  <DrawerClose asChild>
-                    <Link
-                      href={menuItem.path}
-                      onClick={() => handleNavigationClick(menuItem)}
-                      aria-label={`Navigate to ${menuItem.name}`}
-                      className="!text-lg md:!text-base w-full"
-                    >
-                      {menuItem.name}
-                    </Link>
-                  </DrawerClose>
-                ) : (
-                  <Link
-                    href={menuItem.path}
-                    onClick={() => handleNavigationClick(menuItem)}
-                    aria-label={`Navigate to ${menuItem.name}`}
-                    className="!text-lg md:!text-base"
-                  >
-                    {menuItem.name}
-                  </Link>
-                )}
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          );
-        })}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <nav aria-label="Main" className="hidden gap-[0.2rem] min-[821px]:flex">
+      {navigationItems.map(item => (
+        <Link
+          key={item.sectionId}
+          href={getNavigationHref(item, isHome)}
+          aria-current={getIsActive(item) ? 'true' : undefined}
+          className="rounded-full px-[0.9rem] py-[0.45rem] text-[0.9rem] text-muted-foreground transition-colors hover:bg-white/[0.06] hover:text-white aria-[current=true]:bg-brand-2/[0.16] aria-[current=true]:text-foreground"
+        >
+          {item.label}
+        </Link>
+      ))}
+    </nav>
   );
 };
 

@@ -1,47 +1,80 @@
-import { renderWithRouter, setupMockRouter } from '@/utils/testUtils';
-import userEvent from '@testing-library/user-event';
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { usePathname } from 'next/navigation';
 
-import { MenuItems } from '@/store/navigation/types';
-import Navigation, { NavDirection } from './Navigation';
+import { useActiveSection } from '@/hooks/useActiveSection';
+import { navigationItems } from '@/lib/navigation';
+import Navigation, { getNavigationHref } from './Navigation';
 
-jest.mock('@store/navigation/useNavigationStore', () => ({
-  useNavigationStore: jest.fn(selector =>
-    selector({
-      menuItems: [
-        { name: MenuItems.HOME, path: '/', isActive: false },
-        { name: MenuItems.EXPERIENCE, path: '/experience', isActive: false },
-        { name: MenuItems.SKILLS, path: '/skills', isActive: false }
-      ],
-      setActiveMenuItem: jest.fn(),
-      setIsDrawerOpen: jest.fn()
-    })
-  )
+jest.mock('next/navigation', () => ({
+  usePathname: jest.fn()
+}));
+jest.mock('@/hooks/useActiveSection', () => ({
+  useActiveSection: jest.fn()
 }));
 
-describe.skip('Navigation', () => {
-  const mockPush = jest.fn();
+const mockUsePathname = usePathname as jest.Mock;
+const mockUseActiveSection = useActiveSection as jest.Mock;
 
+describe('getNavigationHref', () => {
+  const skills = navigationItems.find(item => item.sectionId === 'skills')!;
+  const about = navigationItems.find(item => item.sectionId === 'about')!;
+
+  it('should link to the section on the home page', () => {
+    expect(getNavigationHref(skills, true)).toBe('#skills');
+  });
+
+  it('should link to the route for a section that has one', () => {
+    expect(getNavigationHref(skills, false)).toBe('/skills');
+  });
+
+  it('should link back to the home section when there is no route', () => {
+    expect(getNavigationHref(about, false)).toBe('/#about');
+  });
+});
+
+describe('Navigation', () => {
   beforeEach(() => {
-    setupMockRouter({ push: mockPush });
+    jest.clearAllMocks();
+    mockUseActiveSection.mockReturnValue(null);
   });
 
-  it('calls handleNavigationClick when a menu item is clicked', async () => {
-    renderWithRouter(<Navigation />);
+  it('should render a link for every section', () => {
+    mockUsePathname.mockReturnValue('/');
+    render(<Navigation />);
 
-    const menuItem = screen.getByText(MenuItems.HOME);
-    await userEvent.click(menuItem);
-
-    expect(mockPush).toHaveBeenCalledWith('/');
-  });
-
-  it('should render the navigation vertically', () => {
-    const { container } = renderWithRouter(
-      <Navigation orientation={NavDirection.VERTICAL} />
+    navigationItems.forEach(item =>
+      expect(screen.getByRole('link', { name: item.label })).toBeInTheDocument()
     );
+  });
 
-    expect(
-      container.querySelector('[data-orientation=vertical]')
-    ).toBeInTheDocument();
+  it('should mark the section in view as current on the home page', () => {
+    mockUsePathname.mockReturnValue('/');
+    mockUseActiveSection.mockReturnValue('work');
+    render(<Navigation />);
+
+    expect(screen.getByRole('link', { name: 'Work' })).toHaveAttribute(
+      'aria-current',
+      'true'
+    );
+    expect(screen.getByRole('link', { name: 'Skills' })).not.toHaveAttribute(
+      'aria-current'
+    );
+  });
+
+  it('should mark the link matching the route as current on a section route', () => {
+    mockUsePathname.mockReturnValue('/experience');
+    render(<Navigation />);
+
+    expect(screen.getByRole('link', { name: 'Experience' })).toHaveAttribute(
+      'aria-current',
+      'true'
+    );
+  });
+
+  it('should only watch sections on the home page', () => {
+    mockUsePathname.mockReturnValue('/experience');
+    render(<Navigation />);
+
+    expect(mockUseActiveSection).toHaveBeenCalledWith([]);
   });
 });

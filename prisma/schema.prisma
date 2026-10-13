@@ -98,7 +98,14 @@ model Experience {
   fromDate  DateTime
   toDate    DateTime?
   order     Int
+  // Engagement type shown beside the company, e.g. "Contract". Null for permanent roles.
+  type      String?
+  // Key into the company logo map in app/lib/companyLogos.ts. Null falls back to initials.
+  logo      String?
+  // Technologies as listed on the CV; drives the role tags and skill usage counts.
+  technologies String[]          @default([])
   skills    ExperienceSkill[]
+  featuredWork FeaturedWork[]
   createdAt DateTime           @default(now())
   updatedAt DateTime           @updatedAt
 }
@@ -114,4 +121,77 @@ model ExperienceSkill {
   createdAt     DateTime    @default(now())
 
   @@unique([experienceId, skillId])
+}
+
+
+// Independent and private client work shown separately from employment
+model Project {
+  id           String    @id @default(cuid())
+  name         String
+  role         String
+  fromDate     DateTime?
+  toDate       DateTime?
+  summary      String    @db.Text
+  technologies String[]  @default([])
+  url          String?
+  order        Int
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+// A headline result linked to the role that produced it
+model FeaturedWork {
+  id           String     @id @default(cuid())
+  experienceId String
+  experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  metric       String
+  label        String
+  title        String
+  description  String     @db.Text
+  technologies String
+  order        Int
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Education {
+  id            String   @id @default(cuid())
+  institution   String
+  qualification String
+  fromYear      Int
+  toYear        Int
+  order         Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Skills grouped as on the CV (the Skill model above is the older, per-skill catalogue)
+model SkillGroup {
+  id        String   @id @default(cuid())
+  name      String
+  items     String[]
+  order     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Single-row site profile. The fixed id keeps it a singleton.
+model Profile {
+  id                         String   @id @default("profile")
+  name                       String
+  companyName                String
+  jobTitle                   String
+  introduction               String   @db.Text
+  about                      String[]
+  email                      String
+  githubUrl                  String
+  linkedinUrl                String
+  heroSkills                 String[]
+  featuredSkills             String[]
+  highlightMetric            String
+  highlightLabel             String
+  currentProjectTitle        String
+  currentProjectTechnologies String
+  createdAt                  DateTime @default(now())
+  updatedAt                  DateTime @updatedAt
 }

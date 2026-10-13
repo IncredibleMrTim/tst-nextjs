@@ -19,12 +19,25 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        brand:
+          "border border-transparent bg-brand-gradient text-on-brand shadow-brand [&_svg]:size-[1.1rem] [&_svg]:stroke-[1.7] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-brand-hover",
+        chip:
+          "border border-line-strong font-normal text-muted-foreground hover:border-brand-1 hover:text-white aria-pressed:border-transparent aria-pressed:bg-brand-gradient aria-pressed:font-semibold aria-pressed:text-on-brand",
+        underline:
+          "rounded-none border-b border-line-strong font-medium hover:border-brand-1 hover:text-brand-hover [&_svg]:size-[1.1rem] [&_svg]:stroke-[1.7]",
+        inline:
+          "font-medium text-brand-1 hover:text-brand-hover [&_svg]:size-[1.1rem] [&_svg]:stroke-[1.7]",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
+        pill: "h-auto gap-[0.6rem] rounded-full px-[1.35rem] py-[0.8rem] text-[0.95rem] font-semibold",
+        dock: "h-auto gap-[0.6rem] rounded-full px-[1.1rem] py-[0.55rem] text-[0.88rem] font-semibold",
+        chip: "h-auto rounded-full px-4 py-[0.45rem] text-[0.88rem]",
+        text: "h-auto px-0 pb-[0.15rem] pt-0 text-[0.94rem]",
+        bare: "h-auto gap-[0.4rem] p-0 text-[1.04rem]",
       },
     },
     defaultVariants: {
