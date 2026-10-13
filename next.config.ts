@@ -1,15 +1,9 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  webpack: config => {
-    config.module.rules.push({
-      test: /\.node$/,
-      use: 'node-loader'
-    });
-
-    return config;
-  },
   images: {
+    // Next 16 only allows the qualities listed here; the resume page uses 10
+    qualities: [10, 75],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
@@ -28,11 +22,9 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_APP_URL: 'https://timsmarttechnology.co.uk'
   },
 
-  experimental: {
-    turbo: {
-      resolveAlias: {
-        canvas: './app/empty-module.ts'
-      }
+  turbopack: {
+    resolveAlias: {
+      canvas: './app/empty-module.ts'
     }
   }
 };

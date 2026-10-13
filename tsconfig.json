@@ -2,8 +2,11 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
-    "lib": ["dom", "es2020"],
-    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "es2021"
+    ],
+    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -13,7 +16,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "types": ["node", "react", "react-dom", "@types/jest"],
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "@types/jest"
+    ],
     "plugins": [
       {
         "name": "next"
@@ -21,14 +29,26 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["app/*"],
-      "@components/*": ["app/components/*"],
-      "@store/*": ["app/store/*"],
-      "@api/*": ["app/api/*"],
-      "@utils/*": ["app/utils/*"],
-      "@actions/*": ["app/actions/*"]
+      "@/*": [
+        "app/*"
+      ],
+      "@components/*": [
+        "app/components/*"
+      ],
+      "@store/*": [
+        "app/store/*"
+      ],
+      "@api/*": [
+        "app/api/*"
+      ],
+      "@utils/*": [
+        "app/utils/*"
+      ],
+      "@actions/*": [
+        "app/actions/*"
+      ]
     },
-    "moduleResolution": "node"
+    "moduleResolution": "bundler"
   },
   "ts-node": {
     "esm": true,
@@ -44,7 +64,10 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     ".next/types/**/*.ts",
-    "jest.config.ts"
+    "jest.config.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
