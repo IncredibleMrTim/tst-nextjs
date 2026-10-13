@@ -1,0 +1,151 @@
+/* Hides the "Sanity" wordmark credit under the login card. With a single
+ * workspace configured, Studio never renders the square monogram (that's
+ * a multi-workspace-picker element) — the wordmark is the only Sanity
+ * brand mark actually on this screen, confirmed by inspecting the live
+ * DOM. Keyed off `data-sanity-icon`, an attribute @sanity/logos sets on
+ * the SVG itself (dist/index.js) rather than a build-generated
+ * styled-components class, so it should survive Studio version bumps
+ * better than most internal-DOM hooks. If Sanity ever drops that
+ * attribute, this rule just stops matching and the wordmark reappears.
+ */
+svg[data-sanity-icon="sanity-logo"] {
+  /* !important: Studio's styled-components rules inject after this
+   * stylesheet in the DOM and win the cascade at equal specificity
+   * otherwise. */
+  display: none !important;
+}
+
+/* Hides the Community/Docs/Privacy/sanity.io link row underneath. Keyed
+ * off the snty.link shortlink domain Sanity uses for its own footer
+ * links, rather than styled-components classes (shared by every Box/
+ * Flex in Studio, far too generic to target safely). Studio actually
+ * renders two copies of this row with slightly different internal
+ * markup (one has an icon-wrapping span the other doesn't) — plain
+ * `[data-ui="Flex"]:has(a[href*="snty.link"])` alone also matches the
+ * full-page wrapper Flex (it contains this link as a descendant too),
+ * so `:not(:has([data-ui="Card"]))` excludes anything that also
+ * contains a Card — the footer row never does, the page wrapper always
+ * does. Verified live: matches both copies, nothing broader.
+ */
+[data-ui="Flex"]:has(a[href*="snty.link"]):not(:has([data-ui="Card"])) {
+  display: none !important;
+}
+
+/* Full-bleed backdrop behind the login card, painted black to match the
+ * brand. Keyed off `data-ui="NextStudioLayout"`, a page-level attribute
+ * Studio sets once for this exact wrapper, scoped down to its direct-
+ * child Card — `[data-ui="Card"]` alone is reused by every card in
+ * Studio, so it needs that parent scope to stay specific to this one.
+ * Verified live: matches exactly one full-viewport-sized element.
+ */
+[data-ui="NextStudioLayout"] > [data-ui="Card"] {
+  background-color: #000 !important;
+}
+
+/* Vertically centers the actual login card at its fixed 320px logo
+ * size. Centering the logo+card+footnote as one flex-item group ties
+ * the card's position to the logo's size — at 320px the logo's much
+ * larger than the footnote below it, so group-centering pulls the
+ * whole block's center upward and the card ends up sitting visibly
+ * below true center. Moving ::before/::after onto
+ * `[data-ui="Container"]` (the direct wrapper of just the card) and
+ * absolutely positioning them relative to it decouples the two: the
+ * Flex's `justify-content: center` now centers only the card, and the
+ * logo/footnote attach visually above/below wherever that lands.
+ * Tradeoff: on short viewports the logo can extend above the top edge,
+ * since keeping the card centered at this size needs more vertical
+ * room than centering the group as a whole would.
+ */
+[data-ui="NextStudioLayout"] > [data-ui="Card"] > [data-ui="Flex"] > [data-ui="Container"] {
+  position: relative;
+  margin-top: 0px;
+}
+
+[data-ui="NextStudioLayout"] > [data-ui="Card"] > [data-ui="Flex"] > [data-ui="Container"]::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 6px;
+  margin-bottom: 0px;
+  width: 380px;
+  height: 380px;
+  background-image: url("/logo_dark.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Trademark-acknowledgment credit below the card, in place of the
+ * default wordmark+link row hidden above. Sanity's ToS (sanity.io/legal/
+ * tos, s.9.4) doesn't actually require any attribution — it restricts
+ * using their marks WITHOUT consent — so this is a plain-text nominative
+ * reference ("Sanity" as a name, not their logo/wordmark graphic) rather
+ * than a promotional "Powered by" tagline.
+ */
+[data-ui="NextStudioLayout"] > [data-ui="Card"] > [data-ui="Flex"] > [data-ui="Container"]::after {
+  content: "Powered by Sanity.io";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 12px;
+  width: max-content;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Removes the workspace icon badge next to the title in the login card
+ * header. `icon: undefined` in sanity.config.ts doesn't achieve this —
+ * Workspace.icon always resolves to a real ReactNode internally, so an
+ * empty config value just falls back to Sanity's own auto-generated
+ * initials avatar (confirmed live: it rendered "SR" instead of nothing).
+ * This targets that badge directly. No `data-ui` attribute on the badge
+ * itself, so it's identified structurally — the first child of the Flex
+ * that also contains the title Text — rather than its styled-components
+ * class. Verified live: matches exactly one element.
+ */
+[data-ui="NextStudioLayout"] [data-ui="Flex"]:has(> [data-ui="Stack"] > [data-ui="Text"]) > :first-child {
+  display: none !important;
+}
+
+/* Hides the "Last used" badge above the previously-used login provider
+ * button. Keyed off `data-ui="Badge"`, which is unique on this screen —
+ * nothing else on the login card uses that role. Verified live: matches
+ * exactly one element.
+ */
+[data-ui="NextStudioLayout"] [data-ui="Badge"] {
+  display: none !important;
+}
+
+/* Widens the document editing form (640px by default) so fields with more
+ * going on — like the About page's rich-text toolbar with its Format/
+ * Size/Heading/Other button groups — have room to lay out in one row
+ * instead of wrapping. No `data-ui` hook exists on this element, so this
+ * is keyed off `FormContainer`, the stable styled-components display-name
+ * class Sanity leaves on it (the trailing hash after it is the unstable
+ * per-build part and isn't included) — a Sanity Studio version bump could
+ * rename it and silently stop matching, unlike the `data-ui` selectors
+ * above. Verified live: matches exactly one element, the document pane's
+ * form wrapper.
+ */
+[class*="FormContainer-"] {
+  max-width: 1100px !important;
+}
+
+/* Portable Text blocks get their own separate reading-width cap (measured
+ * live: a fixed 640px, centered with equal padding on both sides) from
+ * `@sanity/ui`'s theme, independent of the `FormContainer` width above —
+ * widening the form didn't widen the text block inside it. Keyed off
+ * `data-pt-block`, a stable functional attribute the Portable Text editor
+ * sets on every block element (not a styled-components hash), so this
+ * survives Sanity Studio version bumps better than a class selector would.
+ */
+[data-pt-block] {
+  width: 100% !important;
+  max-width: none !important;
+}
+

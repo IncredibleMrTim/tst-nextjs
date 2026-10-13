@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { Viewer, DocumentLoadEvent } from '@react-pdf-viewer/core';
+import { CV_URL } from '@/lib/navigation';
 import PDFToolbar from './Toolbar';
 import '@react-pdf-viewer/toolbar/lib/styles/index.css';
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -58,7 +59,7 @@ const PdfViewer = () => {
         <div className="flex flex-row h-[55rem] gap-2 my-2 ">
           <Viewer
             plugins={[...toolbarInstances]}
-            fileUrl="/TimSmart_CV_02_03_26.pdf"
+            fileUrl={CV_URL}
             onDocumentLoad={(e: DocumentLoadEvent) =>
               onDocumentLoadSuccess({ numPages: e.doc.numPages })
             }

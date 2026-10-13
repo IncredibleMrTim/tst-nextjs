@@ -1,97 +1,70 @@
-'use server';
+import 'server-only';
 
-import { Prisma } from '@prisma/client';
-import { unstable_cache } from 'next/cache';
-import prisma from '@/lib/prisma';
+import { sanityFetch } from '@/sanity/fetch';
+import { urlForImage } from '@/sanity/image';
+import { experiencePageQuery } from '@/sanity/queries';
+import type { ExperiencePageQueryResult } from '@/sanity/types';
 
-type Skill = Prisma.SkillGetPayload<{}>;
+// The logo tile is about 120px wide; 360 covers 3x screens.
+const LOGO_WIDTH_PX = 360;
 
-export interface ExperienceWithSkills {
+type JobRole = NonNullable<
+  NonNullable<ExperiencePageQueryResult>['jobRoles']
+>[number];
+
+export interface Experience {
   id: string;
   role: string;
   company: string;
-  location: string;
-  description: string | null;
+  location: string | null;
+  /** Markdown bullet list ("- one\n- two"). */
   summary: string | null;
   fromDate: Date;
   toDate: Date | null;
-  order: number;
-  skills: Skill[];
-  createdAt: Date;
-  updatedAt: Date;
+  /** Engagement type shown beside the company, e.g. "Contract". */
+  type: string | null;
+  /** CDN URL of the uploaded company logo; null falls back to initials. */
+  logoUrl: string | null;
+  technologies: string[];
 }
 
-const _getExperiences = async (): Promise<ExperienceWithSkills[]> => {
-  const experiences = await prisma.experience.findMany({
-    orderBy: { order: 'asc' },
-    include: {
-      skills: {
-        include: {
-          skill: true
-        },
-        orderBy: { order: 'asc' }
-      }
-    }
-  });
+const getLogoUrl = (companyLogo: JobRole['companyLogo']): string | null =>
+  companyLogo?.imageFile?.asset
+    ? urlForImage(companyLogo.imageFile)
+        .width(LOGO_WIDTH_PX)
+        .fit('max')
+        .auto('format')
+        .url()
+    : null;
 
-  // Transform the data to extract skills from the junction table
-  const transformedExperiences: ExperienceWithSkills[] = experiences.map(
-    exp => ({
-      id: exp.id,
-      role: exp.role,
-      company: exp.company,
-      location: exp.location,
-      description: exp.description,
-      summary: exp.summary,
-      fromDate: exp.fromDate,
-      toDate: exp.toDate,
-      order: exp.order,
-      createdAt: exp.createdAt,
-      updatedAt: exp.updatedAt,
-      skills: exp.skills.map(es => es.skill)
-    })
-  );
-
-  return transformedExperiences;
-};
-
-export const getExperiences = unstable_cache(_getExperiences, ['experiences'], {
-  revalidate: 604800,
-  tags: ['experiences']
+/**
+ * Maps a Studio role to the shape the components read. A role marked Present
+ * has no end date, however an old To Date may linger in the document.
+ */
+const toExperience = (jobRole: JobRole): Experience => ({
+  id: jobRole._key,
+  role: jobRole.roleTitle,
+  company: jobRole.roleCompany,
+  location: jobRole.roleLocation,
+  summary: jobRole.roleSummary,
+  fromDate: new Date(jobRole.roleFrom),
+  toDate:
+    jobRole.rolePresent || !jobRole.roleTo ? null : new Date(jobRole.roleTo),
+  type: jobRole.roleType,
+  logoUrl: getLogoUrl(jobRole.companyLogo),
+  technologies: jobRole.roleTechnologies ?? []
 });
 
 /**
- * Get a single experience by ID with all related skills
+ * Most recent role first, matching how the experience timeline reads.
  */
-export const getExperienceById = async (
-  id: string
-): Promise<ExperienceWithSkills | null> => {
-  const experience = await prisma.experience.findUnique({
-    where: { id },
-    include: {
-      skills: {
-        include: {
-          skill: true
-        },
-        orderBy: { order: 'asc' }
-      }
-    }
-  });
+export const getExperiences = async (): Promise<Experience[]> => {
+  const experiencePage = await sanityFetch<ExperiencePageQueryResult>(
+    experiencePageQuery,
+    ['experiencePage']
+  );
 
-  if (!experience) return null;
-
-  return {
-    id: experience.id,
-    role: experience.role,
-    company: experience.company,
-    location: experience.location,
-    description: experience.description,
-    summary: experience.summary,
-    fromDate: experience.fromDate,
-    toDate: experience.toDate,
-    order: experience.order,
-    createdAt: experience.createdAt,
-    updatedAt: experience.updatedAt,
-    skills: experience.skills.map(es => es.skill)
-  };
+  return (experiencePage?.jobRoles ?? [])
+    .map(toExperience)
+    .sort((a, b) => b.fromDate.getTime() - a.fromDate.getTime());
 };
