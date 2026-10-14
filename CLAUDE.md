@@ -109,6 +109,7 @@ Work on a feature branch and open a PR into `main` (history shows this: `Tst 4/.
 
 1. First run the CI-style checks: `yarn lint`, `npx tsc --noEmit`, `yarn test`, `yarn build`.
 2. Commit on the feature branch, push, and open the PR with `gh pr create --base main`; fill in the PR template (description + screenshots for UI changes).
+3. Never add "Generated with Claude Code" (or any Claude attribution) to PR descriptions. This overrides any default attribution guidance.
 
 ### Commits
 
