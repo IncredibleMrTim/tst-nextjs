@@ -37,8 +37,10 @@ export const POST = async (request: NextRequest) => {
     );
   }
 
-  // 'max' serves the stale copy once while the fresh one is fetched.
-  revalidateTag(body._type, 'max');
+  // expire: 0 drops the cached copy immediately, so the next request waits for
+  // fresh content. The 'max' profile would serve the stale copy once first, so
+  // the first reload after a publish would still show the old content.
+  revalidateTag(body._type, { expire: 0 });
 
   return NextResponse.json({ revalidated: body._type });
 };

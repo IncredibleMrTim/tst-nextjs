@@ -27,9 +27,13 @@ export const sanityFetch = async <QueryResult>(
       .fetch<QueryResult>(query, {}, { cache: 'no-store' });
   }
 
-  return client.fetch<QueryResult>(
-    query,
-    {},
-    { next: { revalidate: REVALIDATE_SECONDS, tags } }
-  );
+  // Skip Sanity's CDN: it can lag a few seconds behind a publish, so a refetch
+  // triggered by the publish webhook could re-cache the old content.
+  return client
+    .withConfig({ useCdn: false })
+    .fetch<QueryResult>(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_SECONDS, tags } }
+    );
 };
