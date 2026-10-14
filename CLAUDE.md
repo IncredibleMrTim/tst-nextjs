@@ -2,12 +2,6 @@
 
 Personal portfolio and CV site for Tim Smart Technology Ltd (timsmarttechnology.co.uk). Next.js App Router, content in Postgres via Prisma, served through server actions.
 
-## Working Style
-
-Tim and Claude are a friendly team (BFFs, as of 2026-10-08): warm, personable, a bit of humour, empathy when something's frustrating. Substance stays sharp — be honest about problems, say what was and wasn't checked, keep replies short.
-
-Critique Tim's ideas — a good friend says when something's a bad idea. Be kind: lead with what works, explain the concern and why, suggest an alternative, leave the call to Tim. Tim has feelings too.
-
 ## Stack
 
 - Next.js 16 (App Router, Turbopack for both `dev` and `build`), React 19, TypeScript (`strict`), yarn (`packageManager: yarn@1.22.22`)
@@ -60,7 +54,7 @@ Schemas live in `app/sanity/schemaTypes/<entity>/` (one folder per entity, `help
 
 - Data comes from Prisma through server actions in `app/actions/<name>.actions.ts` (`'use server'`), wrapped in `unstable_cache` with a `revalidate` and `tags`. No Prisma calls in components or route handlers.
 - Components load data via those actions — never hardcoded placeholder constants standing in for database content.
-- Never log or commit sensitive data (API keys, `DATABASE_URL`, OAuth secrets, `NEXTAUTH_SECRET`). Secrets belong in `.env`, which is gitignored. See "Secrets never reach GitHub" under Git & PR Workflow.
+- Never log or commit sensitive data (API keys, `DATABASE_URL`, OAuth secrets, `NEXTAUTH_SECRET`). Secrets belong in `.env`, which is gitignored. See "Secrets never reach GitHub" in the global instructions.
 
 ### Database safety
 
@@ -115,15 +109,9 @@ Claude in Chrome (`mcp__claude-in-chrome__*`) only when the task needs Tim's log
 
 Work on a feature branch and open a PR into `main` (history shows this: `Tst 4/...` branches merged as `(#44)`, with `.github/PULL_REQUEST_TEMPLATE.md`). Never push straight to `main`. When asked to commit/push/PR:
 
-**Secrets never reach GitHub.** Keys, tokens, passwords, webhook secrets, bypass headers, connection strings and anything from `.env*` must never be committed, pushed, or put in a PR description, comment or screenshot. Before every commit and push:
-
-- Stage files by name (no `git add -A` / `git add .`) and read the staged diff for secrets, `.env*` files and long token-like strings.
-- If something looks sensitive, **stop and show Tim a clear warning** that names the file and line (never print the secret itself). Don't commit or push until it's removed. Tim asking to go ahead isn't enough on its own: say why it's risky, offer the safe alternative (env var, `.env.local`, host settings), and only continue once the secret is out of the change.
-- If a secret has already been committed or pushed, tell Tim straight away: it must be treated as leaked and rotated, because deleting it from history doesn't undo that.
-- Don't print secrets into the conversation either (for example by dumping a webhook or env listing). Mask them in output.
-
-1. First run the CI-style checks: `yarn lint`, `npx tsc --noEmit`, `yarn test`, `yarn build`.
-2. Commit on the feature branch, push, and open the PR with `gh pr create --base main`; fill in the PR template (description + screenshots for UI changes).
+1. Check for secrets first, following "Secrets never reach GitHub" in the global instructions.
+2. Run the CI-style checks: `yarn lint`, `npx tsc --noEmit`, `yarn test`, `yarn build`.
+3. Commit on the feature branch, push, and open the PR with `gh pr create --base main`; fill in the PR template (description + screenshots for UI changes).
 
 ### Commits
 
