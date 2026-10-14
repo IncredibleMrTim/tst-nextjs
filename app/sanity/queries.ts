@@ -19,3 +19,7 @@ export const rolesSectionQuery = defineQuery(`*[_type == "rolesSection"][0]{
     companyLogo
   }
 }`);
+
+export const skillsSectionQuery = defineQuery(`*[_type == "rolesSection"][0]{
+  skills
+}`);

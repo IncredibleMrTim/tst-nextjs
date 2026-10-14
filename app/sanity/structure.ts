@@ -8,6 +8,7 @@ import { ContentListPane, type ContentListItem } from './ContentListPane';
 const CONTENT_ITEMS: ContentListItem[] = [
   { id: 'profileSection', title: 'Profile', schemaType: 'profileSection' },
   { id: 'rolesSection', title: 'Roles', schemaType: 'rolesSection' },
+  { id: 'skillsSection', title: 'Skills', schemaType: 'skillsSection' },
 
   { id: 'colorPalette', title: 'Custom Colors', schemaType: 'colorPalette' }
 ];

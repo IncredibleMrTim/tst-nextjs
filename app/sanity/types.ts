@@ -29,6 +29,25 @@ export type ColorPalette = {
   }>;
 };
 
+export type SkillGroup = {
+  _type: 'skillGroup';
+  name: string;
+  skills: Array<string>;
+};
+
+export type SkillsSection = {
+  _id: string;
+  _type: 'skillsSection';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  skillGroups?: Array<
+    {
+      _key: string;
+    } & SkillGroup
+  >;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: 'reference';
@@ -298,6 +317,8 @@ export type Slug = {
 
 export type AllSanitySchemaTypes =
   | ColorPalette
+  | SkillGroup
+  | SkillsSection
   | SanityImageAssetReference
   | RolesSection
   | SanityImageCrop
@@ -355,11 +376,19 @@ export type RolesSectionQueryResult = {
   }> | null;
 } | null;
 
+// Source: app/sanity/queries.ts
+// Variable: skillsSectionQuery
+// Query: *[_type == "rolesSection"][0]{  skills}
+export type SkillsSectionQueryResult = {
+  skills: null;
+} | null;
+
 // Query TypeMap
 declare global {
   interface SanityQueries {
     '*[_type == "profileSection"][0]{\n  profile\n}': ProfileSectionQueryResult;
     '*[_type == "rolesSection"][0]{\n  jobRoles[]{\n    _key,\n    roleTitle,\n    roleCompany,\n    roleFrom,\n    roleTo,\n    rolePresent,\n    roleType,\n    roleLocation,\n    roleSummary,\n    roleTechnologies,\n    companyLogo\n  }\n}': RolesSectionQueryResult;
+    '*[_type == "rolesSection"][0]{\n  skills\n}': SkillsSectionQueryResult;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too
