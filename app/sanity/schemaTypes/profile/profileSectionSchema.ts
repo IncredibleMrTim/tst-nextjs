@@ -1,13 +1,13 @@
 import { defineType, defineField } from 'sanity';
 import { portableTextSchema } from '../helpers/portableText';
 
-export const profilePageSchema = defineType({
-  name: 'profilePage',
+export const profileSectionSchema = defineType({
+  name: 'profileSection',
   title: 'Profile',
   type: 'document',
   preview: {
     prepare() {
-      return { title: 'Profile Page' };
+      return { title: 'Profile Section' };
     }
   },
   fields: [

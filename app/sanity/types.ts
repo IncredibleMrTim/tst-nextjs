@@ -36,9 +36,9 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 };
 
-export type RolesPage = {
+export type RolesSection = {
   _id: string;
-  _type: 'rolesPage';
+  _type: 'rolesSection';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -85,9 +85,9 @@ export type SanityImageHotspot = {
   width: number;
 };
 
-export type ProfilePage = {
+export type ProfileSection = {
   _id: string;
-  _type: 'profilePage';
+  _type: 'profileSection';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -299,10 +299,10 @@ export type Slug = {
 export type AllSanitySchemaTypes =
   | ColorPalette
   | SanityImageAssetReference
-  | RolesPage
+  | RolesSection
   | SanityImageCrop
   | SanityImageHotspot
-  | ProfilePage
+  | ProfileSection
   | Color
   | RgbaColor
   | HsvaColor
@@ -319,16 +319,16 @@ export type AllSanitySchemaTypes =
   | Slug;
 
 // Source: app/sanity/queries.ts
-// Variable: profilePageQuery
-// Query: *[_type == "profilePage"][0]{  profile}
-export type ProfilePageQueryResult = {
+// Variable: profileSectionQuery
+// Query: *[_type == "profileSection"][0]{  profile}
+export type ProfileSectionQueryResult = {
   profile: null;
 } | null;
 
 // Source: app/sanity/queries.ts
-// Variable: rolesPageQuery
-// Query: *[_type == "rolesPage"][0]{  jobRoles[]{    _key,    roleTitle,    roleCompany,    roleFrom,    roleTo,    rolePresent,    roleType,    roleLocation,    roleSummary,    roleTechnologies,    companyLogo  }}
-export type RolesPageQueryResult = {
+// Variable: rolesSectionQuery
+// Query: *[_type == "rolesSection"][0]{  jobRoles[]{    _key,    roleTitle,    roleCompany,    roleFrom,    roleTo,    rolePresent,    roleType,    roleLocation,    roleSummary,    roleTechnologies,    companyLogo  }}
+export type RolesSectionQueryResult = {
   jobRoles: Array<{
     _key: string;
     roleTitle: string;
@@ -358,8 +358,8 @@ export type RolesPageQueryResult = {
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '*[_type == "profilePage"][0]{\n  profile\n}': ProfilePageQueryResult;
-    '*[_type == "rolesPage"][0]{\n  jobRoles[]{\n    _key,\n    roleTitle,\n    roleCompany,\n    roleFrom,\n    roleTo,\n    rolePresent,\n    roleType,\n    roleLocation,\n    roleSummary,\n    roleTechnologies,\n    companyLogo\n  }\n}': RolesPageQueryResult;
+    '*[_type == "profileSection"][0]{\n  profile\n}': ProfileSectionQueryResult;
+    '*[_type == "rolesSection"][0]{\n  jobRoles[]{\n    _key,\n    roleTitle,\n    roleCompany,\n    roleFrom,\n    roleTo,\n    rolePresent,\n    roleType,\n    roleLocation,\n    roleSummary,\n    roleTechnologies,\n    companyLogo\n  }\n}': RolesSectionQueryResult;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

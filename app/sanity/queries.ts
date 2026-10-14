@@ -1,10 +1,10 @@
 import { defineQuery } from 'next-sanity';
 
-export const profilePageQuery = defineQuery(`*[_type == "profilePage"][0]{
+export const profileSectionQuery = defineQuery(`*[_type == "profileSection"][0]{
   profile
 }`);
 
-export const rolesPageQuery = defineQuery(`*[_type == "rolesPage"][0]{
+export const rolesSectionQuery = defineQuery(`*[_type == "rolesSection"][0]{
   jobRoles[]{
     _key,
     roleTitle,

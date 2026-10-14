@@ -2,14 +2,14 @@ import 'server-only';
 
 import { sanityFetch } from '@/sanity/fetch';
 import { urlForImage } from '@/sanity/image';
-import { rolesPageQuery } from '@/sanity/queries';
-import type { RolesPageQueryResult } from '@/sanity/types';
+import { rolesSectionQuery } from '@/sanity/queries';
+import type { RolesSectionQueryResult } from '@/sanity/types';
 
 // The logo tile is about 120px wide; 360 covers 3x screens.
 const LOGO_WIDTH_PX = 360;
 
 type JobRole = NonNullable<
-  NonNullable<RolesPageQueryResult>['jobRoles']
+  NonNullable<RolesSectionQueryResult>['jobRoles']
 >[number];
 
 export interface Role {
@@ -59,11 +59,12 @@ const toRole = (jobRole: JobRole): Role => ({
  * Most recent role first, matching how the experience timeline reads.
  */
 export const getRoles = async (): Promise<Role[]> => {
-  const rolesPage = await sanityFetch<RolesPageQueryResult>(rolesPageQuery, [
-    'rolesPage'
-  ]);
+  const rolesSection = await sanityFetch<RolesSectionQueryResult>(
+    rolesSectionQuery,
+    ['rolesSection']
+  );
 
-  return (rolesPage?.jobRoles ?? [])
+  return (rolesSection?.jobRoles ?? [])
     .map(toRole)
     .sort((a, b) => b.fromDate.getTime() - a.fromDate.getTime());
 };
