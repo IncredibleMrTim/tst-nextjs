@@ -20,6 +20,10 @@ export const rolesSectionQuery = defineQuery(`*[_type == "rolesSection"][0]{
   }
 }`);
 
-export const skillsSectionQuery = defineQuery(`*[_type == "rolesSection"][0]{
-  skills
+export const skillsSectionQuery = defineQuery(`*[_type == "skillsSection"][0]{
+  skillGroups[]{
+    _key,
+    name,
+    skills
+  }
 }`);

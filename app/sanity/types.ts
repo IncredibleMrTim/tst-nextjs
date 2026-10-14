@@ -378,9 +378,13 @@ export type RolesSectionQueryResult = {
 
 // Source: app/sanity/queries.ts
 // Variable: skillsSectionQuery
-// Query: *[_type == "rolesSection"][0]{  skills}
+// Query: *[_type == "skillsSection"][0]{  skillGroups[]{    _key,    name,    skills  }}
 export type SkillsSectionQueryResult = {
-  skills: null;
+  skillGroups: Array<{
+    _key: string;
+    name: string;
+    skills: Array<string>;
+  }> | null;
 } | null;
 
 // Query TypeMap
@@ -388,7 +392,7 @@ declare global {
   interface SanityQueries {
     '*[_type == "profileSection"][0]{\n  profile\n}': ProfileSectionQueryResult;
     '*[_type == "rolesSection"][0]{\n  jobRoles[]{\n    _key,\n    roleTitle,\n    roleCompany,\n    roleFrom,\n    roleTo,\n    rolePresent,\n    roleType,\n    roleLocation,\n    roleSummary,\n    roleTechnologies,\n    companyLogo\n  }\n}': RolesSectionQueryResult;
-    '*[_type == "rolesSection"][0]{\n  skills\n}': SkillsSectionQueryResult;
+    '*[_type == "skillsSection"][0]{\n  skillGroups[]{\n    _key,\n    name,\n    skills\n  }\n}': SkillsSectionQueryResult;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too
