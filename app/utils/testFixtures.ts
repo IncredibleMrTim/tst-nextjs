@@ -1,13 +1,11 @@
-import { type Experience } from '@/actions/experience.actions';
+import { type Role } from '@/actions/role.actions';
 import { type FeaturedWork } from '@/actions/featuredWork.actions';
 import { type Profile } from '@/actions/profile.actions';
 import { type Project } from '@/actions/project.actions';
 
 const FIXED_DATE = new Date('2026-01-01');
 
-export const buildExperience = (
-  overrides: Partial<Experience> = {}
-): Experience => ({
+export const buildExperience = (overrides: Partial<Role> = {}): Role => ({
   id: 'experience-1',
   role: 'Senior Frontend Engineer',
   company: 'Acme Ltd',

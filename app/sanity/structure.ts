@@ -7,7 +7,7 @@ import { ContentListPane, type ContentListItem } from './ContentListPane';
 // a short line under the title in the Content list.
 const CONTENT_ITEMS: ContentListItem[] = [
   { id: 'profilePage', title: 'Profile', schemaType: 'profilePage' },
-  { id: 'experiencePage', title: 'Experience', schemaType: 'experiencePage' },
+  { id: 'rolesPage', title: 'Roles', schemaType: 'rolesPage' },
 
   { id: 'colorPalette', title: 'Custom Colors', schemaType: 'colorPalette' }
 ];

@@ -1,4 +1,4 @@
-import { type Experience } from '@/actions/experience.actions';
+import { type Role } from '@/actions/role.actions';
 import Section from '@/components/common/Section';
 import SectionHeading from '@/components/common/SectionHeading';
 import SkillMatrix from './SkillMatrix';
@@ -6,7 +6,7 @@ import SkillMatrix from './SkillMatrix';
 interface SkillsSectionProps {
   /** Skills shown under a heading each; leave `name` out for a single ungrouped list. */
   groups: { name?: string; skills: string[] }[];
-  experiences: Experience[];
+  experiences: Role[];
   experienceHref: string;
 }
 

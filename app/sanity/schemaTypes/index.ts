@@ -3,11 +3,11 @@ import type { SchemaTypeDefinition } from 'sanity';
 import { colorPalette } from './colorPalette';
 
 import { profilePageSchema } from './profile/profilePageSchema';
-import { experiencePageSchema } from './experience/experiencePageSchema';
+import { rolesPageSchema } from './roles/rolesPageSchema';
 
 const profileSchemas = [profilePageSchema];
-const experienceSchemas = [experiencePageSchema];
+const roleSchemas = [rolesPageSchema];
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [...profileSchemas, ...experienceSchemas, colorPalette]
+  types: [...profileSchemas, ...roleSchemas, colorPalette]
 };

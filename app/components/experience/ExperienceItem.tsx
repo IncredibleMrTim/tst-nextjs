@@ -1,4 +1,4 @@
-import { type Experience } from '@/actions/experience.actions';
+import { type Role } from '@/actions/role.actions';
 import CompanyLogo from '@/components/companyLogo/CompanyLogo';
 import TagList from '@/components/common/TagList';
 import {
@@ -11,7 +11,7 @@ import { formatDateRange, formatDuration } from '@/utils/dateUtils';
 import { getRoleMonths, getSummaryBullets } from '@/utils/experienceUtils';
 
 interface ExperienceItemProps {
-  experience: Experience;
+  experience: Role;
   isDimmed: boolean;
   highlightedSkill: string | null;
 }

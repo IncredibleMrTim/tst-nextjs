@@ -1,6 +1,6 @@
 'use client';
 
-import { type Experience } from '@/actions/experience.actions';
+import { type Role } from '@/actions/role.actions';
 import { type FeaturedWork } from '@/actions/featuredWork.actions';
 import Section from '@/components/common/Section';
 import SectionHeading from '@/components/common/SectionHeading';
@@ -10,7 +10,7 @@ import FeaturedWorkCard from './FeaturedWorkCard';
 
 interface FeaturedWorkSectionProps {
   featuredWork: FeaturedWork[];
-  experiences: Experience[];
+  experiences: Role[];
 }
 
 const FeaturedWorkSection = ({

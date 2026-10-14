@@ -15,9 +15,9 @@ const MONTH_YEAR_FORMAT = new Intl.DateTimeFormat('en-GB', {
 const formatMonthYear = (date?: string) =>
   date ? MONTH_YEAR_FORMAT.format(new Date(date)) : undefined;
 
-export const experiencePageSchema = defineType({
-  name: 'experiencePage',
-  title: 'Experience',
+export const rolesPageSchema = defineType({
+  name: 'rolesPage',
+  title: 'Roles',
   type: 'document',
   preview: {
     prepare() {

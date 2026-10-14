@@ -1,12 +1,12 @@
 export const revalidate = 604800; // 7 days, matching the cached content actions
 
-import { getExperiences } from '@/actions/experience.actions';
+import { getRoles } from '@/actions/role.actions';
 import { getSkillGroups } from '@/actions/skillGroup.actions';
 import SkillsSection from '@/components/skills/SkillsSection';
 
 const Skills = async () => {
   const [experiences, skillGroups] = await Promise.all([
-    getExperiences(),
+    getRoles(),
     getSkillGroups()
   ]);
 
