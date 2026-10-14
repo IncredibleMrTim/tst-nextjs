@@ -6,8 +6,8 @@ import { ContentListPane, type ContentListItem } from './ContentListPane';
 // documents) since there's exactly one of each. Add a `description` to show
 // a short line under the title in the Content list.
 const CONTENT_ITEMS: ContentListItem[] = [
-  { id: 'profilePage', title: 'Profile', schemaType: 'profilePage' },
-  { id: 'rolesPage', title: 'Roles', schemaType: 'rolesPage' },
+  { id: 'profileSection', title: 'Profile', schemaType: 'profileSection' },
+  { id: 'rolesSection', title: 'Roles', schemaType: 'rolesSection' },
 
   { id: 'colorPalette', title: 'Custom Colors', schemaType: 'colorPalette' }
 ];
