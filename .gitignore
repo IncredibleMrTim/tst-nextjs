@@ -45,3 +45,6 @@ next-env.d.ts
 .env*.local
 
 /generated/prisma
+
+# Playwright MCP scratch output (snapshots, console logs)
+.playwright-mcp/
