@@ -3,7 +3,7 @@
 import { NextStudio } from "next-sanity/studio"
 import { useEffect } from "react"
 
-import config from "../../../../../sanity.config"
+import config from "../../../../sanity.config"
 import "./admin-branding.css"
 
 // Sanity's own "Sign out" menu item has no redirect option, and Studio
