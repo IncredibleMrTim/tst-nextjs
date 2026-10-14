@@ -48,6 +48,14 @@ Prettier is the source of truth (`.prettierrc`): single quotes, no trailing comm
 - Reuse theme tokens from `globals.css` — no hardcoded hex or repeated `var(--...)`. Add new tokens to the theme and map them into shadcn's so its components share the palette.
 - Publicly hosted images and SVGs go in `public/` at the repo root.
 
+### Sanity schemas
+
+Schemas live in `app/sanity/schemaTypes/<entity>/` (one folder per entity, `helpers/` for shared pieces) and are registered in `schemaTypes/index.ts` and the Content list in `app/sanity/structure.ts`.
+
+- **Documents** are named `<entity>Section` — "Section", never "Page". The stored type, the file `<entity>SectionSchema.ts` and the export `<entity>SectionSchema` all share that name (`profileSection`, `rolesSection`, `skillsSection`). Each is a singleton whose `_id` equals its type name, and its preview title reads "<Entity> Section".
+- **Building-block objects** are named after what they are: `<thing>Schema.ts` exporting `<thing>Schema`, with the stored type `<thing>` (`skillGroup`). They sit beside their section in the same folder.
+- **Renaming a stored type means moving data.** Copy the live document to the new `_id` and `_type` (`createIfNotExists`), keep the old one until production runs the new code, then update the queries (`app/sanity/queries.ts`), the cache tag, the Dev and Prod webhook filters and the generated types (`yarn typegen`). Field names stay unless a data migration is agreed.
+
 ### Data fetching
 
 - Data comes from Prisma through server actions in `app/actions/<name>.actions.ts` (`'use server'`), wrapped in `unstable_cache` with a `revalidate` and `tags`. No Prisma calls in components or route handlers.
