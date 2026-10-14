@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { type Experience } from '@/actions/experience.actions';
+import { type Role } from '@/actions/role.actions';
 import { useAppDispatch } from '@/store/redux/store';
 import { setSkill } from '@/store/experienceFilter/filterSlice';
 import { getExperiencesUsingSkill } from '@/utils/experienceUtils';
@@ -10,7 +10,7 @@ import { getExperiencesUsingSkill } from '@/utils/experienceUtils';
 interface SkillMatrixProps {
   skills: string[];
   /** Any order; roles are shown oldest to newest. */
-  experiences: Experience[];
+  experiences: Role[];
   /** Where to send the visitor after choosing a skill, so they see the filtered roles. */
   experienceHref: string;
 }

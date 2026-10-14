@@ -1,4 +1,4 @@
-import { type Experience } from '@/actions/experience.actions';
+import { type Role } from '@/actions/role.actions';
 import { formatDateRange } from '@/utils/dateUtils';
 import {
   getTimelineBounds,
@@ -8,7 +8,7 @@ import {
 } from '@/utils/experienceUtils';
 
 interface CareerRulerProps {
-  experiences: Experience[];
+  experiences: Role[];
   /** Ids of roles to fade out, e.g. those not using the selected skill. */
   dimmedExperienceIds: Set<string>;
   onSelectExperience: (experienceId: string) => void;

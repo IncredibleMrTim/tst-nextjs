@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { type Experience } from '@/actions/experience.actions';
+import { type Role } from '@/actions/role.actions';
 import Section from '@/components/common/Section';
 import SectionHeading from '@/components/common/SectionHeading';
 import { Accordion } from '@/components/ui/accordion';
@@ -23,15 +23,15 @@ import ExperienceItem from './ExperienceItem';
 
 interface ExperienceSectionProps {
   /** Most recent role first. */
-  experiences: Experience[];
+  experiences: Role[];
 }
 
 // The latest roles start open so the page isn't a wall of closed rows
 const DEFAULT_OPEN_COUNT = 2;
 
 const getDefaultOpenIds = (
-  experiences: Experience[],
-  rolesUsingSkill: Experience[] | null
+  experiences: Role[],
+  rolesUsingSkill: Role[] | null
 ) =>
   (rolesUsingSkill ?? experiences.slice(0, DEFAULT_OPEN_COUNT)).map(
     experience => experience.id

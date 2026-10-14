@@ -4,7 +4,7 @@ export const profilePageQuery = defineQuery(`*[_type == "profilePage"][0]{
   profile
 }`);
 
-export const experiencePageQuery = defineQuery(`*[_type == "experiencePage"][0]{
+export const rolesPageQuery = defineQuery(`*[_type == "rolesPage"][0]{
   jobRoles[]{
     _key,
     roleTitle,

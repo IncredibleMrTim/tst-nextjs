@@ -36,9 +36,9 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 };
 
-export type ExperiencePage = {
+export type RolesPage = {
   _id: string;
-  _type: 'experiencePage';
+  _type: 'rolesPage';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -299,7 +299,7 @@ export type Slug = {
 export type AllSanitySchemaTypes =
   | ColorPalette
   | SanityImageAssetReference
-  | ExperiencePage
+  | RolesPage
   | SanityImageCrop
   | SanityImageHotspot
   | ProfilePage
@@ -326,9 +326,9 @@ export type ProfilePageQueryResult = {
 } | null;
 
 // Source: app/sanity/queries.ts
-// Variable: experiencePageQuery
-// Query: *[_type == "experiencePage"][0]{  jobRoles[]{    _key,    roleTitle,    roleCompany,    roleFrom,    roleTo,    rolePresent,    roleType,    roleLocation,    roleSummary,    roleTechnologies,    companyLogo  }}
-export type ExperiencePageQueryResult = {
+// Variable: rolesPageQuery
+// Query: *[_type == "rolesPage"][0]{  jobRoles[]{    _key,    roleTitle,    roleCompany,    roleFrom,    roleTo,    rolePresent,    roleType,    roleLocation,    roleSummary,    roleTechnologies,    companyLogo  }}
+export type RolesPageQueryResult = {
   jobRoles: Array<{
     _key: string;
     roleTitle: string;
@@ -359,7 +359,7 @@ export type ExperiencePageQueryResult = {
 declare global {
   interface SanityQueries {
     '*[_type == "profilePage"][0]{\n  profile\n}': ProfilePageQueryResult;
-    '*[_type == "experiencePage"][0]{\n  jobRoles[]{\n    _key,\n    roleTitle,\n    roleCompany,\n    roleFrom,\n    roleTo,\n    rolePresent,\n    roleType,\n    roleLocation,\n    roleSummary,\n    roleTechnologies,\n    companyLogo\n  }\n}': ExperiencePageQueryResult;
+    '*[_type == "rolesPage"][0]{\n  jobRoles[]{\n    _key,\n    roleTitle,\n    roleCompany,\n    roleFrom,\n    roleTo,\n    rolePresent,\n    roleType,\n    roleLocation,\n    roleSummary,\n    roleTechnologies,\n    companyLogo\n  }\n}': RolesPageQueryResult;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

@@ -2,17 +2,17 @@ import 'server-only';
 
 import { sanityFetch } from '@/sanity/fetch';
 import { urlForImage } from '@/sanity/image';
-import { experiencePageQuery } from '@/sanity/queries';
-import type { ExperiencePageQueryResult } from '@/sanity/types';
+import { rolesPageQuery } from '@/sanity/queries';
+import type { RolesPageQueryResult } from '@/sanity/types';
 
 // The logo tile is about 120px wide; 360 covers 3x screens.
 const LOGO_WIDTH_PX = 360;
 
 type JobRole = NonNullable<
-  NonNullable<ExperiencePageQueryResult>['jobRoles']
+  NonNullable<RolesPageQueryResult>['jobRoles']
 >[number];
 
-export interface Experience {
+export interface Role {
   id: string;
   role: string;
   company: string;
@@ -41,7 +41,7 @@ const getLogoUrl = (companyLogo: JobRole['companyLogo']): string | null =>
  * Maps a Studio role to the shape the components read. A role marked Present
  * has no end date, however an old To Date may linger in the document.
  */
-const toExperience = (jobRole: JobRole): Experience => ({
+const toRole = (jobRole: JobRole): Role => ({
   id: jobRole._key,
   role: jobRole.roleTitle,
   company: jobRole.roleCompany,
@@ -58,13 +58,12 @@ const toExperience = (jobRole: JobRole): Experience => ({
 /**
  * Most recent role first, matching how the experience timeline reads.
  */
-export const getExperiences = async (): Promise<Experience[]> => {
-  const experiencePage = await sanityFetch<ExperiencePageQueryResult>(
-    experiencePageQuery,
-    ['experiencePage']
-  );
+export const getRoles = async (): Promise<Role[]> => {
+  const rolesPage = await sanityFetch<RolesPageQueryResult>(rolesPageQuery, [
+    'rolesPage'
+  ]);
 
-  return (experiencePage?.jobRoles ?? [])
-    .map(toExperience)
+  return (rolesPage?.jobRoles ?? [])
+    .map(toRole)
     .sort((a, b) => b.fromDate.getTime() - a.fromDate.getTime());
 };

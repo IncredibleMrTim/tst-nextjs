@@ -1,7 +1,7 @@
 export const revalidate = 604800; // 7 days, matching the cached content actions
 
 import { getEducation } from '@/actions/education.actions';
-import { getExperiences } from '@/actions/experience.actions';
+import { getRoles } from '@/actions/role.actions';
 import { getFeaturedWork } from '@/actions/featuredWork.actions';
 import { getProjects } from '@/actions/project.actions';
 import About from '@/components/about/About';
@@ -20,7 +20,7 @@ import {
 const Home = async () => {
   const [profile, experiences] = await Promise.all([
     getRequiredProfile(),
-    getExperiences()
+    getRoles()
     // getFeaturedWork(),
     // getProjects(),
     // getEducation()

@@ -1,10 +1,10 @@
 export const revalidate = 604800; // 7 days, matching the cached content actions
 
-import { getExperiences } from '@/actions/experience.actions';
+import { getRoles } from '@/actions/role.actions';
 import ExperienceSection from '@/components/experience/ExperienceSection';
 
 const Experience = async () => {
-  const experiences = await getExperiences();
+  const experiences = await getRoles();
 
   return (
     <div className="pt-[clamp(2rem,5vw,4rem)]">

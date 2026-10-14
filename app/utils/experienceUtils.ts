@@ -1,9 +1,9 @@
-import { type Experience } from '@/actions/experience.actions';
+import { type Role } from '@/actions/role.actions';
 import { getMonthsBetween } from './dateUtils';
 
 type DateInput = string | Date;
 
-type SkillSearchable = Pick<Experience, 'technologies' | 'summary'>;
+type SkillSearchable = Pick<Role, 'technologies' | 'summary'>;
 
 /**
  * Splits a markdown bullet list ("- one\n- two") into plain strings.
@@ -73,14 +73,14 @@ export interface TimelineBounds {
   end: number;
 }
 
-type RoleDates = Pick<Experience, 'fromDate' | 'toDate'>;
+type RoleDates = Pick<Role, 'fromDate' | 'toDate'>;
 
 /**
  * The career timeline runs from 1 January of the earliest start year to the
  * end of the current month.
  */
 export const getTimelineBounds = (
-  experiences: Pick<Experience, 'fromDate'>[],
+  experiences: Pick<Role, 'fromDate'>[],
   now: Date = new Date()
 ): TimelineBounds => {
   const earliestStart = Math.min(
