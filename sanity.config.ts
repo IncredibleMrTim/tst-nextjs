@@ -27,7 +27,7 @@ export default defineConfig({
       previewUrl: { previewMode: { enable: '/api/draft-mode/enable' } },
       resolve: {
         locations: {
-          rolesPage: defineLocations({
+          rolesSection: defineLocations({
             locations: [
               { title: 'Home', href: '/' },
               { title: 'Experience', href: '/experience' }
